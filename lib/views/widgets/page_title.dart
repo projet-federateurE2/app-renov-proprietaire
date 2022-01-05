@@ -1,5 +1,7 @@
+import 'package:app_renov_proprietaire/values/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+
 
 class PageTitle extends StatelessWidget {
   final String text;
@@ -9,8 +11,8 @@ class PageTitle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var txtBox;
-    return Stack(children: [
-      Text(text, key: txtKey, style: TextStyle(fontSize: 30)),
+    return Stack(
+        children: [
       Positioned(
           bottom: 2,
           child: LayoutBuilder(
@@ -24,7 +26,7 @@ class PageTitle extends StatelessWidget {
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
-                          color: Color(0x664CD8AD),
+                          color: ColorsRenov.secondaryGreen,
                           borderRadius: BorderRadius.circular(6),
                         ),
                         position: DecorationPosition.background,
@@ -33,7 +35,9 @@ class PageTitle extends StatelessWidget {
                   return new Text('rien du tout');
                 }
               })),
-    ]);
+          Text(text, key: txtKey, style: TextStyle(fontSize: 30))
+    ]
+      );
   }
 }
 
