@@ -1,5 +1,5 @@
 
-# app-renov-proprietaire
+# renov-proprietaire-app
 
 # Noms des branches
 - feat/...   -> une nouvelle fonctionnalité ajoutée au projet

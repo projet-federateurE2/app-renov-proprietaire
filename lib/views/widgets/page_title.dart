@@ -1,6 +1,6 @@
-import 'package:app_renov_proprietaire/values/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/values/colors.dart';
 
 
 class PageTitle extends StatelessWidget {

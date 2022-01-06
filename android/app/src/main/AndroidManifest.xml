@@ -1,7 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.example.app_renov_proprietaire">
+    package="com.example.renov_proprietaire_app">
    <application
-        android:label="app_renov_proprietaire"
+        android:label="renov_proprietaire_app"
         android:icon="@mipmap/ic_launcher">
         <activity
             android:name=".MainActivity"

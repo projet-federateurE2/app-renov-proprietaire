@@ -1,4 +1,4 @@
-package com.example.app_renov_proprietaire
+package com.example.renov_proprietaire_app
 
 import io.flutter.embedding.android.FlutterActivity
 
