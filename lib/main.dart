@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
+import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,10 +36,8 @@ class _MyHomePageState extends State<MyHomePage> {
   
     return Scaffold(
       body: Center(
-        child: Container(
-          child: GreenButton(),
-        ),
-        ),
+        child:IconBackgroundCircle(imageSize: 100, url:'icons/house.svg', topCirclePosition: 25, rightCirclePosition: 25,),
+      ),
       );
   }
 }
