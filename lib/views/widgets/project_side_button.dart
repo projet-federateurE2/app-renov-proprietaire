@@ -13,15 +13,19 @@ class ProjectSideButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Row(children: [
-        const IconBackgroundCircle(imageSize: 100, topCirclePosition: 30, rightCirclePosition: 30, url: "icons/house.svg"),
+      child: Row(
+
+          crossAxisAlignment: CrossAxisAlignment.center,
+          mainAxisAlignment: MainAxisAlignment.start,
+          children: [
+        const IconBackgroundCircle(imageSize: 30, topCirclePosition: 5, rightCirclePosition: 5, url: "icons/house.svg"),
         Text(text),
       ]),
       style: ElevatedButton.styleFrom(
         elevation: 0.0,
         shadowColor: Colors.black,
         primary: ColorsRenov.white,
-        padding: const EdgeInsets.fromLTRB(40, 20, 40, 20),
+        padding: const EdgeInsets.fromLTRB(20, 20, 20, 20),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(28)),
       ),
       onPressed: () {},
