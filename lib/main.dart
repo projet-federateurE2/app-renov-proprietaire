@@ -37,8 +37,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Center(
         child: Container(
-          child: ProjectSideButton(text: "coucou"),
+          margin: EdgeInsets.all(105),
+          child: ProjectSideButton(text: "Mes informations", urlIcon: 'icons/profile.svg',)
         ),
+          
         ),
       );
   }
