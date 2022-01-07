@@ -7,13 +7,15 @@ class IconBackgroundCircle extends StatelessWidget {
   final double topCirclePosition;
   final double rightCirclePosition;
   final String url;
+  final double? margin;
 
   const IconBackgroundCircle(
       {Key? key,
         required this.imageSize,
         required this.topCirclePosition,
         required this.rightCirclePosition,
-        required this.url})
+        required this.url,
+      this.margin})
       : super(key: key);
 
   @override
@@ -37,7 +39,7 @@ class IconBackgroundCircle extends StatelessWidget {
                       ));
                 })),
         Container(
-            margin:const EdgeInsets.only(top: 40.0, right: 40.0),
+            margin:const EdgeInsets.only(top: 10, right: 10),
             height: imageSize,
             width: imageSize,
             child: SvgPicture.asset(url)

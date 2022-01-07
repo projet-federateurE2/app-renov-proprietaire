@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
+import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
+import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -12,9 +14,10 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-      debugShowCheckedModeBanner: false,
       title: 'App renov',
-      theme: ThemeData(fontFamily: 'Poppins'),
+      theme: ThemeData(
+          fontFamily: 'Poppins'
+          ),
       home: const MyHomePage(),
     );
   }
@@ -28,8 +31,10 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  
   @override
   Widget build(BuildContext context) {
+  
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -39,5 +44,6 @@ class _MyHomePageState extends State<MyHomePage> {
           ],
       ),
     );
+
   }
 }
