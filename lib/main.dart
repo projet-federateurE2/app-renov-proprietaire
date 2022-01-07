@@ -1,5 +1,4 @@
 import 'package:flutter/material.dart';
-import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 
 void main() {
   runApp(const MyApp());
