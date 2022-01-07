@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 
 
+// ignore: must_be_immutable
 class PageTitle extends StatelessWidget {
   final String text;
   PageTitle({Key? key, required this.text}) : super(key: key);
@@ -10,19 +11,19 @@ class PageTitle extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    var txtBox;
+    RenderBox txtBox;
     return Stack(
         children: [
       Positioned(
-          bottom: 2,
+          bottom: 6,
           child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
                 final keyContext = txtKey.currentContext;
                 if (keyContext != null) {
                   txtBox = keyContext.findRenderObject() as RenderBox;
                   return SizedBox(
-                      width: txtBox.size.width / 2.5,
-                      height: txtBox.size.height / 3,
+                      width: txtBox.size.width / 3.5,
+                      height: txtBox.size.height / 3.5,
                       child: DecoratedBox(
                         decoration: BoxDecoration(
                           shape: BoxShape.rectangle,
@@ -32,10 +33,10 @@ class PageTitle extends StatelessWidget {
                         position: DecorationPosition.background,
                       ));
                 } else {
-                  return new Text('rien du tout');
+                  return const Text("");
                 }
               })),
-          Text(text, key: txtKey, style: TextStyle(fontSize: 30))
+          Text(text, key: txtKey, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w600))
     ]
       );
   }

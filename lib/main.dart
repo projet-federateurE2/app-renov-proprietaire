@@ -39,7 +39,7 @@ class _MyHomePageState extends State<MyHomePage> {
         children: [
           const BackgroundGreenWave(),
           Container()
-        ],
+          ],
       ),
     );
   }
