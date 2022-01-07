@@ -37,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       body: Center(
         child: Container(
-          child: WorkClickableBlock(),
+          child: const WorkClickableBlock(urlImage: "./../assets/icons/location.svg",workName: "petit texte",),
         ),
         ),
       );
