@@ -1,4 +1,7 @@
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
+import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
+import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,8 +33,12 @@ class _MyHomePageState extends State<MyHomePage> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.white,
       body: Stack(
-        children: [BackgroundGreenWave(), Container()],
+        children: [
+          const BackgroundGreenWave(),
+          Container()
+          ],
       ),
     );
   }
