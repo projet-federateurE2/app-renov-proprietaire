@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
@@ -35,12 +36,14 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
   
     return Scaffold(
-      body: Center(
-        child: Container(
-          margin: EdgeInsets.all(105),
-          child: ProjectSideButton(text: "Mes informations", urlIcon: 'icons/profile.svg',)
-        ),
+      backgroundColor: Colors.white,
+      body: Stack(
+        children: [
+          const BackgroundGreenWave(),
+          Container()
+          ],
       ),
-      );
+    );
+
   }
 }
