@@ -40,8 +40,7 @@ class _MyHomePageState extends State<MyHomePage> {
           margin: EdgeInsets.all(105),
           child: ProjectSideButton(text: "Mes informations", urlIcon: 'icons/profile.svg',)
         ),
-          
-        ),
+      ),
       );
   }
 }
