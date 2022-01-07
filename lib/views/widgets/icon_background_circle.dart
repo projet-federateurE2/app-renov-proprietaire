@@ -19,7 +19,9 @@ class IconBackgroundCircle extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Stack(
+
       children: [
+
         Positioned(
             top: topCirclePosition,
             right: rightCirclePosition,
