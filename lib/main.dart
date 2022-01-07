@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 
 void main() {
@@ -15,7 +16,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: const MyHomePage(),
+      home: const WorkTypeSelectionPage(),
     );
   }
 }
