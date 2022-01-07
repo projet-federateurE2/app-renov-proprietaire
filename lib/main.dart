@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
-import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
+import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 
 void main() {
   runApp(const MyApp());
@@ -13,10 +12,9 @@ class MyApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
+      debugShowCheckedModeBanner: false,
       title: 'App renov',
-      theme: ThemeData(
-          fontFamily: 'Poppins'
-          ),
+      theme: ThemeData(fontFamily: 'Poppins'),
       home: const MyHomePage(),
     );
   }
@@ -30,16 +28,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
-  
   @override
   Widget build(BuildContext context) {
-  
     return Scaffold(
-      body: Center(
-        child: Container(
-          child: const WorkClickableBlock(urlImage: "./../assets/icons/location.svg",workName: "petit texte",),
-        ),
-        ),
-      );
+      body: Stack(
+        children: [BackgroundGreenWave(), Container()],
+      ),
+    );
   }
 }
