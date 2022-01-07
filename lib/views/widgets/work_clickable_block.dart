@@ -45,7 +45,6 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                           width:90,
                           height:90,
                           child: SvgPicture.asset(widget.urlImage, color: fontColor)
-                          child: SvgPicture.asset(widget.urlImage, color: fontColor)
                       ),
                       Text(widget.workName,
                           style: TextStyle(color: fontColor, fontSize: 20, fontWeight: FontWeight.w500)
