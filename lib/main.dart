@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
+import 'package:renov_proprietaire_app/views/widgets/work_type_clickable_block.dart';
 
 void main() {
   runApp(const MyApp());
@@ -35,8 +36,15 @@ class _MyHomePageState extends State<MyHomePage> {
   Widget build(BuildContext context) {
   
     return Scaffold(
-      body: Center(
-        child:IconBackgroundCircle(imageSize: 100, url:'icons/house.svg', topCirclePosition: 25, rightCirclePosition: 25,),
+      body: Row(
+        children:[
+          WorkTypeClickableBlock(workTypeDescription: 'Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.' , iconSize:70, iconUrl:'icons/house.svg', workTypeTitle: 'Isolation'),
+        WorkTypeClickableBlock(workTypeDescription: 'This iPour faire des économies d’énergie, et améliorer votre confort en hiver comme en été. ', iconSize:70, iconUrl:'icons/ventilation.svg', workTypeTitle: 'Isolation'),
+
+        WorkTypeClickableBlock(workTypeDescription: 'Thishkbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbbb is a descrption of a block blablabalab', iconSize:70, iconUrl:'icons/heating.svg', workTypeTitle: 'Isolation'),
+
+
+        ],
       ),
       );
   }
