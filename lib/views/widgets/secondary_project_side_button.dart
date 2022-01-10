@@ -12,17 +12,17 @@ class SecondaryProjectSideButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
+    return /*FractionallySizedBox(
       widthFactor: 0.8,
       heightFactor: 0.1,
-      child: Card(
+      child: */Card(
         elevation: 4,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.5)),
         child: InkWell(
             onTap: () {},
             child: Padding(
-              padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 50.0),
+              padding: const EdgeInsets.symmetric(vertical: 0.0, horizontal: 20.0),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -46,7 +46,7 @@ class SecondaryProjectSideButton extends StatelessWidget {
                 ],
               ),
             )),
-      ),
+  /*    ),*/
     );
   }
 }
