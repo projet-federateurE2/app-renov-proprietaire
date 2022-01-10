@@ -16,6 +16,7 @@ class IconBackgroundCircle extends StatelessWidget {
         required this.url})
       : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
     return Stack(
@@ -23,13 +24,13 @@ class IconBackgroundCircle extends StatelessWidget {
       children: [
 
         Positioned(
-            top: topCirclePosition,
-            right: rightCirclePosition,
+            top: 0,
+            right: 0,
             child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
                   return SizedBox(
-                      width: (imageSize- (imageSize*0.3)),
-                      height: (imageSize- (imageSize*0.3)),
+                      width: (imageSize- (imageSize*0.25)),
+                      height: (imageSize- (imageSize*0.25)),
                       child: const DecoratedBox(
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
@@ -39,7 +40,7 @@ class IconBackgroundCircle extends StatelessWidget {
                       ));
                 })),
         Container(
-            margin: EdgeInsets.only(top:((imageSize- (imageSize*0.3))/2) , right: ((imageSize-(imageSize*0.3))/2)),
+            margin: EdgeInsets.only(top:topCirclePosition , right: rightCirclePosition),
             height: imageSize,
             width: imageSize,
             child: SvgPicture.asset(url)

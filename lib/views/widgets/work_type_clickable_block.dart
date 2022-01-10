@@ -38,13 +38,13 @@ class WorkTypeClickableBlock extends StatelessWidget {
                   context, MaterialPageRoute(builder: (context) => page));
             },
             child: Padding(
-              padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
+              padding: const EdgeInsets.all(12),
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
                       margin:
-                          EdgeInsets.only(bottom: 10, left: ((iconSize * 0.3))),
+                          EdgeInsets.only(bottom: 10, left: iconCirclePositionRight),
                       child: Hero(
                         tag: "work_type",
                         child: IconBackgroundCircle(

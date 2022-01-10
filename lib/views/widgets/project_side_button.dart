@@ -12,6 +12,8 @@ class ProjectSideButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var iconSize = 20.0;
+    var iconCirclePositionTop = 2.0;
+    var iconCirclePositionRight = 2.0;
     return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.5)),
@@ -23,11 +25,11 @@ class ProjectSideButton extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(
-                  left: 30, right: iconSize, bottom: ((iconSize * 0.3))),
+                  left: 30, right: iconSize, bottom:iconCirclePositionTop+2,top:2),
               child: IconBackgroundCircle(
                   imageSize: iconSize,
-                  topCirclePosition: 2,
-                  rightCirclePosition: 2,
+                  topCirclePosition: iconCirclePositionTop,
+                  rightCirclePosition: iconCirclePositionRight,
                   url: urlIcon),
             ),
             Expanded(
