@@ -6,6 +6,7 @@ class WorkTypeClickableBlock extends StatelessWidget {
   final double iconSize;
   final String workTypeTitle;
   final String workTypeDescription;
+  final Widget page;
 
 // final Widget page
 
@@ -15,6 +16,7 @@ class WorkTypeClickableBlock extends StatelessWidget {
     required this.iconSize,
     required this.workTypeTitle,
     required this.workTypeDescription,
+    required this.page
   }) : super(key: key);
 
   @override
@@ -24,14 +26,16 @@ class WorkTypeClickableBlock extends StatelessWidget {
     // 353 246
     return SizedBox(
       width: 353.0,
-      height: 246.0,
+      height: 255.0,
       child: Card(
           elevation: 4,
           shape:
               RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
           child: InkWell(
             // When the user taps the button, show a snackbar.
-            onTap: () {},
+            onTap: () {
+              Navigator.push(context, MaterialPageRoute(builder: (context) => page));
+            },
             child: Padding(
               padding: const EdgeInsets.only(left: 12, right: 12, bottom: 12),
               child: Column(
@@ -54,7 +58,7 @@ class WorkTypeClickableBlock extends StatelessWidget {
                     workTypeDescription,
                     textAlign: TextAlign.center,
                     style: const TextStyle(
-                        fontWeight: FontWeight.w300, fontSize: 17.0),
+                        fontWeight: FontWeight.w300, fontSize: 15.0),
                   ),
                 ],
               ),
