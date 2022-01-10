@@ -12,13 +12,7 @@ class ProjectSideButton extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     var iconSize = 20.0;
-    // retrait de FractionnallySizedBox
-    // Ajout d'un Expanded pour le passage à la ligne du text
-    return /*FractionallySizedBox(
-      widthFactor: 1,
-      heightFactor: 0.1,
-      child:*/
-        Card(
+    return Card(
       elevation: 4,
       shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.5)),
       child: InkWell(
@@ -46,7 +40,6 @@ class ProjectSideButton extends StatelessWidget {
           ],
         ),
       ),
-      /* ),*/
     );
   }
 }

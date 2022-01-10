@@ -1,11 +1,9 @@
 import 'package:flutter/rendering.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/values/styles.dart';
-import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/secondary_project_side_button.dart';
 
@@ -33,16 +31,16 @@ class _LeftSideBarState extends State<LeftSideBar> {
                       borderRadius: BorderRadius.circular(styleRenov.roundedBorder),
                     ),
                     child: Padding(
-                      padding: EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
+                      padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Padding(
-                              padding: EdgeInsets.only(top:10.0),
+                              padding: const EdgeInsets.only(top:10.0),
                               child:                         Container(
                                 width: 80,
                                 height: 80,
-                                decoration: BoxDecoration(
+                                decoration: const BoxDecoration(
                                   shape: BoxShape.circle,
                                   image: DecorationImage(
                                       image: AssetImage('./../../../assets/images/profile.jpg'),
@@ -52,19 +50,19 @@ class _LeftSideBarState extends State<LeftSideBar> {
                               ),
                             ),
 
-                            Text("Paul Dupont",style: const TextStyle(
+                            const Text("Paul Dupont",style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 16.0)),
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(styleRenov.roundedBorder),
                               ),
                               child: Padding(
-                                padding: EdgeInsets.symmetric(vertical: 20.0,horizontal:15.0),
+                                padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal:15.0),
                                 child: Column(
                                   crossAxisAlignment: CrossAxisAlignment.start,
-                                  children: [
+                                  children: const [
                                     Padding(padding: EdgeInsets.only(left:6.0),
-                                    child: Text(TextRenov.sideProject, style: const TextStyle(
+                                    child: Text(TextRenov.sideProject, style: TextStyle(
                                         fontWeight: FontWeight.w600, fontSize: 16.0)),),
                                     Padding(padding: EdgeInsets.only(top:6.0)),
                                     SecondaryProjectSideButton(
@@ -77,15 +75,15 @@ class _LeftSideBarState extends State<LeftSideBar> {
                                   ],
                                 ),
                               ),),
-                            Flexible(
+                            const Flexible(
                                 child: ProjectSideButton(
                                     text: TextRenov.sideProjectBtn1,
                                     urlIcon: './../assets/icons/profile.svg')),
-                            Flexible(
+                            const Flexible(
                                 child: ProjectSideButton(
                                     text: TextRenov.sideProjectBtn2,
                                     urlIcon: './../assets/icons/notepad.svg')),
-                            Flexible(
+                            const Flexible(
                                 child: ProjectSideButton(
                                     text: TextRenov.sideProjectBtn3,
                                     urlIcon: './../assets/icons/phone.svg')),

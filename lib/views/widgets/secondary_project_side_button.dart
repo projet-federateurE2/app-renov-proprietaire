@@ -12,10 +12,7 @@ class SecondaryProjectSideButton extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return /*FractionallySizedBox(
-      widthFactor: 0.8,
-      heightFactor: 0.1,
-      child: */Card(
+    return Card(
         elevation: 4,
         shape:
             RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.5)),
@@ -46,7 +43,6 @@ class SecondaryProjectSideButton extends StatelessWidget {
                 ],
               ),
             )),
-  /*    ),*/
     );
   }
 }
