@@ -1,5 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
+import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
+import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
 
 void main() {
   runApp(const MyApp());
@@ -33,10 +35,17 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        children: [
-          const BackgroundGreenWave(),
-          Container()
-          ],
+        children: const [
+          BackgroundGreenWave(),
+          Center(
+              child: WorkSelectionEmptyDescription(
+                  iconBackgroundCircle: IconBackgroundCircle(
+                      imageSize: 250,
+                      topCirclePosition: 55,
+                      rightCirclePosition: 0,
+                      url: "icons/house.svg"),
+                  workTypeDescription: "ceci est un test"))
+        ],
       ),
     );
   }
