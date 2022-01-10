@@ -18,7 +18,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: const MyHomePage(),
+      home: const WorkTypeSelectionPage(),
     );
   }
 }
