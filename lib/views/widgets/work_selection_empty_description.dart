@@ -1,18 +1,20 @@
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 
 class WorkSelectionEmptyDescription extends StatelessWidget {
-  final IconBackgroundCircle iconBackgroundCircle;
-  final String workTypeDescription;
-
   const WorkSelectionEmptyDescription({
     Key? key,
-    required this.iconBackgroundCircle,
-    required this.workTypeDescription,
   }) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
+    var iconBackgroundCircle = const IconBackgroundCircle(
+        imageSize: 200,
+        topCirclePosition: 30,
+        rightCirclePosition: 60,
+        url: "icons/house.svg");
+
     return SizedBox(
       width: 488,
       height: 448,
@@ -24,16 +26,15 @@ class WorkSelectionEmptyDescription extends StatelessWidget {
           children: [
             Container(
                 margin: EdgeInsets.only(
-                    bottom: 20,
-                    left: (((iconBackgroundCircle.imageSize * 0.3) / 2) +
-                        iconBackgroundCircle.rightCirclePosition)),
+                    bottom: 20, left: (iconBackgroundCircle.imageSize * 0.35)),
                 child: iconBackgroundCircle),
-            Text(
-              workTypeDescription,
-              textAlign: TextAlign.center,
-              style:
-                  const TextStyle(fontWeight: FontWeight.w200, fontSize: 17.0),
-            ),
+            Container(
+                margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
+                child: const Text(
+                  TextRenov.descriptionWorkSelectionEmpty,
+                  // textAlign: TextAlign.center,
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20.0),
+                ))
           ],
         ),
       ),

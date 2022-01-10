@@ -10,10 +10,10 @@ class IconBackgroundCircle extends StatelessWidget {
 
   const IconBackgroundCircle(
       {Key? key,
-        required this.imageSize,
-        required this.topCirclePosition,
-        required this.rightCirclePosition,
-        required this.url})
+      required this.imageSize,
+      required this.topCirclePosition,
+      required this.rightCirclePosition,
+      required this.url})
       : super(key: key);
 
   @override
@@ -25,23 +25,23 @@ class IconBackgroundCircle extends StatelessWidget {
             right: rightCirclePosition,
             child: LayoutBuilder(
                 builder: (BuildContext context, BoxConstraints constraints) {
-                  return SizedBox(
-                      width: (imageSize- (imageSize*0.3)),
-                      height: (imageSize- (imageSize*0.3)),
-                      child: const DecoratedBox(
-                        decoration: BoxDecoration(
-                            shape: BoxShape.circle,
-                            color: ColorsRenov.secondaryGreen
-                        ),
-                        position: DecorationPosition.background,
-                      ));
-                })),
+              return SizedBox(
+                  width: (imageSize - (imageSize * 0.3)),
+                  height: (imageSize - (imageSize * 0.3)),
+                  child: const DecoratedBox(
+                    decoration: BoxDecoration(
+                        shape: BoxShape.circle,
+                        color: ColorsRenov.secondaryGreen),
+                    position: DecorationPosition.background,
+                  ));
+            })),
         Container(
-            margin: EdgeInsets.only(top:((imageSize- (imageSize*0.3))/2) , right: ((imageSize-(imageSize*0.3))/2)),
+            margin: EdgeInsets.only(
+                top: ((imageSize - (imageSize * 0.3)) / 2),
+                right: ((imageSize - (imageSize * 0.3)) / 2)),
             height: imageSize,
             width: imageSize,
-            child: SvgPicture.asset(url)
-        )
+            child: SvgPicture.asset(url))
       ],
     );
   }
