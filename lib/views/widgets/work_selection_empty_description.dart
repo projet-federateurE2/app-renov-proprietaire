@@ -16,8 +16,8 @@ class WorkSelectionEmptyDescription extends StatelessWidget {
         url: "icons/house.svg");
 
     return SizedBox(
-      width: 488,
-      height: 448,
+      width: MediaQuery.of(context).size.width * 0.4,
+      height: MediaQuery.of(context).size.width * 0.4,
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -25,15 +25,18 @@ class WorkSelectionEmptyDescription extends StatelessWidget {
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-                margin: EdgeInsets.only(
-                    bottom: 20, left: (iconBackgroundCircle.imageSize * 0.35)),
+                margin: const EdgeInsets.only(
+                  top: 12,
+                  bottom: 20,
+                  left: 10,
+                ),
                 child: iconBackgroundCircle),
             Container(
                 margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 8),
                 child: const Text(
-                  TextRenov.descriptionWorkSelectionEmpty,
+                  TextRenov.workProjectEmpty,
                   // textAlign: TextAlign.center,
-                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 20.0),
+                  style: TextStyle(fontWeight: FontWeight.w300, fontSize: 17.0),
                 ))
           ],
         ),
