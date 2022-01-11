@@ -25,7 +25,7 @@ class WorkTypeClickableBlock extends StatelessWidget {
     var iconCirclePositionRight = 15.0;
     // 353 246
     return SizedBox(
-      width: 353.0,
+      width: MediaQuery.of(context).size.width * 0.32,
       height: 255.0,
       child: Card(
           elevation: 4,
@@ -46,13 +46,12 @@ class WorkTypeClickableBlock extends StatelessWidget {
                       margin:
                           EdgeInsets.only(bottom: 10, left: ((iconSize * 0.3))),
                       child: Hero(
-                        tag: "work_type",
-                        child: IconBackgroundCircle(
-                          url: iconUrl,
-                          imageSize: iconSize,
-                          rightCirclePosition: iconCirclePositionRight,
-                          topCirclePosition: iconCirclePositionTop)
-                        )),
+                          tag: "work_type",
+                          child: IconBackgroundCircle(
+                              url: iconUrl,
+                              imageSize: iconSize,
+                              rightCirclePosition: iconCirclePositionRight,
+                              topCirclePosition: iconCirclePositionTop))),
                   Text(
                     workTypeTitle,
                     style: const TextStyle(
