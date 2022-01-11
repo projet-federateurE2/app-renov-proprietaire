@@ -1,6 +1,6 @@
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 
-class Travaux {
+class Work {
   late String fullTitle;
   late String littleTitle;
   late IconBackgroundCircle image;
@@ -8,5 +8,5 @@ class Travaux {
   late String alert;
   late String type;
 
-  Travaux(this.fullTitle, this.littleTitle, this.type, this.image, this.help, this.alert);
+  Work(this.fullTitle, this.littleTitle, this.type, this.image, this.help, this.alert);
 }
