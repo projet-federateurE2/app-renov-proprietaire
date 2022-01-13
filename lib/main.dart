@@ -1,11 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
-<<<<<<< HEAD
-=======
-import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
-import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
->>>>>>> 77c59c70c164c51365598a8f0821194eac9c4952
+
 
 void main() {
   runApp(const MyApp());
@@ -39,19 +35,10 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-<<<<<<< HEAD
+
         children: [const BackgroundGreenWave(), Container()],
       ),
     );
   }
 }
-=======
-        children: [
-          const BackgroundGreenWave(),
-          Container()
-          ],
-      ),
-    );
-  }
-}
->>>>>>> 77c59c70c164c51365598a8f0821194eac9c4952
+
