@@ -45,13 +45,13 @@ class WorkTypeClickableBlock extends StatelessWidget {
                   Container(
                       margin:
                           EdgeInsets.only(bottom: 10, left: iconCirclePositionRight),
-                      child: Hero(
+                      child: /*Hero(
                           tag: "work_type",
-                          child: IconBackgroundCircle(
+                          child:*/ IconBackgroundCircle(
                               url: iconUrl,
                               imageSize: iconSize,
                               rightCirclePosition: iconCirclePositionRight,
-                              topCirclePosition: iconCirclePositionTop))),
+                              topCirclePosition: iconCirclePositionTop))/*)*/,
                   Text(
                     workTypeTitle,
                     style: const TextStyle(

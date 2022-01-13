@@ -1,8 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
-import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
-import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
 
 void main() {
