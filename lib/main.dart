@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
+import 'package:renov_proprietaire_app/views/widgets/left_side_bar.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins'),
-      home: const WorkTypeSelectionPage(),
+     home: const MyHomePage(),
     );
   }
 }
@@ -37,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        children: [const BackgroundGreenWave(), Container()],
+        children: const [BackgroundGreenWave(), LeftSideBar()],
       ),
     );
   }
