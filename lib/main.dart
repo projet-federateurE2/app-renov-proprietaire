@@ -5,8 +5,6 @@ import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/left_side_bar.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
-
-
 void main() {
   runApp(const MyApp());
 }
