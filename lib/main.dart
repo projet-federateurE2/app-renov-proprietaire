@@ -38,7 +38,7 @@ class _MyHomePageState extends State<MyHomePage> {
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
-        children: const [BackgroundGreenWave(), LeftSideBar()],
+        children: [const BackgroundGreenWave(), Container()],
       ),
     );
   }
