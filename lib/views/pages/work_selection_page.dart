@@ -48,7 +48,6 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
           Container(
             padding: const EdgeInsets.all(20),
             child: Column(
-              
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Hero(
