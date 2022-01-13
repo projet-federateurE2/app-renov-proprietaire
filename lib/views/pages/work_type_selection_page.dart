@@ -28,8 +28,8 @@ class WorkTypeSelectionPage extends StatelessWidget {
                       crossAxisAlignment: CrossAxisAlignment.start,
                       children: [
                         Hero(tag: "title", child: Material(
-                  type: MaterialType.transparency, // likely needed
-                  child: PageTitle(text: TextRenov.startProject))),
+                            type: MaterialType.transparency, // likely needed
+                            child: PageTitle(text: TextRenov.startProject))),
                         const SizedBox(
                           width: 900,
                           child: Text(
@@ -49,19 +49,22 @@ class WorkTypeSelectionPage extends StatelessWidget {
                           iconUrl: "icons/house.svg",
                           iconSize: 85,
                           workTypeTitle: "Isolation",
-                          workTypeDescription: "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
+                          workTypeDescription:
+                              "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
                           page: WorkSelectionPage(workType: "isolation")),
                       WorkTypeClickableBlock(
                           iconUrl: "icons/heating.svg",
                           iconSize: 85,
                           workTypeTitle: "Chauffage",
-                          workTypeDescription: "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
+                          workTypeDescription:
+                              "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
                           page: WorkSelectionPage(workType: "chauffage")),
                       WorkTypeClickableBlock(
                           iconUrl: "icons/ventilation.svg",
                           iconSize: 85,
                           workTypeTitle: "Ventilation",
-                          workTypeDescription: "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
+                          workTypeDescription:
+                              "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
                           page: WorkSelectionPage(workType: "ventilation"))
                     ],
                   )
