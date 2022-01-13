@@ -14,7 +14,8 @@ class WorkClickableBlock extends StatefulWidget {
       {Key? key,
       required this.urlImage,
       required this.workName,
-      required this.callback})
+      required this.callback,
+      })
       : super(key: key);
 
   @override
@@ -24,41 +25,46 @@ class WorkClickableBlock extends StatefulWidget {
 class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var backgroundColor = Colors.white;
   var fontColor = ColorsRenov.primaryGreen;
+  var isChecked = false;
 
   @override
   Widget build(BuildContext context) {
-    return Card(
-        elevation: 4.0,
-        color: backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: InkWell(
-            onTap: () {
-              setState(() {
-                if (backgroundColor == Colors.white) {
-                  widget.callback("RANDON TEXT");
-                  backgroundColor = ColorsRenov.primaryGreen;
-                  fontColor = Colors.white;
-                } else {
-                  backgroundColor = Colors.white;
-                  fontColor = ColorsRenov.primaryGreen;
-                }
-              });
-            },
-            child: Column(
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: <Widget>[
-                SizedBox(
-                    width: 40,
-                    height: 40,
-                    child: SvgPicture.asset(widget.urlImage, color: fontColor)),
-                Text(widget.workName,
-                    style: TextStyle(
-                        color: fontColor,
-                        fontSize: 20,
-                        fontWeight: FontWeight.w500)),
-              ],
-            )));
+    return SizedBox(
+      height: MediaQuery.of(context).size.width * 0.12,
+      width: MediaQuery.of(context).size.width * 0.12,
+      child: Card(
+          elevation: 4.0,
+          color: backgroundColor,
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(15),
+          ),
+          child: InkWell(
+              onTap: () {
+                setState(() {
+                  if (backgroundColor == Colors.white) {
+                    widget.callback("RANDON TEXT");
+                    backgroundColor = ColorsRenov.primaryGreen;
+                    fontColor = Colors.white;
+                  } else {
+                    backgroundColor = Colors.white;
+                    fontColor = ColorsRenov.primaryGreen;
+                  }
+                });
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: <Widget>[
+                  SizedBox(
+                      width: 80,
+                      height: 80,
+                      child: SvgPicture.asset(widget.urlImage, color: fontColor)),
+                  Text(widget.workName,
+                      style: TextStyle(
+                          color: fontColor,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500)),
+                ],
+              ))),
+    );
   }
 }
