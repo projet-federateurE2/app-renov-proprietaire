@@ -1,0 +1,58 @@
+{
+  "listTypeWork": [
+    {
+      "id": 0,
+      "isSelected" : false,
+      "title": "Combles",
+      "titleDesc" : "isolation des combles",
+      "urlImage": "icons/attic.svg",
+      "txt1": "L’isolant doit être posé entre un espace chauffé et un espace non chauffé.",
+      "txt2": "Un isolant sans marquage CE n’est pas éligible !"
+    },
+    {
+      "id": 1,
+      "isSelected" : false,
+      "title": "Murs par l’intérieur",
+      "titleDesc" : "isolation des combles",
+      "urlImage": "icons/inside_wall.svg",
+      "txt1": "blblabjdhzideizhdiezhjdiuzjdiezdi",
+      "txt2": "djiejdojozjdozijiozjidojdjojdz"
+    },
+    {
+      "id": 2,
+      "isSelected" : false,
+      "title": "Plancher bas",
+      "titleDesc" : "isolation des combles",
+      "urlImage": "icons/floor.svg",
+      "txt1": "blblabjdhzideizhdiezhjdiuzjdiezdi",
+      "txt2": "djiejdojozjdozijiozjidojdjojdz"
+    },
+    {
+      "id": 3,
+      "isSelected" : false,
+      "title": "Toiture terrasse",
+      "titleDesc" : "isolation des combles",
+      "urlImage": "icons/roof.svg",
+      "txt1": "blblabjdhzideizhdiezhjdiuzjdiezdi",
+      "txt2": "djiejdojozjdozijiozjidojdjojdz"
+    },
+    {
+      "id": 4,
+      "isSelected" : false,
+      "title": "Fenêtres",
+      "titleDesc" : "isolation des combles",
+      "urlImage": "icons/window.svg",
+      "txt1": "blblabjdhzideizhdiezhjdiuzjdiezdi",
+      "txt2": "djiejdojozjdozijiozjidojdjojdz"
+    },
+    {
+      "id": 5,
+      "isSelected" : false,
+      "title": "Murs par l’extérieur",
+      "titleDesc" : "isolation des combles",
+      "urlImage": "icons/outside_wall.svg",
+      "txt1": "blblabjdhzideizhdiezhjdiuzjdiezdi",
+      "txt2": "djiejdojozjdozijiozjidojdjojdz"
+    }
+  ]
+}
