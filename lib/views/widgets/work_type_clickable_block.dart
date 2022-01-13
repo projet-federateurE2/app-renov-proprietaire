@@ -23,6 +23,8 @@ class WorkTypeClickableBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     var iconCirclePositionTop = 15.0;
     var iconCirclePositionRight = 15.0;
+
+    var height = MediaQuery.of(context).size.height;
     // 353 246
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.32,
@@ -43,8 +45,8 @@ class WorkTypeClickableBlock extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      margin:
-                          EdgeInsets.only(bottom: 10, left: iconCirclePositionRight),
+                      margin: EdgeInsets.only(
+                          bottom: 10, left: iconCirclePositionRight),
                       child: Hero(
                           tag: "work_type",
                           child: IconBackgroundCircle(
