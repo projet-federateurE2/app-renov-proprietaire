@@ -9,3 +9,7 @@ abstract class SelectWorkState {
 class SelectWorkInitialState extends SelectWorkState {
   const SelectWorkInitialState();
 }
+class ListedWorkState extends SelectWorkState {
+  final List<Work> works;
+  const ListedWorkState(this.works);
+}

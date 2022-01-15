@@ -5,8 +5,7 @@ abstract class SelectWorkEvent {
   const SelectWorkEvent();
 }
 
-class SelectWorkDoQueryEvent extends SelectWorkEvent {
-  final String query;
-
-  const SelectWorkDoQueryEvent(this.query);
+class SelectWorksDoQueryEvent extends SelectWorkEvent {
+  // final String works;
+  const SelectWorksDoQueryEvent(/*this.works*/);
 }

@@ -3,9 +3,13 @@ import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+  MultiBlocProvider(providers: [
+    BlocProvider<SelectWorkBloc>(create: (_) => SelectWorkBloc())
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,7 +22,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins', primaryColor: ColorsRenov.primaryGreen),
-      home: const WorkTypeSelectionPage(),
+      home: WorkTypeSelectionPage(),
     );
   }
 }
