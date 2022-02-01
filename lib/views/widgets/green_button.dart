@@ -25,7 +25,7 @@ class _GreenButtonState extends State<GreenButton> {
       ),
       style: ElevatedButton.styleFrom(
         elevation: 0.0,
-        shadowColor: Colors.transparent,
+        //shadowColor: Colors.transparent,
         primary: ColorsRenov.primaryGreen,
         padding: const EdgeInsets.fromLTRB(60, 10, 60, 10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),

@@ -11,13 +11,13 @@ class WorkSelectionEmptyDescription extends StatelessWidget {
   Widget build(BuildContext context) {
     var iconBackgroundCircle = const IconBackgroundCircle(
         imageSize: 200,
-        topCirclePosition: 30,
-        rightCirclePosition: 60,
+        topCirclePosition: 10,
+        rightCirclePosition: 10,
         url: "icons/house.svg");
 
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.4,
-      height: MediaQuery.of(context).size.width * 0.4,
+      height: MediaQuery.of(context).size.width * 0.36,
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
@@ -27,7 +27,7 @@ class WorkSelectionEmptyDescription extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(
                   top: 12,
-                  bottom: 20,
+                  bottom: 4,
                   left: 10,
                 ),
                 child: iconBackgroundCircle),

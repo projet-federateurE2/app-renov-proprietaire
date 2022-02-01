@@ -1,4 +1,5 @@
 import 'package:flutter/rendering.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
@@ -35,23 +36,10 @@ class _LeftSideBarState extends State<LeftSideBar> {
                         child: Column(
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
-                            Padding(
-                              padding: const EdgeInsets.only(top:10.0),
-                              child:                         Container(
-                                width: 80,
-                                height: 80,
-                                decoration: const BoxDecoration(
-                                  shape: BoxShape.circle,
-                                  image: DecorationImage(
-                                      image: AssetImage('./../../../assets/images/profile.jpg'),
-                                      fit: BoxFit.fill
-                                  ),
-                                ),
-                              ),
-                            ),
-
-                            const Text("Paul Dupont",style: TextStyle(
-                                fontWeight: FontWeight.w600, fontSize: 16.0)),
+                            Column(children: <Widget>[
+                              SvgPicture.asset('./../../assets/icons/account_avatar.svg', width: 100.0, height: 100.0),
+                              const Text("Paul Dupont",style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 16.0))]),
                             Card(
                               shape: RoundedRectangleBorder(
                                 borderRadius: BorderRadius.circular(styleRenov.roundedBorder),
