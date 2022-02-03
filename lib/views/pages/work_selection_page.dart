@@ -19,16 +19,18 @@ class WorkSelectionPage extends StatefulWidget {
 }
 
 class _WorkSelectionPageState extends State<WorkSelectionPage> {
-  var workname1 = "hihi";
+  var workname1 = "";
   var sizeScreen = 0.0;
   var numberColumns;
   var isBtnEnabled = false;
   var text;
   var data = rootBundle.loadString("data.json");
+  var widgetContext;
 
-  callback(newAbc) {
+  callback(selection) {
     setState(() {
-      workname1 = newAbc;
+      workname1 = selection;
+      addWorks(selection);
     });
   }
 
@@ -43,14 +45,18 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     BlocProvider.of<SelectWorkBloc>(context).add(event);
   }
 
+    void addWorks(String workName) {
+    BlocProvider.of<SelectWorkBloc>(widgetContext).add(SelectWorksClick(workName));
+  }
+
   @override
   Widget build(BuildContext context) {
+    widgetContext = context;
     selectionEvent(
       context,
       SelectWorksDoQueryEvent(),
     );
 
-    print("toto");
     sizeScreen = MediaQuery.of(context).size.width;
     if (sizeScreen > 1500) {
       numberColumns = 3;

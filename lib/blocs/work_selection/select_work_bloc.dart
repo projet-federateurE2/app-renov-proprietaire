@@ -13,6 +13,10 @@ class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
       var works = await WorkRepository().doQuery();
       emit (ListedWorkState(works));
     });
+    on<SelectWorksClick>((event, emit) async {
+      print(event.worksName);
+    });
+
 /*    on<SearchResolveQueryEvent>((event, emit) {
       emit (SearchResolvedState(event.cards));
     });

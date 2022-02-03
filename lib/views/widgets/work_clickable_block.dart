@@ -42,7 +42,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
               onTap: () {
                 setState(() {
                   if (backgroundColor == Colors.white) {
-                    widget.callback("RANDON TEXT");
+                    widget.callback(widget.workName);
                     backgroundColor = ColorsRenov.primaryGreen;
                     fontColor = Colors.white;
                   } else {
