@@ -15,6 +15,6 @@ class ListedWorkState extends SelectWorkState {
 }
 class ClickedWorkState extends SelectWorkState  {
   final Stream<List<Work>> works;
-  final Stream<Work> clickedWork;
+  final Stream<Work?> clickedWork;
   const ClickedWorkState(this.works, this.clickedWork);
 }

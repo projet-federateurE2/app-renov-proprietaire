@@ -45,7 +45,8 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          child: /*InkWell(
+          child: InkWell(
+             borderRadius: BorderRadius.circular(15),
               onTap: () {
                 setState(() {
                   if (backgroundColor == Colors.white) {
@@ -57,7 +58,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                   }
                 });
               },
-              child: */Column(
+              child: Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
@@ -70,7 +71,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                           fontSize: 20,
                           fontWeight: FontWeight.w500)),
                 ],
-              ))/*)*/,
+              ))),
     );
   }
 }
