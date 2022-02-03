@@ -21,6 +21,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
   @override
   Widget build(BuildContext context) {
     return FractionallySizedBox(
+      // Commenter le pourquoi ces chiffres ?
         widthFactor: 0.22,
         heightFactor: 0.9,
           child: Column(children: [
