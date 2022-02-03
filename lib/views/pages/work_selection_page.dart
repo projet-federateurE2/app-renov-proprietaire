@@ -55,51 +55,84 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                             child: PageTitle(text: "Travaux d'isolation"))),
                     Expanded(
                         child: Row(
-                          children: [
-                            Expanded(
-                              child: StreamBuilder(
-                                                  stream: WorkRepository().doQuery(),
-                                                  builder: (BuildContext context, AsyncSnapshot snapshot) {
+                      children: [
+                        Expanded(
+                          child: StreamBuilder(
+                            stream: WorkRepository().doQuery(),
+                            builder:
+                                (BuildContext context, AsyncSnapshot snapshot) {
                               if (snapshot.connectionState ==
                                   ConnectionState.waiting) {
                                 return const CircularProgressIndicator();
                               }
-                            
                               if (snapshot.hasData) {
                                 List clickableBlocks = snapshot.data;
-                                return GridView.count(
-                                  mainAxisSpacing: 20.0,
-                                  crossAxisSpacing: 20.0,
-                                  scrollDirection: Axis.vertical,
-                                  crossAxisCount: numberColumns,
-                                  children:
-                                      List.generate(snapshot.data.length, (index) {
-                                    var clickableBlock = clickableBlocks[index];
-                                    return WorkClickableBlock(
-                                        urlImage: clickableBlock.urlImage,
-                                        workName: clickableBlock.title,
-                                        isSelected: false);
-                                  }),
+                                return BlocBuilder<SelectWorkBloc, SelectWorkState>(builder: (context, state) {
+                                  if (state is SelectWorkInitialState) {
+                                    return GridView.count(
+                                      mainAxisSpacing: 20.0,
+                                      crossAxisSpacing: 20.0,
+                                      scrollDirection: Axis.vertical,
+                                      crossAxisCount: numberColumns,
+                                      children: List.generate(
+                                          snapshot.data.length, (index) {
+                                        var clickableBlock =
+                                            clickableBlocks[index];
+                                        return WorkClickableBlock(
+                                          urlImage: clickableBlock.urlImage,
+                                          workName: clickableBlock.title,
+                                          isSelected: false,
+                                          getId: (id) {
+                                            BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(id));
+                                          },
+                                        );
+                                      }),
+                                    );
+                                  }
+                                else if(state is ClickedWorkState)
+                                {
+                                      return GridView.count(
+                                      mainAxisSpacing: 20.0,
+                                      crossAxisSpacing: 20.0,
+                                      scrollDirection: Axis.vertical,
+                                      crossAxisCount: numberColumns,
+                                      children: List.generate(
+                                          snapshot.data.length, (index) {
+                                        var clickableBlock =
+                                            clickableBlocks[index];
+                                        return WorkClickableBlock(
+                                          urlImage: clickableBlock.urlImage,
+                                          workName: clickableBlock.title,
+                                          isSelected: state.clickedWork.contains(clickableBlock.title) ? true : false,
+                                          getId: (id) {
+                                             BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(id));
+                                          },
+                                        );
+                                      }),
+                                    );
+                                  }
+                                  else {return const Text("CC");}
+                                }                             
                                 );
                               } else {
                                 return const Text("Y'a r");
                               }
-                                                  },
-                                                ),
-                            ),
-                            Expanded(
-                            child: Column(
-                              children: [
-                                const WorkSelectionEmptyDescription(),
-                                GreenButton(
-                                    text: "coucou",
-                                    onPressed: () {},
-                                    enabled: true)
-                              ],
-                            ),
-                          )
-                          ],
-                        ))
+                            },
+                          ),
+                        ),
+                        Expanded(
+                          child: Column(
+                            children: [
+                              const WorkSelectionEmptyDescription(),
+                              GreenButton(
+                                  text: "coucou",
+                                  onPressed: () {},
+                                  enabled: true)
+                            ],
+                          ),
+                        )
+                      ],
+                    ))
                   ],
                 ))
           ],

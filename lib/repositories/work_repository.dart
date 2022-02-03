@@ -9,6 +9,8 @@ class WorkRepository  {
   static final WorkRepository _instance = WorkRepository._internal();
   WorkRepository._internal();
   factory WorkRepository() => _instance;
+  List<String> _workClick = [];
+
 
   Stream<List<Work>> doQuery() async* {
     var data = await rootBundle.loadString("data.json");
@@ -33,5 +35,24 @@ class WorkRepository  {
     print(clickedWork.id);*/
     yield clickedWork;
   }
+
+
+ List<String> getAddWorkClick(work) 
+ {
+   _workClick.add(work);
+   return _workClick;
+ } 
+
+ List<String> getRemoveWorkClick(work) 
+ {
+   _workClick.remove(work);
+   return _workClick;
+ } 
+
+ List<String> allWorkClick() 
+ {
+   
+   return _workClick;
+ } 
 
 }
