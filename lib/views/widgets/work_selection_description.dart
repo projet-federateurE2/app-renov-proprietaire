@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
@@ -29,8 +30,15 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
   @override
   Widget build(BuildContext context) {
+    var sizeIcon =
+        MediaQuery.of(context).size.width > MediaQuery.of(context).size.height
+            ? MediaQuery.of(context).size.width * 0.03
+            : MediaQuery.of(context).size.height * 0.03;
     var iconBackgroundCircle = IconBackgroundCircle(
-        imageSize: 120,
+        imageSize: MediaQuery.of(context).size.width >
+                MediaQuery.of(context).size.height
+            ? MediaQuery.of(context).size.width * 0.1
+            : MediaQuery.of(context).size.height * 0.1,
         topCirclePosition: 15,
         rightCirclePosition: 15,
         url: widget.urlImage);
@@ -49,12 +57,13 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
     }
 
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.44,
-      height: MediaQuery.of(context).size.height * 0.68,
+      width: MediaQuery.of(context).size.width * 0.48,
+      height: MediaQuery.of(context).size.height * 0.76,
       child: Card(
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
@@ -76,13 +85,17 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         const EdgeInsets.only(left: 32, right: 32, bottom: 32),
                     child: SvgPicture.asset(
                       'icons/bulb.svg',
+                      width: sizeIcon,
+                      height: sizeIcon,
                     )),
                 SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.12,
                     child: Container(
-                        margin: EdgeInsets.only(bottom: 32),
-                        child: Text(
+                        margin: const EdgeInsets.only(bottom: 16),
+                        child: AutoSizeText(
                           widget.stringDesc1,
+                          maxLines: 4,
                           // textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w300, fontSize: 17.0),
@@ -97,12 +110,16 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                     margin: const EdgeInsets.symmetric(horizontal: 32),
                     child: SvgPicture.asset(
                       'icons/warning.svg',
+                      width: sizeIcon,
+                      height: sizeIcon,
                     )),
                 SizedBox(
                     width: MediaQuery.of(context).size.width * 0.3,
+                    height: MediaQuery.of(context).size.height * 0.12,
                     child: Container(
-                        child: Text(
+                        child: AutoSizeText(
                       widget.stringDesc2,
+                      maxLines: 3,
                       style: const TextStyle(
                           fontWeight: FontWeight.w300, fontSize: 17.0),
                     )))
@@ -112,19 +129,24 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                    margin: const EdgeInsets.only(top: 16, right: 32),
-                    child: TextButton(
-                        onPressed: () {
-                          changeColor();
-                        },
-                        child: Text(textButton,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w300,
-                              color: color,
-                            )),
-                        style: TextButton.styleFrom()))
+                SizedBox(
+                  width: MediaQuery.of(context).size.width * 0.3,
+                  height: MediaQuery.of(context).size.height * 0.05,
+                  child: Container(
+                      margin: const EdgeInsets.only(right: 32, bottom: 8),
+                      child: TextButton(
+                          onPressed: () {
+                            changeColor();
+                          },
+                          child: AutoSizeText(textButton,
+                              maxLines: 1,
+                              style: TextStyle(
+                                fontSize: 20,
+                                fontWeight: FontWeight.w300,
+                                color: color,
+                              )),
+                          style: TextButton.styleFrom())),
+                )
               ],
             ),
           ],
