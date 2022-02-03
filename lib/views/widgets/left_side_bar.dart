@@ -20,9 +20,8 @@ class _LeftSideBarState extends State<LeftSideBar> {
 
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-        widthFactor: 0.22,
-        heightFactor: 0.9,
+    return SizedBox(
+      width: 300,
           child: Column(children: [
             Expanded(
                 child: Card(
