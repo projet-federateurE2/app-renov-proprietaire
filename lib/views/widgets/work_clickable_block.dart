@@ -8,13 +8,15 @@ import 'package:flutter/material.dart';
 class WorkClickableBlock extends StatefulWidget {
   final String urlImage;
   final String workName;
-  final Function(String) callback;
+  final bool isSelected;
+ // final Function(int) callback;
 
   const WorkClickableBlock(
       {Key? key,
       required this.urlImage,
       required this.workName,
-      required this.callback,
+        required this.isSelected,
+     // required this.callback,
       })
       : super(key: key);
 
@@ -27,8 +29,13 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var fontColor = ColorsRenov.primaryGreen;
   var isChecked = false;
 
+
   @override
   Widget build(BuildContext context) {
+    if(widget.isSelected == true){
+      backgroundColor = ColorsRenov.primaryGreen;
+      fontColor = Colors.white;
+    }
     return SizedBox(
       height: MediaQuery.of(context).size.width * 0.12,
       width: MediaQuery.of(context).size.width * 0.12,
@@ -38,11 +45,10 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(15),
           ),
-          child: InkWell(
+          child: /*InkWell(
               onTap: () {
                 setState(() {
                   if (backgroundColor == Colors.white) {
-                    widget.callback("RANDON TEXT");
                     backgroundColor = ColorsRenov.primaryGreen;
                     fontColor = Colors.white;
                   } else {
@@ -51,7 +57,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                   }
                 });
               },
-              child: Column(
+              child: */Column(
                 mainAxisAlignment: MainAxisAlignment.center,
                 children: <Widget>[
                   SizedBox(
@@ -64,7 +70,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                           fontSize: 20,
                           fontWeight: FontWeight.w500)),
                 ],
-              ))),
+              ))/*)*/,
     );
   }
 }
