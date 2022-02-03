@@ -37,6 +37,8 @@ dependencies:
   flutter_svg: ^0.23.0+1
   data_classes: ^3.0.0
   equatable: ^2.0.0
+  auto_size_text: ^3.0.0
+  percent_indicator: ^4.0.0
 
 dev_dependencies:
   flutter_test:
