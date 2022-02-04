@@ -46,66 +46,37 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
             Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
                         tag: "title-select-work",
                         child: Material(
                             type: MaterialType.transparency,
-                            // likely needed
                             child: PageTitle(text: "Travaux d'isolation"))),
                     Expanded(
                       child: Row(
-                        //crossAxisAlignment: CrossAxisAlignment.start,
+                        crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                              child: state is ListedWorkState
-                                  ? 
-                                  GridView.count(
+                              child:                            
+                                 GridView.count(
                                       mainAxisSpacing: 20.0,
                                       crossAxisSpacing: 20.0,
                                       scrollDirection: Axis.vertical,
                                        shrinkWrap: true,
                                       crossAxisCount: numberColumns,
                                       children:  List.generate(                                     
-                                       (state as ListedWorkState).works.length, (index) {
-                                        var clickableBlock =
-                                            (state as ListedWorkState)
-                                                .works[index];
-                                         print(clickableBlock.isSelected);
-                                        return
-                                         WorkClickableBlock(
+                                       state.malisteWork.length, (index) {
+                                        var clickableBlock = state.malisteWork[index];
+                                        print(state.malisteWork.length);
+                                      return WorkClickableBlock(
                                           urlImage: clickableBlock.urlImage,
                                           workName: clickableBlock.title,
-                                          isSelected: false,
-                                          getId: (id) {},
-                                        );
+                                          isSelected: state.maliste.contains(clickableBlock.title),
+                                          );
                                       }),
-                                    )
-                                  : state is ClickedWorkState 
-                                  ?
-                                  GridView.count(
-                                      mainAxisSpacing: 20.0,
-                                      crossAxisSpacing: 20.0,
-                                      scrollDirection: Axis.vertical,
-                                       shrinkWrap: true,
-                                      crossAxisCount: numberColumns,
-                                      children:  List.generate(                                     
-                                      state.malisteWork.length, (index) {
-                                        var clickableBlock =
-                                            state.malisteWork[index];
-                                         print(state.maliste);
-                                        return
-                                         WorkClickableBlock(
-                                          urlImage: clickableBlock.urlImage,
-                                          workName: clickableBlock.title,
-                                          isSelected: state.maliste.contains(clickableBlock.title)
-                                              ? true
-                                              : false,
-                                          getId: (id) {},
-                                        );
-                                      }),
-                                    )
-                                  : const CircularProgressIndicator()),
+                                    )                              
+                                 ),
                           Expanded(
                             child: Column(
                               children: [
