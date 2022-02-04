@@ -9,12 +9,16 @@ part 'select_work_state.dart';
 
 class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
   SelectWorkBloc() : super(const SelectWorkInitialState()) {
+
     on<LoadWorksEvent>((event, emit) async {
-      var works = await WorkRepository().doQuery();
+      var works = await WorkRepository().doQueryFuture();
       emit (ListedWorkState(works));
     });
+
     on<ClickWorkEvent>((event, emit) async {
     var listClickWork = WorkRepository().allWorkClick();
+     var works = await WorkRepository().doQueryFuture();
+      emit (ListedWorkState(works));
     if(!listClickWork.contains(event.nameWork))
     {
     listClickWork = WorkRepository().getAddWorkClick(event.nameWork);
@@ -23,7 +27,7 @@ class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
     {
       listClickWork = WorkRepository().getRemoveWorkClick(event.nameWork);
     }
-      emit (ClickedWorkState(listClickWork));
+      emit (ClickedWorkState(listClickWork, works));
     });
 
   }

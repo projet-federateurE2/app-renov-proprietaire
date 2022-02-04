@@ -22,8 +22,10 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   var numberColumns;
   var sizeScreen = 0.0;
 
-  void clickWork(BuildContext context, SelectWorkEvent event) {
-    BlocProvider.of<SelectWorkBloc>(context).add(event);
+  @override
+  void initState() {
+    BlocProvider.of<SelectWorkBloc>(context).add(const LoadWorksEvent());
+    super.initState();
   }
 
   @override
@@ -38,14 +40,12 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
       return Scaffold(
-        backgroundColor: Colors.white,
-        body: Stack(
-          children: [
+          backgroundColor: Colors.white,
+          body: Stack(children: [
             const BackgroundGreenWave(),
             Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
-                  crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
                         tag: "title-select-work",
@@ -54,90 +54,75 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                             // likely needed
                             child: PageTitle(text: "Travaux d'isolation"))),
                     Expanded(
-                        child: Row(
-                      children: [
-                        Expanded(
-                          child: StreamBuilder(
-                            stream: WorkRepository().doQuery(),
-                            builder:
-                                (BuildContext context, AsyncSnapshot snapshot) {
-                              if (snapshot.connectionState ==
-                                  ConnectionState.waiting) {
-                                return const CircularProgressIndicator();
-                              }
-                              if (snapshot.hasData) {
-                                List clickableBlocks = snapshot.data;
-                                return BlocBuilder<SelectWorkBloc, SelectWorkState>(builder: (context, state) {
-                                  if (state is SelectWorkInitialState) {
-                                    return GridView.count(
+                      child: Row(
+                        //crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          Expanded(
+                              child: state is ListedWorkState
+                                  ? 
+                                  GridView.count(
                                       mainAxisSpacing: 20.0,
                                       crossAxisSpacing: 20.0,
                                       scrollDirection: Axis.vertical,
+                                       shrinkWrap: true,
                                       crossAxisCount: numberColumns,
-                                      children: List.generate(
-                                          snapshot.data.length, (index) {
+                                      children:  List.generate(                                     
+                                       (state as ListedWorkState).works.length, (index) {
                                         var clickableBlock =
-                                            clickableBlocks[index];
-                                        return WorkClickableBlock(
+                                            (state as ListedWorkState)
+                                                .works[index];
+                                         print(clickableBlock.isSelected);
+                                        return
+                                         WorkClickableBlock(
                                           urlImage: clickableBlock.urlImage,
                                           workName: clickableBlock.title,
                                           isSelected: false,
-                                          getId: (id) {
-                                            BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(id));
-                                          },
+                                          getId: (id) {},
                                         );
                                       }),
-                                    );
-                                  }
-                                else if(state is ClickedWorkState)
-                                {
-                                      return GridView.count(
+                                    )
+                                  : state is ClickedWorkState 
+                                  ?
+                                  GridView.count(
                                       mainAxisSpacing: 20.0,
                                       crossAxisSpacing: 20.0,
                                       scrollDirection: Axis.vertical,
+                                       shrinkWrap: true,
                                       crossAxisCount: numberColumns,
-                                      children: List.generate(
-                                          snapshot.data.length, (index) {
+                                      children:  List.generate(                                     
+                                      state.malisteWork.length, (index) {
                                         var clickableBlock =
-                                            clickableBlocks[index];
-                                        return WorkClickableBlock(
+                                            state.malisteWork[index];
+                                         print(state.maliste);
+                                        return
+                                         WorkClickableBlock(
                                           urlImage: clickableBlock.urlImage,
                                           workName: clickableBlock.title,
-                                          isSelected: state.clickedWork.contains(clickableBlock.title) ? true : false,
-                                          getId: (id) {
-                                             BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(id));
-                                          },
+                                          isSelected: state.maliste.contains(clickableBlock.title)
+                                              ? true
+                                              : false,
+                                          getId: (id) {},
                                         );
                                       }),
-                                    );
-                                  }
-                                  else {return const Text("CC");}
-                                }                             
-                                );
-                              } else {
-                                return const Text("Y'a r");
-                              }
-                            },
-                          ),
-                        ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              const WorkSelectionEmptyDescription(),
-                              GreenButton(
-                                  text: "coucou",
-                                  onPressed: () {},
-                                  enabled: true)
-                            ],
-                          ),
-                        )
-                      ],
-                    ))
+                                    )
+                                  : const CircularProgressIndicator()),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                const WorkSelectionEmptyDescription(),
+                                GreenButton(
+                                    text: "coucou",
+                                    onPressed: () {},
+                                    enabled: true)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
+                    ),
                   ],
                 ))
-          ],
-        ),
-      );
+          ]));
     });
   }
 }
