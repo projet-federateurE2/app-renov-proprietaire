@@ -5,7 +5,16 @@ abstract class SelectWorkEvent {
   const SelectWorkEvent();
 }
 
-class SelectWorksDoQueryEvent extends SelectWorkEvent {
-  // final String works;
-  const SelectWorksDoQueryEvent(/*this.works*/);
+class LoadWorksEvent extends SelectWorkEvent {
+  const LoadWorksEvent();
 }
+
+
+class ClickWorkEvent extends SelectWorkEvent {
+  final String nameWork;
+  const ClickWorkEvent(this.nameWork);
+
+}
+
+
+
