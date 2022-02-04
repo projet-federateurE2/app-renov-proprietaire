@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/repositories/work_repository.dart';
@@ -8,6 +9,7 @@ import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
+import 'package:renov_proprietaire_app/views/widgets/work_selection_description.dart';
 
 class WorkSelectionPage extends StatefulWidget {
   final String workType;

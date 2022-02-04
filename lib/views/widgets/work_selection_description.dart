@@ -1,7 +1,7 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
-import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 
 import 'icon_background_circle.dart';
 
@@ -29,37 +29,55 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
   @override
   Widget build(BuildContext context) {
+    var sizeIcon =
+        MediaQuery.of(context).size.width > MediaQuery.of(context).size.height
+            ? MediaQuery.of(context).size.width * 0.03
+            : MediaQuery.of(context).size.height * 0.03;
     var iconBackgroundCircle = IconBackgroundCircle(
-        imageSize: 120,
+        imageSize: MediaQuery.of(context).size.width >
+                MediaQuery.of(context).size.height
+            ? MediaQuery.of(context).size.width * 0.1
+            : MediaQuery.of(context).size.height * 0.1,
         topCirclePosition: 15,
         rightCirclePosition: 15,
         url: widget.urlImage);
 
     void changeColor() {
-      setState(() {
-        isPressed = !isPressed;
-        if (!isPressed) {
-          color = ColorsRenov.primaryGreen;
-          textButton = "+ Ajouter ce travaux";
-        } else {
-          color = Colors.red;
-          textButton = "- Retirer ce travaux";
-        }
-      });
+      setState(
+        () {
+          isPressed = !isPressed;
+          if (!isPressed) {
+            color = ColorsRenov.primaryGreen;
+            textButton = "+ Ajouter ce travaux";
+          } else {
+            color = Colors.red;
+            textButton = "- Retirer ce travaux";
+          }
+        },
+      );
     }
 
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.44,
-      height: MediaQuery.of(context).size.height * 0.68,
+      height: MediaQuery.of(context).size.height * 0.76,
       child: Card(
         elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(20)),
+        shape: RoundedRectangleBorder(
+          borderRadius: BorderRadius.circular(20),
+        ),
         child: Column(
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           crossAxisAlignment: CrossAxisAlignment.center,
           children: [
             Container(
-                margin: const EdgeInsets.only(top: 24),
-                child: PageTitle(text: widget.titleDesc)),
+              margin: const EdgeInsets.only(top: 24),
+              child: AutoSizeText(
+                widget.titleDesc,
+                textAlign: TextAlign.center,
+                style:
+                    const TextStyle(fontSize: 32, fontWeight: FontWeight.w600),
+              ),
+            ),
             Container(
                 margin: const EdgeInsets.only(
                   top: 12,
@@ -69,62 +87,78 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                 child: iconBackgroundCircle),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                    margin:
-                        const EdgeInsets.only(left: 32, right: 32, bottom: 32),
-                    child: SvgPicture.asset(
-                      'icons/bulb.svg',
-                    )),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    child: Container(
-                        margin: EdgeInsets.only(bottom: 32),
-                        child: Text(
-                          widget.stringDesc1,
-                          // textAlign: TextAlign.center,
-                          style: const TextStyle(
-                              fontWeight: FontWeight.w300, fontSize: 17.0),
-                        )))
+                  margin:
+                      const EdgeInsets.only(left: 16, right: 32, bottom: 16),
+                  child: SvgPicture.asset(
+                    'icons/bulb.svg',
+                    width: sizeIcon,
+                    height: sizeIcon,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(bottom: 16, right: 32),
+                    child: AutoSizeText(
+                      widget.stringDesc1,
+                      maxLines: 4,
+                      // textAlign: TextAlign.center,
+                      style: const TextStyle(
+                          fontWeight: FontWeight.w300, fontSize: 17.0),
+                    ),
+                  ),
+                )
               ],
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.start,
               children: [
                 Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 32),
-                    child: SvgPicture.asset(
-                      'icons/warning.svg',
-                    )),
-                SizedBox(
-                    width: MediaQuery.of(context).size.width * 0.3,
-                    child: Container(
-                        child: Text(
+                  margin: const EdgeInsets.only(left: 16, right: 24, bottom: 0),
+                  child: SvgPicture.asset(
+                    'icons/warning.svg',
+                    width: sizeIcon,
+                    height: sizeIcon,
+                  ),
+                ),
+                Expanded(
+                  child: Container(
+                    margin: const EdgeInsets.only(right: 32),
+                    child: AutoSizeText(
                       widget.stringDesc2,
+                      maxLines: 3,
                       style: const TextStyle(
                           fontWeight: FontWeight.w300, fontSize: 17.0),
-                    )))
+                    ),
+                  ),
+                ),
               ],
             ),
             Row(
               crossAxisAlignment: CrossAxisAlignment.center,
               mainAxisAlignment: MainAxisAlignment.end,
               children: [
-                Container(
-                    margin: const EdgeInsets.only(top: 16, right: 32),
-                    child: TextButton(
-                        onPressed: () {
-                          changeColor();
-                        },
-                        child: Text(textButton,
+                Expanded(
+                  child: Container(
+                      margin: const EdgeInsets.only(right: 32, bottom: 8),
+                      child: TextButton(
+                          onPressed: () {
+                            changeColor();
+                          },
+                          child: AutoSizeText(
+                            textButton,
+                            maxLines: 1,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
                               color: color,
-                            )),
-                        style: TextButton.styleFrom()))
+                            ),
+                          ),
+                          style: TextButton.styleFrom())),
+                ),
               ],
             ),
           ],
