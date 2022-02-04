@@ -1,13 +1,15 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renov_proprietaire_app/repositories/work_repository.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renov_proprietaire_app/views/widgets/work_selection_description.dart';
 
 class WorkSelectionPage extends StatefulWidget {
   final String workType;
@@ -19,38 +21,17 @@ class WorkSelectionPage extends StatefulWidget {
 }
 
 class _WorkSelectionPageState extends State<WorkSelectionPage> {
-  var workname1 = "hihi";
-  var sizeScreen = 0.0;
   var numberColumns;
-  var isBtnEnabled = false;
-  var text;
-  var data = rootBundle.loadString("data.json");
+  var sizeScreen = 0.0;
 
-  callback(newAbc) {
-    setState(() {
-      workname1 = newAbc;
-    });
-  }
-
-
-  onPressed() {
-    setState(() {
-      isBtnEnabled = true;
-    });
-  }
-
-  void selectionEvent(BuildContext context, SelectWorkEvent event) {
-    BlocProvider.of<SelectWorkBloc>(context).add(event);
+  @override
+  void initState() {
+    BlocProvider.of<SelectWorkBloc>(context).add(const LoadWorksEvent());
+    super.initState();
   }
 
   @override
   Widget build(BuildContext context) {
-    selectionEvent(
-      context,
-      SelectWorksDoQueryEvent(),
-    );
-
-    print("toto");
     sizeScreen = MediaQuery.of(context).size.width;
     if (sizeScreen > 1500) {
       numberColumns = 3;
@@ -60,157 +41,90 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
-          if (state is SelectWorkInitialState) {
       return Scaffold(
           backgroundColor: Colors.white,
           body: Stack(children: [
             const BackgroundGreenWave(),
             Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Hero(
-                      tag: "title-select-work",
-                      child: Material(
-                          type: MaterialType.transparency, // likely needed
-                          child: PageTitle(text: "Travaux d'isolation"))),
-                  Expanded(
-                    child: Row(
-                      children: <Widget>[
-                        Expanded(
-                            flex: 3,
-                            child: GridView.count(
-                                mainAxisSpacing: 20.0,
-                                crossAxisSpacing: 20.0,
-                                scrollDirection: Axis.vertical,
-                                crossAxisCount: numberColumns,
-                                //shrinkWrap: true,
-                              /*children: [
-                                  *//*for (var info in data.)*//*
-                                  WorkClickableBlock(
-                                    urlImage:
-                                        './../../../assets/icons/floor.svg',
-                                    workName: 'ftf',
-                                    callback: callback,
-                                  ),
-                                  WorkClickableBlock(
-                                      urlImage:
-                                          './../../../assets/icons/floor.svg',
-                                      workName: 'ffeffffe',
-                                      callback: callback),
-                                  WorkClickableBlock(
-                                      urlImage:
-                                          './../../../assets/icons/floor.svg',
-                                      workName: 'ffeffffe',
-                                      callback: callback),
-                                  WorkClickableBlock(
-                                      urlImage:
-                                          './../../../assets/icons/floor.svg',
-                                      workName: 'ffeffffe',
-                                      callback: callback),
-                                  WorkClickableBlock(
-                                      urlImage:
-                                          './../../../assets/icons/floor.svg',
-                                      workName: 'ffeffffe',
-                                      callback: callback),
-                                  WorkClickableBlock(
-                                    urlImage:
-                                        './../../../assets/icons/floor.svg',
-                                    workName: workname1,
-                                    callback: callback,
-                                  ),
-                                  WorkClickableBlock(
-                                      urlImage:
-                                          './../../../assets/icons/floor.svg',
-                                      workName: 'ffeffffe',
-                                      callback: callback),
-                                  WorkClickableBlock(
-                                      urlImage:
-                                          './../../../assets/icons/floor.svg',
-                                      workName: 'ffeffffe',
-                                      callback: callback),
-                                ]*/)),
-
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  children: [
+                    Hero(
+                        tag: "title-select-work",
+                        child: Material(
+                            type: MaterialType.transparency,
+                            // likely needed
+                            child: PageTitle(text: "Travaux d'isolation"))),
+                    Expanded(
+                      child: Row(
+                        //crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
                           Expanded(
-                            flex: 7,
-                            child: Column(
-                              children: [
-                                WorkSelectionEmptyDescription(),
-                                GreenButton(
-                                    text: "coucou",
-                                    onPressed: onPressed,
-                                    enabled: isBtnEnabled)
-                              ],
-                            ),
-                          )
-                      ],
-                    ),
-                  )
-                ],
-              ),
-            )
-          ]));}
-          if (state is ListedWorkState) {
-            return Scaffold(
-                backgroundColor: Colors.white,
-                body: Stack(children: [
-                  const BackgroundGreenWave(),
-                  Container(
-                    padding: const EdgeInsets.all(20),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Hero(
-                            tag: "title-select-work",
-                            child: Material(
-                                type: MaterialType.transparency, // likely needed
-                                child: PageTitle(text: "Travaux d'isolation"))),
-                        Expanded(
-                          child: Row(
-                            children: <Widget>[
-                              Expanded(
-                                  flex: 3,
-                                child: GridView.count(
+                              child: state is ListedWorkState
+                                  ? 
+                                  GridView.count(
                                       mainAxisSpacing: 20.0,
                                       crossAxisSpacing: 20.0,
                                       scrollDirection: Axis.vertical,
+                                       shrinkWrap: true,
                                       crossAxisCount: numberColumns,
-
-                                      //shrinkWrap: true,
-                                      children: [
-                                        for (var work in state.works)
-                                          WorkClickableBlock(
-                                            urlImage:
-                                            work.urlImage,
-                                            workName: work.title,
-                                            callback: callback,
-                                          ),
-                                ])),
-
-                              Expanded(
-                                flex: 7,
-                                child: Column(
-                                  children: [
-                                    WorkSelectionEmptyDescription(),
-                                    GreenButton(
-                                        text: "coucou",
-                                        onPressed: onPressed,
-                                        enabled: isBtnEnabled)
-                                  ],
-                                ),
-                              )
-                            ],
-                          ),
-                        )
-                      ],
+                                      children:  List.generate(                                     
+                                       (state as ListedWorkState).works.length, (index) {
+                                        var clickableBlock =
+                                            (state as ListedWorkState)
+                                                .works[index];
+                                         print(clickableBlock.isSelected);
+                                        return
+                                         WorkClickableBlock(
+                                          urlImage: clickableBlock.urlImage,
+                                          workName: clickableBlock.title,
+                                          isSelected: false,
+                                          getId: (id) {},
+                                        );
+                                      }),
+                                    )
+                                  : state is ClickedWorkState 
+                                  ?
+                                  GridView.count(
+                                      mainAxisSpacing: 20.0,
+                                      crossAxisSpacing: 20.0,
+                                      scrollDirection: Axis.vertical,
+                                       shrinkWrap: true,
+                                      crossAxisCount: numberColumns,
+                                      children:  List.generate(                                     
+                                      state.malisteWork.length, (index) {
+                                        var clickableBlock =
+                                            state.malisteWork[index];
+                                         print(state.maliste);
+                                        return
+                                         WorkClickableBlock(
+                                          urlImage: clickableBlock.urlImage,
+                                          workName: clickableBlock.title,
+                                          isSelected: state.maliste.contains(clickableBlock.title)
+                                              ? true
+                                              : false,
+                                          getId: (id) {},
+                                        );
+                                      }),
+                                    )
+                                  : const CircularProgressIndicator()),
+                          Expanded(
+                            child: Column(
+                              children: [
+                                const WorkSelectionEmptyDescription(),
+                                GreenButton(
+                                    text: "coucou",
+                                    onPressed: () {},
+                                    enabled: true)
+                              ],
+                            ),
+                          )
+                        ],
+                      ),
                     ),
-                  )
-                ]));}
-          else {
-            return Text("pas drôle du tout !");
-          }
-          }
-    );
+                  ],
+                ))
+          ]));
+    });
   }
 }
