@@ -12,6 +12,7 @@ class WorkClickableBlock extends StatefulWidget {
   final String urlImage;
   final String workName;
   final bool isSelected;
+  final bool isChecked;
 
   // final Function(int) callback;
 
@@ -20,7 +21,7 @@ class WorkClickableBlock extends StatefulWidget {
     required this.urlImage,
     required this.workName,
     required this.isSelected,
-    this.getId,
+    this.getId, required this.isChecked,
     // required this.callback,
   }) : super(key: key);
 
@@ -31,7 +32,7 @@ class WorkClickableBlock extends StatefulWidget {
 class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var backgroundColor = Colors.white;
   var fontColor = ColorsRenov.primaryGreen;
-  var isChecked = false;
+
 
   void getBlockId() {
     widget.getId!(widget.workName);
@@ -89,7 +90,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
           ),
         ),
         Visibility(
-          visible: true,
+          visible: widget.isChecked,
           child: Positioned(
             bottom: 0,
             right: 0,
