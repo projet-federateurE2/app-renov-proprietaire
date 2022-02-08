@@ -77,6 +77,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                       }),
                                     )                              
                                  ),
+
                           Expanded(
                             child: Column(
                               children: [
