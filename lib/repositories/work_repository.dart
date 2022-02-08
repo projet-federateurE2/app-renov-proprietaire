@@ -22,6 +22,18 @@ class WorkRepository  {
       });
     yield _works;
   }
+
+  Future<List<Work>> doQueryFuture() async {
+    var data = await rootBundle.loadString("data.json");
+    var _json = jsonDecode(data);
+    List<Work> _works = [];
+      _json['listTypeWork'].forEach((c) {
+          //_works.add(Work(id: c['id'],isSelected: c['isSelected'], title: c['title'], titleDesc: c['titleDesc'], urlImage: c['urlImage'], txt1: c['txt1'],txt2: c['txt2']));
+          _works.add(Work(c['id'],c['isSelected'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
+      });
+    return _works;
+  }
+  
   Stream<Work?> getWork(idWork) async* {
     var data = await rootBundle.loadString("data.json");
     var _json = jsonDecode(data);

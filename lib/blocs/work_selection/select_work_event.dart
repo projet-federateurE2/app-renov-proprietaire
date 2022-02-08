@@ -8,8 +8,13 @@ abstract class SelectWorkEvent {
 class LoadWorksEvent extends SelectWorkEvent {
   const LoadWorksEvent();
 }
+
+
 class ClickWorkEvent extends SelectWorkEvent {
   final String nameWork;
   const ClickWorkEvent(this.nameWork);
 
 }
+
+
+
