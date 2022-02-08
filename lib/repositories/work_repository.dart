@@ -51,15 +51,14 @@ class WorkRepository  {
 
  List<String> getAddWorkClick(work) 
  {
-   _workClick.add(work);
+   if(_workClick.length != 0)
+   {
+   _workClick.removeAt(0);
+   }
+    _workClick.add(work);
    return _workClick;
  } 
 
- List<String> getRemoveWorkClick(work) 
- {
-   _workClick.remove(work);
-   return _workClick;
- } 
 
  List<String> allWorkClick() 
  {

@@ -8,7 +8,6 @@ import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 
 class WorkClickableBlock extends StatefulWidget {
-  final Function(String)? getId;
   final String urlImage;
   final String workName;
   final bool isSelected;
@@ -21,7 +20,6 @@ class WorkClickableBlock extends StatefulWidget {
     required this.urlImage,
     required this.workName,
     required this.isSelected,
-    this.getId, required this.isChecked,
     // required this.callback,
   }) : super(key: key);
 
@@ -34,9 +32,6 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var fontColor = ColorsRenov.primaryGreen;
 
 
-  void getBlockId() {
-    widget.getId!(widget.workName);
-  }
 
   @override
   Widget build(BuildContext context) {

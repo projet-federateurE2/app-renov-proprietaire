@@ -18,16 +18,9 @@ class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
     on<ClickWorkEvent>((event, emit) async {
     var listClickWork = WorkRepository().allWorkClick();
      var works = await WorkRepository().doQueryFuture();
-      emit (ListedWorkState(works));
-    if(!listClickWork.contains(event.nameWork))
-    {
+    emit (ListedWorkState(works));
     listClickWork = WorkRepository().getAddWorkClick(event.nameWork);
-    }
-    else
-    {
-      listClickWork = WorkRepository().getRemoveWorkClick(event.nameWork);
-    }
-      emit (ClickedWorkState(listClickWork, works));
+    emit (ClickedWorkState(listClickWork, works));
     });
 
   }
