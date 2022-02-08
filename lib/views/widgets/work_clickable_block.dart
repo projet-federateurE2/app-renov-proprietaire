@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
@@ -11,6 +12,8 @@ class WorkClickableBlock extends StatefulWidget {
   final String urlImage;
   final String workName;
   final bool isSelected;
+  final bool isChecked;
+
   // final Function(int) callback;
 
   const WorkClickableBlock({
@@ -18,7 +21,7 @@ class WorkClickableBlock extends StatefulWidget {
     required this.urlImage,
     required this.workName,
     required this.isSelected,
-    this.getId,
+    this.getId, required this.isChecked,
     // required this.callback,
   }) : super(key: key);
 
@@ -29,7 +32,7 @@ class WorkClickableBlock extends StatefulWidget {
 class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var backgroundColor = Colors.white;
   var fontColor = ColorsRenov.primaryGreen;
-  var isChecked = false;
+
 
   void getBlockId() {
     widget.getId!(widget.workName);
@@ -44,36 +47,64 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
       backgroundColor = Colors.white;
       fontColor = ColorsRenov.primaryGreen;
     }
-    return SizedBox(
-      height: MediaQuery.of(context).size.width * 0.12,
-      width: MediaQuery.of(context).size.width * 0.12,
-      child: Card(
-        elevation: 4.0,
-        color: backgroundColor,
-        shape: RoundedRectangleBorder(
-          borderRadius: BorderRadius.circular(15),
-        ),
-        child: InkWell(
-          borderRadius: BorderRadius.circular(15),
-          onTap: () {
-             BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.workName));
-          },
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.center,
-            children: <Widget>[
-              SizedBox(
-                  width: 80,
-                  height: 80,
-                  child: SvgPicture.asset(widget.urlImage, color: fontColor)),
-              Text(widget.workName,
-                  style: TextStyle(
-                      color: fontColor,
-                      fontSize: 20,
-                      fontWeight: FontWeight.w500)),
-            ],
+    return Stack(
+      children: <Widget>[
+        SizedBox(
+          height: MediaQuery.of(context).size.width,
+          width: MediaQuery.of(context).size.width,
+          child: Card(
+            margin: const EdgeInsets.all(13.0),
+            elevation: 4.0,
+            color: backgroundColor,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(15),
+              onTap: () {
+                BlocProvider.of<SelectWorkBloc>(context)
+                    .add(ClickWorkEvent(widget.workName));
+              },
+              child: Column(
+                mainAxisAlignment: MainAxisAlignment.center,
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: <Widget>[
+                  Container(
+                      width: MediaQuery.of(context).size.width / 15,
+                      height: MediaQuery.of(context).size.width / 15,
+                      margin: const EdgeInsets.only(bottom: 10),
+                      child:
+                          SvgPicture.asset(widget.urlImage, color: fontColor)),
+                  FittedBox(
+                    fit: BoxFit.fitWidth,
+                    child: Text(widget.workName,
+                        textAlign: TextAlign.center,
+                        style: TextStyle(
+                            color: fontColor,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500)),
+                  ),
+                ],
+              ),
+            ),
           ),
         ),
-      ),
+        Visibility(
+          visible: widget.isChecked,
+          child: Positioned(
+            bottom: 0,
+            right: 0,
+            child: LayoutBuilder(
+                builder: (BuildContext context, BoxConstraints constraints) {
+              return SizedBox(
+                width: 35,
+                height: 35,
+                child: SvgPicture.asset('icons/checkMarkForWorksBlock.svg'),
+              );
+            }),
+          ),
+        ),
+      ],
     );
   }
 }

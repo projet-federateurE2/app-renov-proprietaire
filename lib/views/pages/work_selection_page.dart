@@ -79,7 +79,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                           urlImage: clickableBlock.urlImage,
                                           workName: clickableBlock.title,
                                           isSelected: false,
-                                          getId: (id) {},
+                                          getId: (id) {}, isChecked: false,
                                         );
                                       }),
                                     )
@@ -103,7 +103,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                           isSelected: state.maliste.contains(clickableBlock.title)
                                               ? true
                                               : false,
-                                          getId: (id) {},
+                                          getId: (id) {}, isChecked: false,
                                         );
                                       }),
                                     )
