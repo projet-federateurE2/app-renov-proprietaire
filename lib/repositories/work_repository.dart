@@ -30,10 +30,8 @@ class WorkRepository  {
   }
 
   Future<List<Work>> doQueryFuture() async {
-    // var data = await rootBundle.loadString("data.json");
     var url = Uri.parse('http://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/v1/projet/template');
     var data = await http.get(url);
-    // log(response.toString());
     var _json = jsonDecode(data.body);
     print(_json);
     List<Work> _works = [];
