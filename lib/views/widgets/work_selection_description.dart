@@ -2,7 +2,9 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/flutter_svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
+import '../../blocs/work_selection/select_work_bloc.dart';
 import 'icon_background_circle.dart';
 
 class WorkSelectionDescription extends StatefulWidget {
@@ -29,6 +31,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
   @override
   Widget build(BuildContext context) {
+    
     var sizeIcon =
         MediaQuery.of(context).size.width > MediaQuery.of(context).size.height
             ? MediaQuery.of(context).size.width * 0.03
@@ -42,21 +45,9 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
         rightCirclePosition: 15,
         url: widget.urlImage);
 
-    void changeColor() {
-      setState(
-        () {
-          isPressed = !isPressed;
-          if (!isPressed) {
-            color = ColorsRenov.primaryGreen;
-            textButton = "+ Ajouter ce travaux";
-          } else {
-            color = Colors.red;
-            textButton = "- Retirer ce travaux";
-          }
-        },
-      );
-    }
-
+    
+    return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+        builder: (context, state) {       
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.44,
       height: MediaQuery.of(context).size.height * 0.76,
@@ -146,15 +137,15 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                       margin: const EdgeInsets.only(right: 32, bottom: 8),
                       child: TextButton(
                           onPressed: () {
-                            changeColor();
+                             BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.titleDesc));
                           },
                           child: AutoSizeText(
-                            textButton,
+                            state.valideWork.contains(widget.titleDesc) ? "- Retirer ce travaux" : "+ Ajouter ce travaux",
                             maxLines: 1,
                             style: TextStyle(
                               fontSize: 20,
                               fontWeight: FontWeight.w300,
-                              color: color,
+                              color: state.valideWork.contains(widget.titleDesc) ? Colors.red : ColorsRenov.primaryGreen,
                             ),
                           ),
                           style: TextButton.styleFrom())),
@@ -165,5 +156,6 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
         ),
       ),
     );
+  });
   }
 }

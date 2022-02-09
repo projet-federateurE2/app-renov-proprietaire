@@ -17,4 +17,11 @@ class ClickWorkEvent extends SelectWorkEvent {
 }
 
 
+class ValitedWorkEvent extends SelectWorkEvent {
+  final String nameWork;
+  const ValitedWorkEvent(this.nameWork);
+
+}
+
+
 
