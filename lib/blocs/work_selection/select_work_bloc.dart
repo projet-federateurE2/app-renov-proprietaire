@@ -9,21 +9,27 @@ part 'select_work_state.dart';
 
 class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
   SelectWorkBloc() : super(const SelectWorkInitialState()) {
-    on<SelectWorksDoQueryEvent>((event, emit) async {
-      var works = await WorkRepository().doQuery();
+
+    on<LoadWorksEvent>((event, emit) async {
+      var works = await WorkRepository().doQueryFuture();
       emit (ListedWorkState(works));
     });
-/*    on<SearchResolveQueryEvent>((event, emit) {
-      emit (SearchResolvedState(event.cards));
+
+    on<ClickWorkEvent>((event, emit) async {
+    var listClickWork = WorkRepository().allWorkClick();
+    var works = await WorkRepository().doQueryFuture();
+    listClickWork = WorkRepository().getAddWorkClick(event.nameWork);
+    var list = WorkRepository().allValideWork();
+    emit (ClickedWorkState(listClickWork, works, list));
     });
-    on<SearchDoQueryEvent>((event, emit) async {
-      print('here');
-      emit (const SearchLoadingState());
-      var cards = await ScryfallRepository().doQuery(event.query);
-      emit (SearchResolvedState(cards));
+
+    on<ValitedWorkEvent>((event, emit) async {
+      WorkRepository().getAddValideWorkClick(event.nameWork);
+      var list = WorkRepository().allValideWork();
+      var works = await WorkRepository().doQueryFuture();
+      var listClickWork = WorkRepository().allWorkClick();
+      emit (ValideWorkState(list, works, listClickWork));
     });
-    on<SearchClearEvent>((event, emit) async {
-      emit(const SearchInitialState());
-    });*/
+
   }
 }
