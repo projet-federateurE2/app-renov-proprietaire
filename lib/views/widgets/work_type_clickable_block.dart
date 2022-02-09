@@ -1,3 +1,4 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 
@@ -23,10 +24,12 @@ class WorkTypeClickableBlock extends StatelessWidget {
   Widget build(BuildContext context) {
     var iconCirclePositionTop = 15.0;
     var iconCirclePositionRight = 15.0;
+
+    var height = MediaQuery.of(context).size.height;
     // 353 246
     return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.32,
-      height: 255.0,
+      width: MediaQuery.of(context).size.width * 0.3,
+      height: MediaQuery.of(context).size.height * 0.36,
       child: Card(
           elevation: 4,
           shape:
@@ -43,25 +46,35 @@ class WorkTypeClickableBlock extends StatelessWidget {
                 crossAxisAlignment: CrossAxisAlignment.center,
                 children: [
                   Container(
-                      margin:
-                          EdgeInsets.only(bottom: 10, left: iconCirclePositionRight),
-                      child: Hero(
+                      margin: EdgeInsets.only(
+                          bottom: 10, left: iconCirclePositionRight),
+                      child: /*Hero(
                           tag: "work_type",
-                          child: IconBackgroundCircle(
+                          child:*/
+                          IconBackgroundCircle(
                               url: iconUrl,
                               imageSize: iconSize,
                               rightCirclePosition: iconCirclePositionRight,
-                              topCirclePosition: iconCirclePositionTop))),
-                  Text(
-                    workTypeTitle,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w500, fontSize: 27.0),
-                  ),
-                  Text(
-                    workTypeDescription,
-                    textAlign: TextAlign.center,
-                    style: const TextStyle(
-                        fontWeight: FontWeight.w300, fontSize: 15.0),
+                              topCirclePosition: iconCirclePositionTop)) /*)*/,
+                  Expanded(
+                    child: Column(
+                      children: [
+                        AutoSizeText(
+                          workTypeTitle,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 27.0),
+                          maxLines: 1,
+                        ),
+                        AutoSizeText(
+                          workTypeDescription,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 14),
+                          maxLines: 3,
+                        )
+                      ],
+                    ),
                   ),
                 ],
               ),

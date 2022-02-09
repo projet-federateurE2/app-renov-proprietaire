@@ -1,12 +1,19 @@
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/values/colors.dart';
+import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
 
 void main() {
-  runApp(const MyApp());
+  runApp(
+  MultiBlocProvider(providers: [
+    BlocProvider<SelectWorkBloc>(create: (_) => SelectWorkBloc())
+  ], child: const MyApp()));
 }
 
 class MyApp extends StatelessWidget {
@@ -18,27 +25,8 @@ class MyApp extends StatelessWidget {
     return MaterialApp(
       debugShowCheckedModeBanner: false,
       title: 'App renov',
-      theme: ThemeData(fontFamily: 'Poppins'),
-      home: const WorkTypeSelectionPage(),
-    );
-  }
-}
-
-class MyHomePage extends StatefulWidget {
-  const MyHomePage({Key? key}) : super(key: key);
-
-  @override
-  State<MyHomePage> createState() => _MyHomePageState();
-}
-
-class _MyHomePageState extends State<MyHomePage> {
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      backgroundColor: Colors.white,
-      body: Stack(
-        children: [const BackgroundGreenWave(), Container()],
-      ),
+      theme: ThemeData(fontFamily: 'Poppins', primaryColor: ColorsRenov.primaryGreen),
+      home: HomePage(),
     );
   }
 }
