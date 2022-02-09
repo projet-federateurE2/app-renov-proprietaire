@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 
@@ -7,7 +6,12 @@ class GreenButton extends StatefulWidget {
   final Function() onPressed;
   final bool enabled;
 
-  const GreenButton({ Key? key, required this.text, required this.onPressed, required this.enabled }) : super(key: key);
+  const GreenButton(
+      {Key? key,
+      required this.text,
+      required this.onPressed,
+      required this.enabled})
+      : super(key: key);
 
   @override
   _GreenButtonState createState() => _GreenButtonState();
@@ -17,11 +21,9 @@ class _GreenButtonState extends State<GreenButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
-      child: Text(widget.text,
-      style: const TextStyle(
-        fontSize: 25,
-        fontWeight: FontWeight.w300
-      ),
+      child: Text(
+        widget.text,
+        style: const TextStyle(fontSize: 25, fontWeight: FontWeight.w300),
       ),
       style: ElevatedButton.styleFrom(
         elevation: 0.0,

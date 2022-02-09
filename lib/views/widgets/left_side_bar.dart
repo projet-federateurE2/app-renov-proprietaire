@@ -1,8 +1,6 @@
-import 'package:flutter/rendering.dart';
+import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
-import 'package:flutter/cupertino.dart';
-import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/values/styles.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
@@ -36,7 +34,7 @@ class _LeftSideBarState extends State<LeftSideBar> {
                           mainAxisAlignment: MainAxisAlignment.spaceAround,
                           children: <Widget>[
                             Column(children: <Widget>[
-                              SvgPicture.asset('./../../assets/icons/account_avatar.svg', width: 100.0, height: 100.0),
+                              SvgPicture.asset(IconsRenov.accountAvatar, width: 100.0, height: 100.0),
                               const Text("Paul Dupont",style: TextStyle(
                                 fontWeight: FontWeight.w600, fontSize: 16.0))]),
                             Card(
@@ -60,25 +58,36 @@ class _LeftSideBarState extends State<LeftSideBar> {
                                         text: 'Installation pompe à chaleur',
                                         secondaryText: 'Contacter les artisans')
                                   ],
+
                                 ),
-                              ),),
-                            const Flexible(
-                                child: ProjectSideButton(
-                                    text: TextRenov.sideProjectBtn1,
-                                    urlIcon: './../assets/icons/profile.svg')),
-                            const Flexible(
-                                child: ProjectSideButton(
-                                    text: TextRenov.sideProjectBtn2,
-                                    urlIcon: './../assets/icons/notepad.svg')),
-                            const Flexible(
-                                child: ProjectSideButton(
-                                    text: TextRenov.sideProjectBtn3,
-                                    urlIcon: './../assets/icons/phone.svg')),
-                          ],
-                        )
-                    )
-))
-          ]),
+                                Padding(padding: EdgeInsets.only(top: 6.0)),
+                                SecondaryProjectSideButton(
+                                    text: 'Isolation des fenêtres',
+                                    secondaryText:
+                                        'vérifier la conformité du devis'),
+                                Padding(padding: EdgeInsets.only(top: 6.0)),
+                                SecondaryProjectSideButton(
+                                    text: 'Installation pompe à chaleur',
+                                    secondaryText: 'Contacter les artisans')
+                              ],
+                            ),
+                          ),
+                        ),
+                        const Flexible(
+                            child: ProjectSideButton(
+                                text: TextRenov.sideProjectBtn1,
+                                urlIcon: IconsRenov.profile)),
+                        const Flexible(
+                            child: ProjectSideButton(
+                                text: TextRenov.sideProjectBtn2,
+                                urlIcon: IconsRenov.notepad)),
+                        const Flexible(
+                            child: ProjectSideButton(
+                                text: TextRenov.sideProjectBtn3,
+                                urlIcon: IconsRenov.phone)),
+                      ],
+                    ))))
+      ]),
     );
   }
 }
