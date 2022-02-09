@@ -87,9 +87,9 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                !state.maliste.isNotEmpty ? const WorkSelectionEmptyDescription():  
                                WorkSelectionDescription(stringDesc1: state.malisteWork.where((element) => element.title == state.maliste[0]).first.txt1, stringDesc2: state.malisteWork.where((element) => element.title == state.maliste[0]).first.txt2, titleDesc: state.malisteWork.where((element) => element.title == state.maliste[0]).first.title, urlImage: state.malisteWork.where((element) => element.title == state.maliste[0]).first.urlImage),
                                GreenButton(
-                                    text: "coucou",
+                                    text: "Suivant",
                                     onPressed: () {},
-                                    enabled: true)
+                                    enabled: state.valideWork.isNotEmpty ? true : false)
                               ],
                             ),                         
                           )
