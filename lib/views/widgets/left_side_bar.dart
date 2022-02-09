@@ -18,46 +18,47 @@ class _LeftSideBarState extends State<LeftSideBar> {
 
   @override
   Widget build(BuildContext context) {
-    return FractionallySizedBox(
-      widthFactor: 0.22,
-      heightFactor: 0.9,
-      child: Column(children: [
-        Expanded(
-            child: Card(
-                elevation: 4.0,
-                color: backgroundColor,
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(styleRenov.roundedBorder),
-                ),
-                child: Padding(
-                    padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
-                    child: Column(
-                      mainAxisAlignment: MainAxisAlignment.spaceAround,
-                      children: <Widget>[
-                        Column(children: <Widget>[
-                          SvgPicture.asset(IconsRenov.accountAvatar,
-                              width: 100.0, height: 100.0),
-                          const Text("Paul Dupont",
-                              style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 16.0))
-                        ]),
-                        Card(
-                          shape: RoundedRectangleBorder(
-                            borderRadius:
-                                BorderRadius.circular(styleRenov.roundedBorder),
-                          ),
-                          child: Padding(
-                            padding: const EdgeInsets.symmetric(
-                                vertical: 20.0, horizontal: 15.0),
-                            child: Column(
-                              crossAxisAlignment: CrossAxisAlignment.start,
-                              children: const [
-                                Padding(
-                                  padding: EdgeInsets.only(left: 6.0),
-                                  child: Text(TextRenov.sideProject,
-                                      style: TextStyle(
-                                          fontWeight: FontWeight.w600,
-                                          fontSize: 16.0)),
+    return SizedBox(
+      width: 300,
+          child: Column(children: [
+            Expanded(
+                child: Card(
+                    elevation: 4.0,
+                    color: backgroundColor,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(styleRenov.roundedBorder),
+                    ),
+                    child: Padding(
+                      padding: const EdgeInsets.fromLTRB(15.0, 30.0, 15.0, 30.0),
+                        child: Column(
+                          mainAxisAlignment: MainAxisAlignment.spaceAround,
+                          children: <Widget>[
+                            Column(children: <Widget>[
+                              SvgPicture.asset(IconsRenov.accountAvatar, width: 100.0, height: 100.0),
+                              const Text("Paul Dupont",style: TextStyle(
+                                fontWeight: FontWeight.w600, fontSize: 16.0))]),
+                            Card(
+                              shape: RoundedRectangleBorder(
+                                borderRadius: BorderRadius.circular(styleRenov.roundedBorder),
+                              ),
+                              child: Padding(
+                                padding: const EdgeInsets.symmetric(vertical: 20.0,horizontal:15.0),
+                                child: Column(
+                                  crossAxisAlignment: CrossAxisAlignment.start,
+                                  children: const [
+                                    Padding(padding: EdgeInsets.only(left:6.0),
+                                    child: Text(TextRenov.sideProject, style: TextStyle(
+                                        fontWeight: FontWeight.w600, fontSize: 16.0)),),
+                                    Padding(padding: EdgeInsets.only(top:6.0)),
+                                    SecondaryProjectSideButton(
+                                        text: 'Isolation des fenêtres',
+                                        secondaryText: 'vérifier la conformité du devis'),
+                                    Padding(padding: EdgeInsets.only(top:6.0)),
+                                    SecondaryProjectSideButton(
+                                        text: 'Installation pompe à chaleur',
+                                        secondaryText: 'Contacter les artisans')
+                                  ],
+
                                 ),
                                 Padding(padding: EdgeInsets.only(top: 6.0)),
                                 SecondaryProjectSideButton(
