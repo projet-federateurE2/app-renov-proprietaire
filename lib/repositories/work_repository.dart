@@ -12,6 +12,7 @@ class WorkRepository  {
   WorkRepository._internal();
   factory WorkRepository() => _instance;
   List<String> _workClick = [];
+  List<String> _valideWork = [];
 
 
   Stream<List<Work>> doQuery() async* {
@@ -58,17 +59,38 @@ class WorkRepository  {
   }
 
 
+ List<String> getAddValideWorkClick(work) 
+ {
+   if(_valideWork.contains(work))
+   {
+     _valideWork.remove(work);
+   }
+   else
+   {
+    _valideWork.add(work);
+   }
+   
+   return _valideWork;
+ } 
+
+List<String> allValideWork() 
+ {
+   
+   return _valideWork;
+ } 
+
+ 
  List<String> getAddWorkClick(work) 
  {
-   _workClick.add(work);
+   if(_workClick.length != 0)
+   {
+   _workClick.removeAt(0);
+   }
+    _workClick.add(work);
    return _workClick;
  } 
 
- List<String> getRemoveWorkClick(work) 
- {
-   _workClick.remove(work);
-   return _workClick;
- } 
+
 
  List<String> allWorkClick() 
  {

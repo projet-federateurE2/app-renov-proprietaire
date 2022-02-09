@@ -6,10 +6,11 @@ part of 'select_work_bloc.dart';
 abstract class SelectWorkState {
   final List<String> maliste;
   final List<Work> malisteWork;
-  const SelectWorkState(this.maliste, this.malisteWork);
+  final List<String> valideWork;
+  const SelectWorkState(this.maliste, this.malisteWork, this.valideWork);
 }
  class SelectWorkInitialState extends SelectWorkState {
-   const SelectWorkInitialState():super(const [], const []);
+   const SelectWorkInitialState():super(const [], const [], const []);
 }
 
 // class SelectWorkInitialState extends SelectWorkState {
@@ -18,12 +19,20 @@ abstract class SelectWorkState {
 
 class ListedWorkState extends SelectWorkState {
   final List<Work> works;
-  const ListedWorkState(this.works):super(const [], works);
+  const ListedWorkState(this.works):super(const [], works, const []);
 }
 
 
 class ClickedWorkState extends SelectWorkState  {
   final List<String> clickedWork;
   final List<Work> works;
-  const ClickedWorkState(this.clickedWork, this.works):super(clickedWork, works);
+  final List<String> valideWork;
+  const ClickedWorkState(this.clickedWork, this.works, this.valideWork):super(clickedWork, works, valideWork);
+}
+
+class ValideWorkState extends SelectWorkState  {
+  final List<String> valideWork;
+  final List<Work> works; 
+  final List<String> clickedWork;
+  const ValideWorkState(this.valideWork, this.works, this.clickedWork):super(clickedWork, works, valideWork);
 }
