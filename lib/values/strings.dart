@@ -8,4 +8,5 @@ class TextRenov {
   static const String sideProjectBtn3 = "Contacter un conseiller";
   static const String workProjectEmpty =
       "L’isolation de votre maison est primordiale. Une maison mal isolée est sujette à de sérieuses pertes énergétiques engendrant une perte de confort et d’argent.";
+  static const String btnNext = "Suivant";
 }
