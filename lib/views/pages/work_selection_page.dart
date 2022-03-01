@@ -1,9 +1,7 @@
 import 'package:flutter/material.dart';
-import 'package:flutter/services.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
-import 'package:renov_proprietaire_app/values/styles.dart';
+import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
@@ -61,37 +59,63 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                              child:                            
-                                 GridView.count(
-                                      mainAxisSpacing: 20.0,
-                                      crossAxisSpacing: 20.0,
-                                      scrollDirection: Axis.vertical,
-                                       shrinkWrap: true,
-                                      crossAxisCount: numberColumns,
-                                      children:  List.generate(                                     
-                                       state.malisteWork.length, (index) {
-                                        var clickableBlock = state.malisteWork[index];
-                                      return WorkClickableBlock(
-                                          urlImage: clickableBlock.urlImage,
-                                          workName: clickableBlock.title,
-                                          isSelected: state.maliste.contains(clickableBlock.title), 
-                                          isChecked: state.valideWork.contains(clickableBlock.title),
-                                          );
-                                      }),
-                                    )                              
-                                 ),
+                              child: GridView.count(
+                            mainAxisSpacing: 20.0,
+                            crossAxisSpacing: 20.0,
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            crossAxisCount: numberColumns,
+                            children: List.generate(state.malisteWork.length,
+                                (index) {
+                              var clickableBlock = state.malisteWork[index];
+                              return WorkClickableBlock(
+                                urlImage: clickableBlock.urlImage,
+                                workName: clickableBlock.title,
+                                isSelected: state.maliste
+                                    .contains(clickableBlock.title),
+                                isChecked: state.valideWork
+                                    .contains(clickableBlock.title),
+                              );
+                            }),
+                          )),
                           Expanded(
-                            child:                           
-                             Column(
-                              children: [                                                           
-                               !state.maliste.isNotEmpty ? const WorkSelectionEmptyDescription():  
-                               WorkSelectionDescription(stringDesc1: state.malisteWork.where((element) => element.title == state.maliste[0]).first.txt1, stringDesc2: state.malisteWork.where((element) => element.title == state.maliste[0]).first.txt2, titleDesc: state.malisteWork.where((element) => element.title == state.maliste[0]).first.title, urlImage: state.malisteWork.where((element) => element.title == state.maliste[0]).first.urlImage),
-                               GreenButton(
-                                    text: "coucou",
+                            child: Column(
+                              children: [
+                                !state.maliste.isNotEmpty
+                                    ? const WorkSelectionEmptyDescription()
+                                    : WorkSelectionDescription(
+                                        stringDesc1: state.malisteWork
+                                            .where((element) =>
+                                                element.title ==
+                                                state.maliste[0])
+                                            .first
+                                            .txt1,
+                                        stringDesc2: state.malisteWork
+                                            .where((element) =>
+                                                element.title ==
+                                                state.maliste[0])
+                                            .first
+                                            .txt2,
+                                        titleDesc: state.malisteWork
+                                            .where((element) =>
+                                                element.title ==
+                                                state.maliste[0])
+                                            .first
+                                            .title,
+                                        urlImage: state.malisteWork
+                                            .where((element) =>
+                                                element.title ==
+                                                state.maliste[0])
+                                            .first
+                                            .urlImage),
+                                GreenButton(
+                                    text: TextRenov.btnNext,
                                     onPressed: () {},
-                                    enabled: true)
+                                    enabled: state.valideWork.isNotEmpty
+                                        ? true
+                                        : false)
                               ],
-                            ),                         
+                            ),
                           )
                         ],
                       ),

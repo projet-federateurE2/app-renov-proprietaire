@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:percent_indicator/linear_percent_indicator.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
+import 'package:renov_proprietaire_app/values/strings.dart';
 
 import 'icon_background_circle.dart';
 
@@ -73,7 +74,7 @@ class WorkInProgressBlock extends StatelessWidget {
                                                   fontWeight:
                                                       FontWeight.w600))),
                                       Row(children: [
-                                        const Text('Budget : ',
+                                        const Text(TextRenov.workProgressBudget,
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.w500)),
@@ -83,7 +84,8 @@ class WorkInProgressBlock extends StatelessWidget {
                                                 fontWeight: FontWeight.w300))
                                       ]),
                                       Row(children: [
-                                        const Text('Aides visées : ',
+                                        const Text(
+                                            TextRenov.workProgressAidTargeted,
                                             style: TextStyle(
                                                 fontSize: 10,
                                                 fontWeight: FontWeight.w500)),
@@ -99,11 +101,12 @@ class WorkInProgressBlock extends StatelessWidget {
                               Expanded(
                                   child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                                mainAxisAlignment:
+                                    MainAxisAlignment.spaceEvenly,
                                 children: [
                                   const Padding(
                                       padding: EdgeInsets.only(top: 5),
-                                      child: Text('Etape en cours :',
+                                      child: Text(TextRenov.workProgressStep,
                                           style: TextStyle(
                                               fontSize: 10,
                                               fontWeight: FontWeight.w500))),
@@ -132,9 +135,9 @@ class WorkInProgressBlock extends StatelessWidget {
                                           progressColor:
                                               ColorsRenov.primaryGreen,
                                         ),
-                                        Text('Complété à 0 %',
+                                        const Text('Complété à 0 %',
                                             textAlign: TextAlign.right,
-                                            style: const TextStyle(
+                                            style: TextStyle(
                                                 fontSize: 9,
                                                 fontWeight: FontWeight.w300)),
                                       ],
@@ -163,7 +166,7 @@ class WorkInProgressBlock extends StatelessWidget {
                         // New Widget Page
                       },
                       borderRadius: BorderRadius.circular(20.0),
-                      child: SvgPicture.asset('icons/arrowCircle.svg',
+                      child: SvgPicture.asset(IconsRenov.arrowCircle,
                           color: ColorsRenov.primaryGreen),
                     )
                   ],
