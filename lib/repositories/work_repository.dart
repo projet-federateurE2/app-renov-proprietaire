@@ -17,7 +17,7 @@ class WorkRepository  {
 
   Stream<List<Work>> doQuery() async* {
    // var data = await rootBundle.loadString("data.json");
-    var url = Uri.parse('http://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/v1/projet/template');
+    var url = Uri.parse('http://equipe2-api.lp-cloud.tech/');
     var data = await http.get(url);
     // log(response.toString());
     var _json = jsonDecode(data.body);
@@ -25,20 +25,25 @@ class WorkRepository  {
     List<Work> _works = [];
       _json['listTypeWork'].forEach((c) {
           //_works.add(Work(id: c['id'],isSelected: c['isSelected'], title: c['title'], titleDesc: c['titleDesc'], urlImage: c['urlImage'], txt1: c['txt1'],txt2: c['txt2']));
-          _works.add(Work(c['id'],c['isSelected'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
+          _works.add(Work(c['id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
       });
     yield _works;
   }
 
   Future<List<Work>> doQueryFuture() async {
-    var url = Uri.parse('http://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/v1/projet/template');
+    var url = Uri.parse('http://equipe2-api.lp-cloud.tech/');
     var data = await http.get(url);
     var _json = jsonDecode(data.body);
     print(_json);
+    _json.forEach((work){
+      if(work['type']=='Isolation'){
+        print('coucou');
+      }
+    });
     List<Work> _works = [];
-      _json['listTypeWork'].forEach((c) {
+      _json.forEach((c) {
           //_works.add(Work(id: c['id'],isSelected: c['isSelected'], title: c['title'], titleDesc: c['titleDesc'], urlImage: c['urlImage'], txt1: c['txt1'],txt2: c['txt2']));
-          _works.add(Work(c['id'],c['isSelected'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
+          _works.add(Work(c['_id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
       });
     return _works;
   }
@@ -50,7 +55,7 @@ class WorkRepository  {
     Work? clickedWork;
     _json['listTypeWork'].forEach((c) {
       if(c['id'] == idWork){
-        clickedWork = Work(c['id'],c['isSelected'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']);
+        clickedWork = Work(c['id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']);
       }
     });
 /*    print('ici le repository: ');
