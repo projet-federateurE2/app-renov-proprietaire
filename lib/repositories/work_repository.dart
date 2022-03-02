@@ -17,34 +17,30 @@ class WorkRepository  {
 
   Stream<List<Work>> doQuery() async* {
    // var data = await rootBundle.loadString("data.json");
-    var url = Uri.parse('http://equipe2-api.lp-cloud.tech/');
+    var url = Uri.parse('https://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/');
     var data = await http.get(url);
     // log(response.toString());
     var _json = jsonDecode(data.body);
     print(_json);
     List<Work> _works = [];
       _json['listTypeWork'].forEach((c) {
-          //_works.add(Work(id: c['id'],isSelected: c['isSelected'], title: c['title'], titleDesc: c['titleDesc'], urlImage: c['urlImage'], txt1: c['txt1'],txt2: c['txt2']));
           _works.add(Work(c['id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
       });
     yield _works;
   }
 
   Future<List<Work>> doQueryFuture() async {
-    var url = Uri.parse('http://equipe2-api.lp-cloud.tech/');
+    var url = Uri.parse('https://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/v1/projet/template');
     var data = await http.get(url);
     var _json = jsonDecode(data.body);
     print(_json);
+    List<Work> _works = [];
     _json.forEach((work){
       if(work['type']=='Isolation'){
-        print('coucou');
+        _works.add(Work(work['_id'], work['travaux'][0]['nom'], work['pitch'], 'work[]', work['travaux'][0]['conseils'][0]['texte'], 'conseil 2'));
       }
     });
-    List<Work> _works = [];
-      _json.forEach((c) {
-          //_works.add(Work(id: c['id'],isSelected: c['isSelected'], title: c['title'], titleDesc: c['titleDesc'], urlImage: c['urlImage'], txt1: c['txt1'],txt2: c['txt2']));
-          _works.add(Work(c['_id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
-      });
+    print(_works);
     return _works;
   }
   

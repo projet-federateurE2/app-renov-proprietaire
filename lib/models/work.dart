@@ -1,6 +1,6 @@
 
 class Work {
-  late int id;
+  late String id;
   late String title;
   late String titleDesc;
   late String urlImage;

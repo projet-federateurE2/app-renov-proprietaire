@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/views/pages/home_page.dart';
+import 'package:renov_proprietaire_app/views/pages/work_selection_page.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -26,7 +27,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins', primaryColor: ColorsRenov.primaryGreen),
-      home: HomePage(),
+      home: WorkTypeSelectionPage(),
     );
   }
 }
