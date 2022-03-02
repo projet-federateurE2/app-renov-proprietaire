@@ -1,7 +1,4 @@
 import 'dart:convert';
-import 'dart:developer';
-
-import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:http/http.dart' as http;
@@ -83,7 +80,7 @@ List<String> allValideWork()
  
  List<String> getAddWorkClick(work) 
  {
-   if(_workClick.length != 0)
+   if(_workClick.isNotEmpty)
    {
    _workClick.removeAt(0);
    }
