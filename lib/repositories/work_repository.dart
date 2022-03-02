@@ -27,7 +27,7 @@ class WorkRepository  {
   }
 
   Future<List<Work>> doQueryFuture() async {
-    var url = Uri.parse('https://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/v1/projet/template');
+    var url = Uri.parse('https://app-ef3e460c-a183-4eb1-a1a6-ea2f0282e0cd.cleverapps.io/v1/projet/template');
     var data = await http.get(url);
     var _json = jsonDecode(data.body);
     print(_json);
