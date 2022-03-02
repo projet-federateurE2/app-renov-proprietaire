@@ -2,6 +2,7 @@ import 'dart:convert';
 
 import 'package:equatable/equatable.dart';
 import 'package:flutter/services.dart';
+import 'package:flutter_svg/svg.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
 
 class WorkRepository  {
@@ -10,7 +11,7 @@ class WorkRepository  {
   WorkRepository._internal();
   factory WorkRepository() => _instance;
   List<String> _workClick = [];
-  List<String> _valideWork = [];
+  List<Work> _valideWork = [];
 
 
   Stream<List<Work>> doQuery() async* {
@@ -50,11 +51,20 @@ class WorkRepository  {
   }
 
 
- List<String> getAddValideWorkClick(work) 
+ List<Work> getAddValideWorkClick(work)
  {
-   if(_valideWork.contains(work))
+   var bool = false;
+   var elementToDelete = null;
+  _valideWork.forEach((element) {
+    if(element.title == work.title)
+      {
+        elementToDelete = element;
+        bool = true;
+      }
+  });
+   if(bool)
    {
-     _valideWork.remove(work);
+     _valideWork.remove(elementToDelete);
    }
    else
    {
@@ -64,11 +74,10 @@ class WorkRepository  {
    return _valideWork;
  } 
 
-List<String> allValideWork() 
+List<Work> allValideWork()
  {
-   
    return _valideWork;
- } 
+ }
 
  
  List<String> getAddWorkClick(work) 

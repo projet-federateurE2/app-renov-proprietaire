@@ -8,6 +8,8 @@ import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dar
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 
+import 'views/pages/work_selection_page.dart';
+
 
 void main() {
   runApp(
@@ -26,7 +28,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins', primaryColor: ColorsRenov.primaryGreen),
-      home: HomePage(),
+      home: WorkSelectionPage(workType: 'Isolation',),
     );
   }
 }

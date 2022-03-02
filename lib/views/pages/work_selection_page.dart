@@ -5,6 +5,7 @@ import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
+import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
 
@@ -84,33 +85,19 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                 !state.maliste.isNotEmpty
                                     ? const WorkSelectionEmptyDescription()
                                     : WorkSelectionDescription(
-                                        stringDesc1: state.malisteWork
+                                        work: state.malisteWork
                                             .where((element) =>
                                                 element.title ==
                                                 state.maliste[0])
-                                            .first
-                                            .txt1,
-                                        stringDesc2: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first
-                                            .txt2,
-                                        titleDesc: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first
-                                            .title,
-                                        urlImage: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first
-                                            .urlImage),
+                                            .first),
                                 GreenButton(
                                     text: TextRenov.btnNext,
-                                    onPressed: () {},
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) => PopupValidateWork(workToValidate: state.valideWork),
+                                      );
+                                    },
                                     enabled: state.valideWork.isNotEmpty
                                         ? true
                                         : false)
