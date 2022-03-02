@@ -2,6 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:flutter_svg/flutter_svg.dart';
+import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 
@@ -9,16 +10,10 @@ import '../../blocs/work_selection/select_work_bloc.dart';
 import 'icon_background_circle.dart';
 
 class WorkSelectionDescription extends StatefulWidget {
-  final String titleDesc;
-  final String urlImage;
-  final String stringDesc1;
-  final String stringDesc2;
+  final Work work;
   const WorkSelectionDescription(
       {Key? key,
-      required this.titleDesc,
-      required this.urlImage,
-      required this.stringDesc1,
-      required this.stringDesc2})
+      required this.work})
       : super(key: key);
 
   @override
@@ -42,7 +37,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
             : MediaQuery.of(context).size.height * 0.1,
         topCirclePosition: 15,
         rightCirclePosition: 15,
-        url: widget.urlImage);
+        url: widget.work.urlImage);
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
@@ -61,7 +56,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
               Container(
                 margin: const EdgeInsets.only(top: 24),
                 child: AutoSizeText(
-                  widget.titleDesc,
+                  widget.work.titleDesc,
                   textAlign: TextAlign.center,
                   style: const TextStyle(
                       fontSize: 32, fontWeight: FontWeight.w600),
@@ -91,7 +86,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                     child: Container(
                       margin: const EdgeInsets.only(bottom: 16, right: 32),
                       child: AutoSizeText(
-                        widget.stringDesc1,
+                        widget.work.txt1,
                         maxLines: 4,
                         // textAlign: TextAlign.center,
                         style: const TextStyle(
@@ -118,7 +113,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                     child: Container(
                       margin: const EdgeInsets.only(right: 32),
                       child: AutoSizeText(
-                        widget.stringDesc2,
+                        widget.work.txt2,
                         maxLines: 3,
                         style: const TextStyle(
                             fontWeight: FontWeight.w300, fontSize: 17.0),
@@ -137,10 +132,10 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         child: TextButton(
                             onPressed: () {
                               BlocProvider.of<SelectWorkBloc>(context)
-                                  .add(ValitedWorkEvent(widget.titleDesc));
+                                  .add(ValitedWorkEvent(widget.work));
                             },
                             child: AutoSizeText(
-                              state.valideWork.contains(widget.titleDesc)
+                               state.valideWork.where((element) => element.title.contains(widget.work.title)).isNotEmpty
                                   ? TextRenov.removeWork
                                   : TextRenov.addWork,
                               maxLines: 1,
@@ -148,7 +143,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
                                 color:
-                                    state.valideWork.contains(widget.titleDesc)
+                                state.valideWork.where((element) => element.title.contains(widget.work.title)).isNotEmpty
                                         ? Colors.red
                                         : ColorsRenov.primaryGreen,
                               ),
