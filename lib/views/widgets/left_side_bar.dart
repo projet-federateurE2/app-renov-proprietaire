@@ -65,15 +65,16 @@ class _LeftSideBarState extends State<LeftSideBar> {
                             const Flexible(
                                 child: ProjectSideButton(
                                     text: TextRenov.sideProjectBtn1,
-                                    urlIcon: './../assets/icons/profile.svg')),
+
+                                    urlIcon: './../assets/icons/profile.svg', isChecked: false, buttonCustom : false)),
                             const Flexible(
                                 child: ProjectSideButton(
                                     text: TextRenov.sideProjectBtn2,
-                                    urlIcon: './../assets/icons/notepad.svg')),
+                                    urlIcon: './../assets/icons/notepad.svg', isChecked: true, buttonCustom : false)),
                             const Flexible(
                                 child: ProjectSideButton(
                                     text: TextRenov.sideProjectBtn3,
-                                    urlIcon: './../assets/icons/phone.svg')),
+                                    urlIcon: './../assets/icons/phone.svg', isChecked: false, buttonCustom : true)),
                           ],
                         )
                     )
