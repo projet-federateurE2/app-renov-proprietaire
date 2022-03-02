@@ -1,7 +1,6 @@
 part of 'select_work_bloc.dart';
 
 
-
 // @immutable
 abstract class SelectWorkState {
   final List<String> maliste;

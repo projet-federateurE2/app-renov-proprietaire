@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
+import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
@@ -33,12 +34,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   @override
   Widget build(BuildContext context) {
     sizeScreen = MediaQuery.of(context).size.width;
-    if (sizeScreen > 1500) {
-      numberColumns = 3;
-    } else {
-      numberColumns = 2;
-    }
 
+    numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
       return Scaffold(
@@ -72,10 +69,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                               return WorkClickableBlock(
                                 urlImage: clickableBlock.urlImage,
                                 workName: clickableBlock.title,
-                                isSelected: state.maliste
-                                    .contains(clickableBlock.title),
-                                isChecked: state.valideWork
-                                    .contains(clickableBlock.title),
+                                isSelected: state.valideWork.where((element) => element.title.contains(clickableBlock.title)).isNotEmpty,
+                                isChecked: state.valideWork.where((element) => element.title.contains(clickableBlock.title)).isNotEmpty,
                               );
                             }),
                           )),
