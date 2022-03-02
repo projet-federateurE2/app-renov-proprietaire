@@ -44,8 +44,6 @@ class WorkRepository  {
         clickedWork = Work(c['id'],c['isSelected'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']);
       }
     });
-/*    print('ici le repository: ');
-    print(clickedWork.id);*/
     yield clickedWork;
   }
 

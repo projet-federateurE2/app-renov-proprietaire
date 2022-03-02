@@ -34,10 +34,8 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
   Widget build(BuildContext context) {
     if (widget.isSelected == true) {
       backgroundColor = ColorsRenov.primaryGreen;
-      fontColor = Colors.white;
     } else {
       backgroundColor = Colors.white;
-      fontColor = ColorsRenov.primaryGreen;
     }
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
@@ -49,10 +47,10 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
             width: MediaQuery.of(context).size.width,
             child: Card(
               margin: const EdgeInsets.all(13.0),
-              elevation: 4.0,
-              color: backgroundColor,
-              shape: RoundedRectangleBorder(
-                borderRadius: BorderRadius.circular(15),
+              elevation: 4.0,            
+              shape: RoundedRectangleBorder(  
+                borderRadius: BorderRadius.circular(15), 
+                 side: BorderSide(color: backgroundColor, width: 4),
               ),
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),

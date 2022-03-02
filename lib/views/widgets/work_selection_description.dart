@@ -140,7 +140,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                                   .add(ValitedWorkEvent(widget.titleDesc));
                             },
                             child: AutoSizeText(
-                              state.valideWork.contains(widget.titleDesc)
+                              state.valideWorkAll.contains(widget.titleDesc)
                                   ? TextRenov.removeWork
                                   : TextRenov.addWork,
                               maxLines: 1,
@@ -148,7 +148,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
                                 color:
-                                    state.valideWork.contains(widget.titleDesc)
+                                    state.valideWorkAll.contains(widget.titleDesc)
                                         ? Colors.red
                                         : ColorsRenov.primaryGreen,
                               ),
