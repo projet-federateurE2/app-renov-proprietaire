@@ -1,13 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
-import 'package:renov_proprietaire_app/views/pages/home_page.dart';
-import 'package:renov_proprietaire_app/views/pages/work_selection_page.dart';
 import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart';
-import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
-import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
-import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
+
+import 'views/pages/work_selection_page.dart';
 
 
 void main() {
@@ -27,7 +24,7 @@ class MyApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       title: 'App renov',
       theme: ThemeData(fontFamily: 'Poppins', primaryColor: ColorsRenov.primaryGreen),
-      home: WorkTypeSelectionPage(),
+      home: const WorkTypeSelectionPage(),
     );
   }
 }

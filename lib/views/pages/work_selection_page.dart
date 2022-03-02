@@ -2,9 +2,11 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
+import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
+import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
 import '../widgets/work_selection_description.dart';
@@ -31,93 +33,68 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   @override
   Widget build(BuildContext context) {
     sizeScreen = MediaQuery.of(context).size.width;
-    numberColumns = sizeScreen > 1500 ? 3 : 2;
 
+    numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-      builder: (context, state) {
-        return Scaffold(
+        builder: (context, state) {
+      return Scaffold(
           backgroundColor: Colors.white,
-          body: Stack(
-            children: [
-              const BackgroundGreenWave(),
-              Container(
+          body: Stack(children: [
+            const BackgroundGreenWave(),
+            Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                      tag: "title-select-work",
-                      child: Material(
-                        type: MaterialType.transparency,
-                        child: PageTitle(text: widget.workType),
-                      ),
-                    ),
+                        tag: "title-select-work",
+                        child: Material(
+                            type: MaterialType.transparency,
+                            child: PageTitle(text: "Travaux d'isolation"))),
                     Expanded(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                            // Liste des works
-                            child: GridView.count(
-                              mainAxisSpacing: 20.0,
-                              crossAxisSpacing: 20.0,
-                              scrollDirection: Axis.vertical,
-                              shrinkWrap: true,
-                              crossAxisCount: numberColumns,
-                              children: List.generate(
-                                state.malisteWork.length,
+                              child: GridView.count(
+                            mainAxisSpacing: 20.0,
+                            crossAxisSpacing: 20.0,
+                            scrollDirection: Axis.vertical,
+                            shrinkWrap: true,
+                            crossAxisCount: numberColumns,
+                            children: List.generate(state.malisteWork.length,
                                 (index) {
-                                  var clickableBlock = state.malisteWork[index];
-                                  return WorkClickableBlock(
-                                    urlImage: clickableBlock.urlImage,
-                                    workName: clickableBlock.title,
-                                    isSelected: state.maliste
-                                        .contains(clickableBlock.title),
-                                    isChecked: state.valideWork
-                                        .contains(clickableBlock.title),
-                                  );
-                                },
-                              ),
-                            ),
-                          ),
+                              var clickableBlock = state.malisteWork[index];
+                              return WorkClickableBlock(
+                                urlImage: clickableBlock.urlImage,
+                                workName: clickableBlock.title,
+                                isSelected: state.valideWork.where((element) => element.title.contains(clickableBlock.title)).isNotEmpty,
+                                isChecked: state.valideWork.where((element) => element.title.contains(clickableBlock.title)).isNotEmpty,
+                              );
+                            }),
+                          )),
                           Expanded(
-                            // Description du work qui a été cliqué
                             child: Column(
                               children: [
                                 !state.maliste.isNotEmpty
                                     ? const WorkSelectionEmptyDescription()
                                     : WorkSelectionDescription(
-                                        stringDesc1: state.malisteWork
+                                        work: state.malisteWork
                                             .where((element) =>
                                                 element.title ==
                                                 state.maliste[0])
-                                            .first
-                                            .txt1,
-                                        stringDesc2: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first
-                                            .txt2,
-                                        titleDesc: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first
-                                            .title,
-                                        urlImage: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first
-                                            .urlImage),
+                                            .first),
                                 GreenButton(
-                                  text: TextRenov.btnNext,
-                                  onPressed: () {},
-                                  enabled: state.valideWork.isNotEmpty
-                                      ? true
-                                      : false,
-                                )
+                                    text: TextRenov.btnNext,
+                                    onPressed: () {
+                                      showDialog(
+                                          context: context,
+                                          builder: (BuildContext context) => PopupValidateWork(workToValidate: state.valideWork),
+                                      );
+                                    },
+                                    enabled: state.valideWork.isNotEmpty
+                                        ? true
+                                        : false)
                               ],
                             ),
                           )
@@ -125,12 +102,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                       ),
                     ),
                   ],
-                ),
-              )
-            ],
-          ),
-        );
-      },
-    );
+                ))
+          ]));
+    });
   }
 }
