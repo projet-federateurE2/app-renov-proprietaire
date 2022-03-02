@@ -32,10 +32,8 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
 
   @override
   Widget build(BuildContext context) {
-    if (widget.isSelected == true) {
+    if (widget.isSelected) {
       backgroundColor = ColorsRenov.primaryGreen;
-    } else {
-      backgroundColor = Colors.white;
     }
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(

@@ -4,6 +4,8 @@ import 'package:renov_proprietaire_app/views/pages/work_type_selection_page.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 
+import 'views/pages/work_selection_page.dart';
+
 
 void main() {
   runApp(

@@ -24,10 +24,11 @@ class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
     });
 
     on<ValitedWorkEvent>((event, emit) async {
-      WorkRepository().getAddValideWorkClick(event.nameWork);
-      var list = WorkRepository().allValideWork();
+      var list = WorkRepository().getAddValideWorkClick(event.work);
+      print(list.length);
       var works = await WorkRepository().doQueryFuture();
       var listClickWork = WorkRepository().allWorkClick();
+      print(listClickWork.length);
       emit (ValideWorkState(list, works, listClickWork));
     });
 

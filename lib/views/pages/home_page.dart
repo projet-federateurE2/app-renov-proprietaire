@@ -3,7 +3,7 @@ import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart'
 import 'package:renov_proprietaire_app/views/widgets/left_side_bar.dart';
 
 class HomePage extends StatelessWidget {
-  const HomePage({ Key? key }) : super(key: key);
+  const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -20,10 +20,11 @@ class HomePage extends StatelessWidget {
                 Expanded(
                   child: Column(
                     children: [],
-                  ))
+                  ),
+                ),
               ],
             ),
-          )
+          ),
         ],
       ),
     );
