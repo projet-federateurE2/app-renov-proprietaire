@@ -18,62 +18,67 @@ class WorkTypeSelectionPage extends StatelessWidget {
         children: [
           const BackgroundGreenWave(),
           Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Container(
-                    margin: const EdgeInsets.symmetric(horizontal: 40),
-                    child: Column(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Hero(
-                            tag: "title",
-                            child: Material(
-                                type:
-                                    MaterialType.transparency, // likely needed
-                                child:
-                                    PageTitle(text: TextRenov.startProject))),
-                        const SizedBox(
-                          width: 900,
-                          child: Text(
-                            TextRenov.startProjectDesc,
-                            style: TextStyle(
-                                fontSize: 26, color: ColorsRenov.darkBlue),
-                          ),
-                        )
-                      ],
-                    ),
-                  ),
-                  const SizedBox(height: 50),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                    children: const [
-                      WorkTypeClickableBlock(
-                          iconUrl: "icons/house.svg",
-                          iconSize: 85,
-                          workTypeTitle: "Isolation",
-                          workTypeDescription:
-                              "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
-                          page: WorkSelectionPage(workType: "isolation")),
-                      WorkTypeClickableBlock(
-                          iconUrl: "icons/heating.svg",
-                          iconSize: 85,
-                          workTypeTitle: "Chauffage",
-                          workTypeDescription:
-                              "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
-                          page: WorkSelectionPage(workType: "chauffage")),
-                      WorkTypeClickableBlock(
-                          iconUrl: "icons/ventilation.svg",
-                          iconSize: 85,
-                          workTypeTitle: "Ventilation",
-                          workTypeDescription:
-                              "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
-                          page: WorkSelectionPage(workType: "ventilation"))
+            padding: const EdgeInsets.all(20),
+            child: Column(
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Container(
+                  margin: const EdgeInsets.symmetric(horizontal: 40),
+                  child: Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Hero(
+                        tag: "title",
+                        child: Material(
+                          type: MaterialType.transparency, // likely needed
+                          child: PageTitle(text: TextRenov.startProject),
+                        ),
+                      ),
+                      const SizedBox(
+                        width: 900,
+                        child: Text(
+                          TextRenov.startProjectDesc,
+                          style: TextStyle(
+                              fontSize: 26, color: ColorsRenov.darkBlue),
+                        ),
+                      ),
                     ],
-                  )
-                ],
-              ))
+                  ),
+                ),
+                const SizedBox(height: 50),
+                // Liste des grandes familles de travaux
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                  children: const [
+                    WorkTypeClickableBlock(
+                      iconUrl: "icons/house.svg",
+                      iconSize: 85,
+                      workTypeTitle: "Isolation",
+                      workTypeDescription:
+                          "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
+                      page: WorkSelectionPage(workType: "isolation"),
+                    ),
+                    WorkTypeClickableBlock(
+                      iconUrl: "icons/heating.svg",
+                      iconSize: 85,
+                      workTypeTitle: "Chauffage",
+                      workTypeDescription:
+                          "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
+                      page: WorkSelectionPage(workType: "chauffage"),
+                    ),
+                    WorkTypeClickableBlock(
+                      iconUrl: "icons/ventilation.svg",
+                      iconSize: 85,
+                      workTypeTitle: "Ventilation",
+                      workTypeDescription:
+                          "Pour faire des économies d’énergie, et améliorer votre confort en hiver comme en été.",
+                      page: WorkSelectionPage(workType: "ventilation"),
+                    ),
+                  ],
+                ),
+              ],
+            ),
+          )
         ],
       ),
     );

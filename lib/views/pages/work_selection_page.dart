@@ -32,53 +32,57 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   @override
   Widget build(BuildContext context) {
     sizeScreen = MediaQuery.of(context).size.width;
-    if (sizeScreen > 1500) {
-      numberColumns = 3;
-    } else {
-      numberColumns = 2;
-    }
+    numberColumns = sizeScreen > 1500 ? 3 : 2;
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-        builder: (context, state) {
-      return Scaffold(
+      builder: (context, state) {
+        return Scaffold(
           backgroundColor: Colors.white,
-          body: Stack(children: [
-            const BackgroundGreenWave(),
-            Container(
+          body: Stack(
+            children: [
+              const BackgroundGreenWave(),
+              Container(
                 padding: const EdgeInsets.all(20),
                 child: Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
                   children: [
                     Hero(
-                        tag: "title-select-work",
-                        child: Material(
-                            type: MaterialType.transparency,
-                            child: PageTitle(text: "Travaux d'isolation"))),
+                      tag: "title-select-work",
+                      child: Material(
+                        type: MaterialType.transparency,
+                        child: PageTitle(text: widget.workType),
+                      ),
+                    ),
                     Expanded(
                       child: Row(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                              child: GridView.count(
-                            mainAxisSpacing: 20.0,
-                            crossAxisSpacing: 20.0,
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            crossAxisCount: numberColumns,
-                            children: List.generate(state.malisteWork.length,
+                            // Liste des works
+                            child: GridView.count(
+                              mainAxisSpacing: 20.0,
+                              crossAxisSpacing: 20.0,
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              crossAxisCount: numberColumns,
+                              children: List.generate(
+                                state.malisteWork.length,
                                 (index) {
-                              var clickableBlock = state.malisteWork[index];
-                              return WorkClickableBlock(
-                                urlImage: clickableBlock.urlImage,
-                                workName: clickableBlock.title,
-                                isSelected: state.maliste
-                                    .contains(clickableBlock.title),
-                                isChecked: state.valideWork
-                                    .contains(clickableBlock.title),
-                              );
-                            }),
-                          )),
+                                  var clickableBlock = state.malisteWork[index];
+                                  return WorkClickableBlock(
+                                    urlImage: clickableBlock.urlImage,
+                                    workName: clickableBlock.title,
+                                    isSelected: state.maliste
+                                        .contains(clickableBlock.title),
+                                    isChecked: state.valideWork
+                                        .contains(clickableBlock.title),
+                                  );
+                                },
+                              ),
+                            ),
+                          ),
                           Expanded(
+                            // Description du work qui a été cliqué
                             child: Column(
                               children: [
                                 !state.maliste.isNotEmpty
@@ -109,11 +113,12 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                             .first
                                             .urlImage),
                                 GreenButton(
-                                    text: TextRenov.btnNext,
-                                    onPressed: () {},
-                                    enabled: state.valideWork.isNotEmpty
-                                        ? true
-                                        : false)
+                                  text: TextRenov.btnNext,
+                                  onPressed: () {},
+                                  enabled: state.valideWork.isNotEmpty
+                                      ? true
+                                      : false,
+                                )
                               ],
                             ),
                           )
@@ -121,8 +126,12 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                       ),
                     ),
                   ],
-                ))
-          ]));
-    });
+                ),
+              )
+            ],
+          ),
+        );
+      },
+    );
   }
 }

@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 
@@ -25,7 +24,10 @@ class ProjectSideButton extends StatelessWidget {
           children: [
             Container(
               margin: EdgeInsets.only(
-                  left: 30, right: iconSize, bottom:iconCirclePositionTop+2,top:2),
+                  left: 30,
+                  right: iconSize,
+                  bottom: iconCirclePositionTop + 2,
+                  top: 2),
               child: IconBackgroundCircle(
                   imageSize: iconSize,
                   topCirclePosition: iconCirclePositionTop,
