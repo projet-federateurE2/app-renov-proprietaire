@@ -13,22 +13,8 @@ class WorkRepository  {
   List<Work> _valideWork = [];
 
 
-  Stream<List<Work>> doQuery() async* {
-   // var data = await rootBundle.loadString("data.json");
-    var url = Uri.parse('https://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/');
-    var data = await http.get(url);
-    // log(response.toString());
-    var _json = jsonDecode(data.body);
-    print(_json);
-    List<Work> _works = [];
-      _json['listTypeWork'].forEach((c) {
-          _works.add(Work(c['id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']));
-      });
-    yield _works;
-  }
-
   Future<List<Work>> doQueryFuture() async {
-    var url = Uri.parse('https://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/v1/projet/template');
+    var url = Uri.parse('https://app-ef3e460c-a183-4eb1-a1a6-ea2f0282e0cd.cleverapps.io/v1/projet/template');
     var data = await http.get(url);
     var _json = jsonDecode(data.body);
     print(_json);
@@ -61,7 +47,7 @@ class WorkRepository  {
    var bool = false;
    var elementToDelete = null;
   _valideWork.forEach((element) {
-    if(element.title == work.title)
+    if(element.id == work.id)
       {
         elementToDelete = element;
         bool = true;

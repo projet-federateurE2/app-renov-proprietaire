@@ -11,8 +11,8 @@ class LoadWorksEvent extends SelectWorkEvent {
 
 
 class ClickWorkEvent extends SelectWorkEvent {
-  final String nameWork;
-  const ClickWorkEvent(this.nameWork);
+  final String idClick;
+  const ClickWorkEvent(this.idClick);
 
 }
 

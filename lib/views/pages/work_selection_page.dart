@@ -1,14 +1,13 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
+import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
-import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
-import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
 
 import '../widgets/work_selection_description.dart';
 
@@ -27,8 +26,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
 
   @override
   void initState() {
-    BlocProvider.of<SelectWorkBloc>(context).add(const LoadWorksEvent());
     super.initState();
+    BlocProvider.of<SelectWorkBloc>(context).add(const LoadWorksEvent());
   }
 
   @override
@@ -38,6 +37,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
+          print("mon state");
+          print(state);
       return Scaffold(
           backgroundColor: Colors.white,
           body: Stack(children: [
@@ -69,22 +70,18 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                               return WorkClickableBlock(
                                 urlImage: clickableBlock.urlImage,
                                 workName: clickableBlock.title,
-                                isSelected: state.valideWork.where((element) => element.title.contains(clickableBlock.title)).isNotEmpty,
-                                isChecked: state.valideWork.where((element) => element.title.contains(clickableBlock.title)).isNotEmpty,
+                                isSelected: state.idClick.contains(clickableBlock.id),
+                                isChecked: state.valideWork.where((element) => element.id.contains(clickableBlock.id)).isNotEmpty,
+                                idWork: clickableBlock.id,
                               );
                             }),
                           )),
                           Expanded(
                             child: Column(
                               children: [
-                                !state.maliste.isNotEmpty
-                                    ? const WorkSelectionEmptyDescription()
-                                    : WorkSelectionDescription(
-                                        work: state.malisteWork
-                                            .where((element) =>
-                                                element.title ==
-                                                state.maliste[0])
-                                            .first),
+                                    WorkSelectionDescription(
+                                        work: state.malisteWork.isEmpty ? Work("","","",""," =","") : state.malisteWork.where((element) => element.id.contains(state.idClick)).first
+                                    ),
                                 GreenButton(
                                     text: TextRenov.btnNext,
                                     onPressed: () {
