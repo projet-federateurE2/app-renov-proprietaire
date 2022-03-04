@@ -8,27 +8,23 @@ part 'select_work_event.dart';
 part 'select_work_state.dart';
 
 class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
-  SelectWorkBloc() : super(const SelectWorkInitialState()) {
-
+  SelectWorkBloc() : super( const SelectWorkInitialState()) {
+    
     on<LoadWorksEvent>((event, emit) async {
       var works = await WorkRepository().doQueryFuture();
       emit (ListedWorkState(works));
     });
 
     on<ClickWorkEvent>((event, emit) async {
-    var listClickWork = WorkRepository().allWorkClick();
     var works = await WorkRepository().doQueryFuture();
-    listClickWork = WorkRepository().getAddWorkClick(event.nameWork);
     var list = WorkRepository().allValideWork();
-    emit (ClickedWorkState(listClickWork, works, list));
+    emit (ClickedWorkState(event.idClick, works, list));
     });
 
     on<ValitedWorkEvent>((event, emit) async {
-      WorkRepository().getAddValideWorkClick(event.nameWork);
-      var list = WorkRepository().allValideWork();
+      var list = WorkRepository().getAddValideWorkClick(event.work);
       var works = await WorkRepository().doQueryFuture();
-      var listClickWork = WorkRepository().allWorkClick();
-      emit (ValideWorkState(list, works, listClickWork));
+      emit (ValideWorkState(list, works, event.work.id));
     });
 
   }

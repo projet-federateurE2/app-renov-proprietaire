@@ -1,23 +1,23 @@
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 
-class GreenButton extends StatefulWidget {
+class DarkBlueButton extends StatefulWidget {
   final String text;
   final Function() onPressed;
   final bool enabled;
 
-  const GreenButton(
+  const DarkBlueButton(
       {Key? key,
-      required this.text,
-      required this.onPressed,
-      required this.enabled})
+        required this.text,
+        required this.onPressed,
+        required this.enabled})
       : super(key: key);
 
   @override
-  _GreenButtonState createState() => _GreenButtonState();
+  _DarkBlueButtonState createState() => _DarkBlueButtonState();
 }
 
-class _GreenButtonState extends State<GreenButton> {
+class _DarkBlueButtonState extends State<DarkBlueButton> {
   @override
   Widget build(BuildContext context) {
     return ElevatedButton(
@@ -28,7 +28,7 @@ class _GreenButtonState extends State<GreenButton> {
       style: ElevatedButton.styleFrom(
         elevation: 0.0,
         //shadowColor: Colors.transparent,
-        primary: ColorsRenov.primaryGreen,
+        primary: ColorsRenov.darkBlue,
         padding: const EdgeInsets.fromLTRB(60, 10, 60, 10),
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(50)),
       ),

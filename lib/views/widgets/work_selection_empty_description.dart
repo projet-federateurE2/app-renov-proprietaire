@@ -17,7 +17,7 @@ class WorkSelectionEmptyDescription extends StatelessWidget {
               : MediaQuery.of(context).size.height * 0.12,
       topCirclePosition: 10,
       rightCirclePosition: 10,
-      url: "icons/house.svg",
+      url: IconsRenov.house,
     );
 
     return SizedBox(

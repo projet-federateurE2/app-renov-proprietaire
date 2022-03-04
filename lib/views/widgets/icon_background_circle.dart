@@ -7,20 +7,22 @@ class IconBackgroundCircle extends StatelessWidget {
   final double topCirclePosition;
   final double rightCirclePosition;
   final String url;
+  final bool circleColor;
 
   const IconBackgroundCircle(
       {Key? key,
       required this.imageSize,
       required this.topCirclePosition,
       required this.rightCirclePosition,
-      required this.url})
+      required this.url, this.circleColor = false})
       : super(key: key);
 
 
   @override
   Widget build(BuildContext context) {
+    var colorCircle = !circleColor ? ColorsRenov.secondaryGreen : ColorsRenov.primaryGreen;
     return Stack(
-      children: [
+    children: [
         Positioned(
             top: 0,
             right: 0,
@@ -29,10 +31,10 @@ class IconBackgroundCircle extends StatelessWidget {
                   return SizedBox(
                       width: (imageSize- (imageSize*0.25)),
                       height: (imageSize- (imageSize*0.25)),
-                      child: const DecoratedBox(
+                      child: DecoratedBox(
                         decoration: BoxDecoration(
                             shape: BoxShape.circle,
-                            color: ColorsRenov.secondaryGreen
+                            color: colorCircle
                         ),
                         position: DecorationPosition.background,
                       ));
