@@ -3,6 +3,7 @@ import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart'
 import 'package:renov_proprietaire_app/views/widgets/left_side_bar.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
+import 'package:carousel_slider/carousel_slider.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_in_progress_block.dart';
 
 class HomePage extends StatelessWidget {
