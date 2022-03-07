@@ -17,7 +17,7 @@ class WorkRepository  {
    // var data = await rootBundle.loadString("data.json");
     var url = Uri.parse('https://app-264b90dd-7d1e-417a-ab1c-733d0b96c1d0.cleverapps.io/');
     var data = await http.get(url);
-    // log(response.toString());
+
     var _json = jsonDecode(data.body);
     print(_json);
     List<Work> _works = [];
@@ -28,17 +28,20 @@ class WorkRepository  {
   }
 
   Future<List<Work>> doQueryFuture() async {
-    var url = Uri.parse('https://app-ef3e460c-a183-4eb1-a1a6-ea2f0282e0cd.cleverapps.io/v1/projet/template');
-    var data = await http.get(url);
-    var _json = jsonDecode(data.body);
-    print(_json);
+    String username = 'apki_MpGotjs52ayfo4Id';
+    String password = 'apks_qQbGHepDUIk6H3OAT81zCGO9lm8grH69OTNPr8kaw2YX9SkGvfbUCwK0bAzWZbaQ';
+    String basicAuth =
+        'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    var url = Uri.parse('https://equipe2.lp-cloud.tech/v1/projet/template');
+    var data = await http.get(url,
+        headers: <String, String>{'authorization': basicAuth});
+    var _json = jsonDecode(utf8.decode(data.bodyBytes));
     List<Work> _works = [];
     _json.forEach((work){
       if(work['type']=='Isolation'){
         _works.add(Work(work['_id'], work['travaux'][0]['nom'], work['pitch'], 'work[]', work['travaux'][0]['conseils'][0]['texte'], 'conseil 2'));
       }
     });
-    print(_works);
     return _works;
   }
   
