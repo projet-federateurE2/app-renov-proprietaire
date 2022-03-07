@@ -89,4 +89,31 @@ List<Work> allValideWork()
    return _workClick;
  } 
 
+
+List<dynamic> getTravaux()
+{
+      List<dynamic> works = [
+      {
+        'urlIcon': 'icons/window.svg',
+        'workTitle': 'Isolation des fenêtres',
+        'budget': 'Non renseigné',
+        'financialAssistance': 'Non renseigné',
+        'stepInProgress': 'Trouver un artisan dans la liste',
+        'percentageCompleted': 0
+      },
+      {
+        'urlIcon': 'icons/attic.svg',
+        'workTitle': 'Isolation des combles',
+        'budget': 'Non renseigné',
+        'financialAssistance': 'Non renseigné',
+        'stepInProgress': 'Trouver un artisan dans la liste',
+        'percentageCompleted': 20
+      }
+    ];
+
+return works;
+
+}
+
+
 }

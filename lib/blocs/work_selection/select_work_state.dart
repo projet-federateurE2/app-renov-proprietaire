@@ -31,3 +31,13 @@ class ValideWorkState extends SelectWorkState  {
   final String idClick;
   const ValideWorkState(this.valideWork, this.works, this.idClick):super(idClick, works, valideWork);
 }
+
+
+class WorkInProgressState extends SelectWorkState 
+{
+ final List<Work> valideWork;
+  final List<Work> works; 
+  final String idClick;
+  final List<dynamic> WorkInProgress;
+  const WorkInProgressState(this.valideWork, this.works, this.idClick, this.WorkInProgress):super(idClick, works, valideWork);
+}
