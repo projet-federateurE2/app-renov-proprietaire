@@ -5,13 +5,21 @@ import 'package:renov_proprietaire_app/views/pages/work_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_type_clickable_block.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/work_selection/select_work_bloc.dart';
+
 
 class WorkTypeSelectionPage extends StatelessWidget {
   const WorkTypeSelectionPage({Key? key}) : super(key: key);
 
+
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+        builder: (context, state) {
+          print("state one");
+          print(state);
+     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -81,5 +89,6 @@ class WorkTypeSelectionPage extends StatelessWidget {
         ],
       ),
     );
+    });
   }
 }

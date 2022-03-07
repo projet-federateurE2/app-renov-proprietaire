@@ -64,7 +64,7 @@ class WorkRepository  {
    var bool = false;
    var elementToDelete = null;
   _valideWork.forEach((element) {
-    if(element.title == work.title)
+    if(element.id == work.id)
       {
         elementToDelete = element;
         bool = true;

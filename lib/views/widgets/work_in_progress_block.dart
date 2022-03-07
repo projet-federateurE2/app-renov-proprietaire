@@ -13,6 +13,7 @@ class WorkInProgressBlock extends StatelessWidget {
   final String budget;
   final String financialAssistance;
   final String stepInProgress;
+  final int percentageCompleted;
 
   const WorkInProgressBlock(
       {Key? key,
@@ -20,7 +21,7 @@ class WorkInProgressBlock extends StatelessWidget {
       required this.workTitle,
       required this.budget,
       required this.financialAssistance,
-      required this.stepInProgress})
+      required this.stepInProgress, required this.percentageCompleted})
       : super(key: key);
 
   @override
@@ -129,15 +130,15 @@ class WorkInProgressBlock extends StatelessWidget {
                                           padding:
                                               const EdgeInsets.only(left: 5.0),
                                           lineHeight: 8.0,
-                                          percent: 0.1,
+                                          percent: percentageCompleted * 0.01,
                                           backgroundColor:
                                               ColorsRenov.secondaryGreen,
                                           progressColor:
                                               ColorsRenov.primaryGreen,
                                         ),
-                                        const Text('Complété à 0 %',
+                                        Text('${TextRenov.percentageCompleted} $percentageCompleted %',
                                             textAlign: TextAlign.right,
-                                            style: TextStyle(
+                                            style: const TextStyle(
                                                 fontSize: 9,
                                                 fontWeight: FontWeight.w300)),
                                       ],

@@ -131,11 +131,10 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         margin: const EdgeInsets.only(right: 32, bottom: 8),
                         child: TextButton(
                             onPressed: () {
-                              BlocProvider.of<SelectWorkBloc>(context)
-                                  .add(ValitedWorkEvent(widget.work));
+                              BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.work));
                             },
                             child: AutoSizeText(
-                               state.valideWork.where((element) => element.title.contains(widget.work.title)).isNotEmpty
+                               state.valideWork.where((element) => element.id.contains(widget.work.id)).isNotEmpty
                                   ? TextRenov.removeWork
                                   : TextRenov.addWork,
                               maxLines: 1,
@@ -143,7 +142,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                                 fontSize: 20,
                                 fontWeight: FontWeight.w300,
                                 color:
-                                state.valideWork.where((element) => element.title.contains(widget.work.title)).isNotEmpty
+                                state.valideWork.where((element) => element.id.contains(widget.work.id)).isNotEmpty
                                         ? Colors.red
                                         : ColorsRenov.primaryGreen,
                               ),
