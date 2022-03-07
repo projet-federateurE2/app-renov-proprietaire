@@ -14,6 +14,10 @@ class TextRenov {
   static const String workProgressBudget = "Budget : ";
   static const String workProgressAidTargeted = 'Aides visées : ';
   static const String workProgressStep = 'Etape en cours :';
+  static const String percentageCompleted = 'Complété à';
+
+  static const String workInProgress = "Mes travaux en cours";
+  static const String homePageDesc = "Voici le tableau de bord de votre projet, tous vos travaux seront disponibles ici, ainsi que vos documents, vos notes...";
 }
 
 class IconsRenov {
