@@ -8,6 +8,7 @@ import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
+
 import '../widgets/work_selection_description.dart';
 
 class WorkSelectionPage extends StatefulWidget {
@@ -36,8 +37,9 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
       return Scaffold(
-          backgroundColor: Colors.white,
-          body: Stack(children: [
+        backgroundColor: Colors.white,
+        body: Stack(
+          children: [
             const BackgroundGreenWave(),
             Container(
                 padding: const EdgeInsets.all(20),
@@ -119,13 +121,13 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                         ),
                       ),
                     ),
-                  ],
-                ),
+                  ),
+                ],
               ),
-            ],
-           ),
-        );
-      }
-    );
+            ),
+          ],
+        ),
+      );
+    });
   }
 }
