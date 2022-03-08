@@ -77,7 +77,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                             child: Column(
                               children: [
                                     WorkSelectionDescription(
-                                        work: state.malisteWork.isEmpty ? Work("","","",""," =","") : state.malisteWork.where((element) => element.id.contains(state.idClick)).first
+                                        work: state.malisteWork.isEmpty ? Work("","","","","","") : state.malisteWork.where((element) => element.id.contains(state.idClick)).first
                                     ),
                                 GreenButton(
                                     text: TextRenov.btnNext,
