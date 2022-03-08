@@ -42,75 +42,84 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
           children: [
             const BackgroundGreenWave(),
             Container(
-              padding: const EdgeInsets.all(20),
-              child: Column(
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Hero(
-                      tag: "title-select-work",
-                      child: Material(
-                          type: MaterialType.transparency,
-                          child: PageTitle(text: "Travaux d'isolation"))),
-                  Expanded(
-                    child: Row(
-                      crossAxisAlignment: CrossAxisAlignment.start,
-                      children: [
-                        Expanded(
-                          child: GridView.count(
-                            mainAxisSpacing: 20.0,
-                            crossAxisSpacing: 20.0,
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            crossAxisCount: numberColumns,
-                            children: List.generate(state.malisteWork.length,
-                                (index) {
-                              var clickableBlock = state.malisteWork[index];
-                              return WorkClickableBlock(
-                                urlImage: clickableBlock.urlImage,
-                                workName: clickableBlock.title,
-                                isSelected:
-                                    state.idClick.contains(clickableBlock.id),
-                                isChecked: state.valideWork
-                                    .where((element) =>
-                                        element.id.contains(clickableBlock.id))
-                                    .isNotEmpty,
-                                idWork: clickableBlock.id,
-                              );
-                            }),
-                          ),
+                padding: const EdgeInsets.all(20),
+                child: Column(
+                  crossAxisAlignment: CrossAxisAlignment.start,
+                  children: [
+                    Hero(
+                        tag: "title-select-work",
+                        child: Material(
+                            type: MaterialType.transparency,
+                            child: Column(
+                              crossAxisAlignment: CrossAxisAlignment.start,
+                              children: [
+                                PageTitle(text: "Travaux d'isolation"),
+                                const Text(
+                                  'Selectionnez et ajoutez à votre projet chaque travaux envisagés.',
+                                  style: TextStyle(fontStyle: FontStyle.italic),
+                                )
+                              ],
+                            ))),
+                    Expanded(
+                      child: Padding(
+                        padding: const EdgeInsets.only(top:15),
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.start,
+                          children: [
+                            Expanded(
+                              child: GridView.count(
+                                mainAxisSpacing: 20.0,
+                                crossAxisSpacing: 20.0,
+                                scrollDirection: Axis.vertical,
+                                shrinkWrap: true,
+                                crossAxisCount: numberColumns,
+                                children: List.generate(state.malisteWork.length, (index) {
+                                  var clickableBlock = state.malisteWork[index];
+                                  return WorkClickableBlock(
+                                    urlImage: clickableBlock.urlImage,
+                                    workName: clickableBlock.title,
+                                    isSelected:
+                                        state.idClick.contains(clickableBlock.id),
+                                    isChecked: state.valideWork
+                                        .where((element) => element.id
+                                            .contains(clickableBlock.id))
+                                        .isNotEmpty,
+                                    idWork: clickableBlock.id,
+                                  );
+                                 }
+                                ),
+                              ),
+                            ),
+                            Expanded(
+                              child: Column(
+                                children: [
+                                  WorkSelectionDescription(
+                                      work: state.malisteWork.isEmpty
+                                          ? Work("", "", "", "", "", "")
+                                          : state.malisteWork.where((element) => element.id.contains(state.idClick)).first),
+                                  Padding(
+                                    padding: const EdgeInsets.only(top:15),
+                                    child: GreenButton(
+                                        text: TextRenov.btnNext,
+                                        onPressed: () {
+                                          showDialog(
+                                            context: context,
+                                            builder: (BuildContext context) =>
+                                                PopupValidateWork(
+                                                    workToValidate:
+                                                        state.valideWork),
+                                          );
+                                        },
+                                        enabled: state.valideWork.isNotEmpty
+                                            ? true
+                                            : false),
+                                  )
+                                ],
+                              ),
+                            ),
+                          ],
                         ),
-                        Expanded(
-                          child: Column(
-                            children: [
-                              WorkSelectionDescription(
-                                  work: state.malisteWork.isEmpty
-                                      ? Work("", "", "", "", "", "")
-                                      : state.malisteWork
-                                          .where((element) => element.id
-                                              .contains(state.idClick))
-                                          .first),
-                              Container(
-                                margin:
-                                    const EdgeInsets.symmetric(vertical: 36),
-                                child: GreenButton(
-                                    text: TextRenov.btnNext,
-                                    onPressed: () {
-                                      showDialog(
-                                        context: context,
-                                        builder: (BuildContext context) =>
-                                            PopupValidateWork(
-                                                workToValidate:
-                                                    state.valideWork),
-                                      );
-                                    },
-                                    enabled: state.valideWork.isNotEmpty
-                                        ? true
-                                        : false),
-                              )
-                            ],
-                          ),
-                        ),
-                      ],
+                      ),
                     ),
                   ),
                 ],

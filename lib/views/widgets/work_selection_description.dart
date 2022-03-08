@@ -38,9 +38,11 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
         url: widget.work.urlImage);
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-      builder: (context, state) {
-        return Card(
-          margin: const EdgeInsets.only(left: 24),
+        builder: (context, state) {
+      return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.44,
+        height: MediaQuery.of(context).size.height * 0.73,
+        child: Card(
           elevation: 4,
           shape: RoundedRectangleBorder(
             borderRadius: BorderRadius.circular(20),
