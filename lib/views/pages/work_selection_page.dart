@@ -59,7 +59,9 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                   style: TextStyle(fontStyle: FontStyle.italic),
                                 )
                               ],
-                            ))),
+                              ),
+                             ),
+                            ),
                     Expanded(
                       child: Padding(
                         padding: const EdgeInsets.only(top:15),
@@ -121,13 +123,13 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                         ),
                       ),
                     ),
-                  ),
                 ],
               ),
             ),
           ],
         ),
       );
-    });
+     }
+   );
   }
 }
