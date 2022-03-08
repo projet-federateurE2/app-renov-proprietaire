@@ -155,7 +155,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
           ),
         ),
       );
-    }
+     }
    );
   }
 }
