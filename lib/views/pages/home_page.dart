@@ -13,8 +13,8 @@ class HomePage extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-        builder: (context, state) {
+    return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+      builder: (context, state) {
       BlocProvider.of<SelectWorkBloc>(context).add(const WorkInProgressEvent());
     return Scaffold(
       backgroundColor: Colors.white,
@@ -56,10 +56,11 @@ class HomePage extends StatelessWidget {
                                         stepInProgress: _workInProgress['stepInProgress'],
                                         percentageCompleted: _workInProgress['percentageCompleted'],
                                         );
-                                  }): 
+                                   }
+                                  ): 
                                   const Center(
                                     child: CircularProgressIndicator(),
-                                  )
+                               )
                             )
                           ],
                         ),
@@ -80,6 +81,7 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
-  });
+   }
+  );
   }
 }

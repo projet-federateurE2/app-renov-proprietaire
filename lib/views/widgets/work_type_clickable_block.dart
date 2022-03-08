@@ -47,15 +47,16 @@ class WorkTypeClickableBlock extends StatelessWidget {
                 children: [
                   Container(
                       margin: EdgeInsets.only(
-                          bottom: 10, left: iconCirclePositionRight),
-                      child: /*Hero(
-                          tag: "work_type",
-                          child:*/
+                          bottom: 10, left: iconCirclePositionRight
+                        ),
+                      child:                    
                           IconBackgroundCircle(
                               url: iconUrl,
                               imageSize: iconSize,
                               rightCirclePosition: iconCirclePositionRight,
-                              topCirclePosition: iconCirclePositionTop)) /*)*/,
+                              topCirclePosition: iconCirclePositionTop
+                            ),
+                          ),
                   Expanded(
                     child: Column(
                       children: [
@@ -79,7 +80,8 @@ class WorkTypeClickableBlock extends StatelessWidget {
                 ],
               ),
             ),
-          )),
+          ),
+        ),
     );
   }
 }

@@ -96,9 +96,11 @@ class WorkInProgressBlock extends StatelessWidget {
                                                 fontWeight: FontWeight.w300))
                                       ])
                                     ],
-                                  )),
+                                  ),
+                                 ),
                                 ],
-                              )),
+                              ),
+                            ),
                               Expanded(
                                   child: Column(
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
@@ -145,8 +147,14 @@ class WorkInProgressBlock extends StatelessWidget {
                                     ),
                                   ),
                                 ],
-                              )),
-                            ]))))),
+                              ),
+                             ),
+                            ]
+                            ),
+                          ),
+                        ),
+                      ),
+                    ),
         Positioned(
           bottom: 0,
           right: 0,
@@ -158,21 +166,24 @@ class WorkInProgressBlock extends StatelessWidget {
                 child: Stack(
                   children: [
                     Container(
-                        decoration: const BoxDecoration(
+                      decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
-                    )),
+                     ),
+                    ),
                     InkWell(
                       onTap: () {
                         // New Widget Page
                       },
                       borderRadius: BorderRadius.circular(20.0),
                       child: SvgPicture.asset(IconsRenov.arrowCircle,
-                          color: ColorsRenov.primaryGreen),
+                      color: ColorsRenov.primaryGreen),
                     )
                   ],
-                ));
-          }),
+                ),
+              );
+            }
+          ),
         ),
       ],
     );

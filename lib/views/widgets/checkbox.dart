@@ -33,7 +33,8 @@ class _MyCheckboxWidgetState extends State<MyCheckboxWidget> {
       onChanged: (bool? value) {
         setState(() {
           isChecked = value!;
-        });
+        }
+       );
       },
     );
   }

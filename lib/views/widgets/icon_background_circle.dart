@@ -37,8 +37,11 @@ class IconBackgroundCircle extends StatelessWidget {
                             color: colorCircle
                         ),
                         position: DecorationPosition.background,
-                      ));
-                })),
+                      ),
+                    );
+                   }
+                 ),
+                ),
         Container(
             margin: EdgeInsets.only(top:topCirclePosition , right: rightCirclePosition),
             height: imageSize,

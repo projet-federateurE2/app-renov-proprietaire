@@ -21,7 +21,7 @@ class CheckboxInWork extends StatelessWidget {
             Container(
                 margin: const EdgeInsets.only(
                     left: 15, right: 15, bottom: 10, top: 10),
-                child: MyCheckboxWidget()),
+                child: const MyCheckboxWidget()),
             Expanded(
               child: Text(
                 text,

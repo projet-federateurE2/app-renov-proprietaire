@@ -32,3 +32,9 @@ class IconsRenov {
   static const String checkMarkForWorksBlock =
       'icons/checkMarkForWorksBlock.svg';
 }
+
+
+class Api {
+  static const String username = 'apki_MpGotjs52ayfo4Id';
+  static const String password = 'apks_qQbGHepDUIk6H3OAT81zCGO9lm8grH69OTNPr8kaw2YX9SkGvfbUCwK0bAzWZbaQ';
+}

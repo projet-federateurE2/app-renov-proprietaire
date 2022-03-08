@@ -11,7 +11,6 @@ class WorkClickableBlock extends StatefulWidget {
   final bool isSelected;
   final bool isChecked;
   final String idWork;
-  // final Function(int) callback;
 
   const WorkClickableBlock({
     Key? key,
@@ -20,7 +19,6 @@ class WorkClickableBlock extends StatefulWidget {
     required this.isSelected,
     required this.isChecked,
     required this.idWork,
-    // required this.callback,
   }) : super(key: key);
 
   @override
@@ -99,12 +97,15 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                     height: 35,
                     child: SvgPicture.asset(
                       IconsRenov.checkMarkForWorksBlock,
-                    ));
-              }),
+                    ),
+                  );
+              }
+            ),
             ),
           ),
         ],
       );
-    });
+    }
+   );
   }
 }

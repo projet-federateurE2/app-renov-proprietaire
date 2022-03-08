@@ -1,4 +1,3 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
@@ -14,7 +13,8 @@ class ProjectSideButton extends StatefulWidget {
       : super(key: key);
 
   @override
-  State<ProjectSideButton> createState() => _MyProjectSideButtonState();}
+  State<ProjectSideButton> createState() => _MyProjectSideButtonState();
+}
 
 
 class _MyProjectSideButtonState extends State<ProjectSideButton> {
@@ -25,7 +25,7 @@ class _MyProjectSideButtonState extends State<ProjectSideButton> {
     var iconCirclePositionTop = 2.0;
     var iconCirclePositionRight = 2.0;
     var boolGreenCircle = widget.buttonCustom ? true : false;
-    return Container(
+    return SizedBox(
       height: 55,
       child: Card(
         color: widget.buttonCustom ?  ColorsRenov.primaryGreen : Colors.white,
@@ -33,7 +33,8 @@ class _MyProjectSideButtonState extends State<ProjectSideButton> {
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(24.5),
             side: isCheckedHere || widget.buttonCustom ?
             const BorderSide(color: ColorsRenov.primaryGreen, width: 2) :
-            const BorderSide(color: Colors.white, width: 0)),
+            const BorderSide(color: Colors.white, width: 0)
+        ),
         child: InkWell(
           onTap: () {
           isCheckedHere ? setState(() {

@@ -42,7 +42,8 @@ class SecondaryProjectSideButton extends StatelessWidget {
                 SvgPicture.asset(IconsRenov.location)
               ],
             ),
-          )),
+          ),
+        ),
     );
   }
 }

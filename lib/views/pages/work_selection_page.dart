@@ -8,6 +8,7 @@ import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
+import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
 import '../widgets/work_selection_description.dart';
 
 class WorkSelectionPage extends StatefulWidget {
@@ -32,7 +33,6 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   @override
   Widget build(BuildContext context) {
     sizeScreen = MediaQuery.of(context).size.width;
-
     numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
@@ -55,36 +55,45 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Expanded(
-                              child: GridView.count(
-                            mainAxisSpacing: 20.0,
-                            crossAxisSpacing: 20.0,
-                            scrollDirection: Axis.vertical,
-                            shrinkWrap: true,
-                            crossAxisCount: numberColumns,
-                            children: List.generate(state.malisteWork.length,
-                                (index) {
-                              var clickableBlock = state.malisteWork[index];
-                              return WorkClickableBlock(
-                                urlImage: clickableBlock.urlImage,
-                                workName: clickableBlock.title,
-                                isSelected: state.idClick.contains(clickableBlock.id),
-                                isChecked: state.valideWork.where((element) => element.id.contains(clickableBlock.id)).isNotEmpty,
-                                idWork: clickableBlock.id,
-                              );
-                            }),
-                          )),
+                            child: GridView.count(
+                              mainAxisSpacing: 20.0,
+                              crossAxisSpacing: 20.0,
+                              scrollDirection: Axis.vertical,
+                              shrinkWrap: true,
+                              crossAxisCount: numberColumns,
+                              children: List.generate(state.malisteWork.length, (index) {
+                                var clickableBlock = state.malisteWork[index];
+                                return WorkClickableBlock(
+                                  urlImage: clickableBlock.urlImage,
+                                  workName: clickableBlock.title,
+                                  isSelected:
+                                      state.idClick.contains(clickableBlock.id),
+                                  isChecked: state.valideWork
+                                      .where((element) => element.id
+                                          .contains(clickableBlock.id))
+                                      .isNotEmpty,
+                                  idWork: clickableBlock.id,
+                                );
+                               }
+                              ),
+                            ),
+                          ),
                           Expanded(
                             child: Column(
                               children: [
-                                    WorkSelectionDescription(
-                                        work: state.malisteWork.isEmpty ? Work("","","","","","") : state.malisteWork.where((element) => element.id.contains(state.idClick)).first
-                                    ),
+                                WorkSelectionDescription(
+                                    work: state.malisteWork.isEmpty
+                                        ? Work("", "", "", "", "", "")
+                                        : state.malisteWork.where((element) => element.id.contains(state.idClick)).first),
                                 GreenButton(
                                     text: TextRenov.btnNext,
                                     onPressed: () {
                                       showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) => PopupValidateWork(workToValidate: state.valideWork),
+                                        context: context,
+                                        builder: (BuildContext context) =>
+                                            PopupValidateWork(
+                                                workToValidate:
+                                                    state.valideWork),
                                       );
                                     },
                                     enabled: state.valideWork.isNotEmpty
@@ -92,13 +101,17 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                         : false)
                               ],
                             ),
-                          )
+                          ),
                         ],
                       ),
                     ),
                   ],
-                ))
-          ]));
-    });
+                ),
+              ),
+            ],
+           ),
+        );
+      }
+    );
   }
 }

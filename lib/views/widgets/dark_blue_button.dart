@@ -7,12 +7,7 @@ class DarkBlueButton extends StatefulWidget {
   final bool enabled;
 
   const DarkBlueButton(
-      {Key? key,
-        required this.text,
-        required this.onPressed,
-        required this.enabled})
-      : super(key: key);
-
+      {Key? key,required this.text,required this.onPressed, required this.enabled}): super(key: key);
   @override
   _DarkBlueButtonState createState() => _DarkBlueButtonState();
 }

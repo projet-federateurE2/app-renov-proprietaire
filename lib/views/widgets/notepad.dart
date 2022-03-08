@@ -55,7 +55,7 @@ class _NotepadState extends State<Notepad> {
               padding: const EdgeInsets.only(left: 50.0, right: 50, top: 10),
               child: TextField(
                 maxLines: 8,
-                style: TextStyle(fontSize: 12),
+                style: const TextStyle(fontSize: 12),
                 decoration: InputDecoration(
                   border: OutlineInputBorder(
                     borderRadius: BorderRadius.circular(20.0),
@@ -66,7 +66,7 @@ class _NotepadState extends State<Notepad> {
 
                   ),
 
-                  hintStyle: TextStyle(fontSize: 12), // you need this
+                  hintStyle: const TextStyle(fontSize: 12), // you need this
                   hintText:
                       'Je suis votre bloc-notes , et je vous suivrai tout au long de votre projet. \nN’hesitez pas à m’utiliser comme carnet de route, pense bête, mémoire...',
                 ),

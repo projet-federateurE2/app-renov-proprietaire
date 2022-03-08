@@ -31,14 +31,19 @@ class PageTitle extends StatelessWidget {
                           borderRadius: BorderRadius.circular(6),
                         ),
                         position: DecorationPosition.background,
-                      ));
-                } else {
+                       ),
+                      );
+                } 
+                else 
+                {
                   return const Text("");
                 }
-              })),
+              }
+             ),
+            ),
           Text(text, key: txtKey, style: const TextStyle(fontSize: 32, fontWeight: FontWeight.w600))
     ]
-      );
+   );
   }
 }
 

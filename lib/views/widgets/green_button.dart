@@ -7,12 +7,7 @@ class GreenButton extends StatefulWidget {
   final bool enabled;
 
   const GreenButton(
-      {Key? key,
-      required this.text,
-      required this.onPressed,
-      required this.enabled})
-      : super(key: key);
-
+      {Key? key,required this.text,required this.onPressed,required this.enabled}): super(key: key);
   @override
   _GreenButtonState createState() => _GreenButtonState();
 }

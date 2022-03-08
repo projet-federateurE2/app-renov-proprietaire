@@ -1,11 +1,8 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
-import 'package:renov_proprietaire_app/repositories/work_repository.dart';
 import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/validate_work_card.dart';
-
 import 'dark_blue_button.dart';
 import 'page_title.dart';
 
@@ -19,7 +16,10 @@ class PopupValidateWork extends StatelessWidget {
   Widget build(BuildContext context) {
     List<Widget> listWorkToValidate = List.generate(0, (index) => const ValidateWorkCard(validateWork: null));
 
-    workToValidate.forEach((element) {listWorkToValidate.add(ValidateWorkCard(validateWork: element));});
+    for (var element in workToValidate) 
+    {
+      listWorkToValidate.add(ValidateWorkCard(validateWork: element));
+    }
 
     columnWorkToValidate = SingleChildScrollView(
         child : Column(
@@ -43,7 +43,6 @@ class PopupValidateWork extends StatelessWidget {
         GreenButton(
           text: "Valider",
           onPressed: () async {
-            await WorkRepository().QueryOwners();
             Navigator.push(
                 context,
                 MaterialPageRoute(

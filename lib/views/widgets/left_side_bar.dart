@@ -43,8 +43,10 @@ class _LeftSideBarState extends State<LeftSideBar> {
                               height: 100.0),
                           const Text("Paul Dupont",
                               style: TextStyle(
-                                  fontWeight: FontWeight.w600, fontSize: 16.0))
-                        ]),
+                                  fontWeight: FontWeight.w600, fontSize: 16.0)
+                            ),
+                         ]
+                        ),
                         Card(
                           shape: RoundedRectangleBorder(
                             borderRadius:
@@ -71,7 +73,8 @@ class _LeftSideBarState extends State<LeftSideBar> {
                                         text: _workInProgress['workTitle'],
                                         secondaryText:_workInProgress['workTitle'],
                                       );
-                                    })
+                                    }
+                                  ),
                               ],
                             ),
                           ),
@@ -96,8 +99,12 @@ class _LeftSideBarState extends State<LeftSideBar> {
                                 isChecked: false,
                                 buttonCustom: true)),
                       ],
-                    ))))
-      ]),
+                     ),
+                    ),
+                   ),
+                  ),
+              ]
+      ),
     );
   }
 }
