@@ -8,7 +8,6 @@ import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
-import 'package:renov_proprietaire_app/views/widgets/work_selection_empty_description.dart';
 import '../widgets/work_selection_description.dart';
 
 class WorkSelectionPage extends StatefulWidget {
@@ -37,8 +36,6 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
-          print("mon state");
-          print(state);
       return Scaffold(
           backgroundColor: Colors.white,
           body: Stack(children: [
@@ -80,7 +77,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                             child: Column(
                               children: [
                                     WorkSelectionDescription(
-                                        work: state.malisteWork.isEmpty ? Work("","","",""," =","") : state.malisteWork.where((element) => element.id.contains(state.idClick)).first
+                                        work: state.malisteWork.isEmpty ? Work("","","","","","") : state.malisteWork.where((element) => element.id.contains(state.idClick)).first
                                     ),
                                 GreenButton(
                                     text: TextRenov.btnNext,

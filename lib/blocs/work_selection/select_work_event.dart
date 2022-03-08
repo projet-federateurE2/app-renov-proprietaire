@@ -24,4 +24,10 @@ class ValitedWorkEvent extends SelectWorkEvent {
 }
 
 
+class WorkInProgressEvent extends SelectWorkEvent{
+  const WorkInProgressEvent();
+
+}
+
+
 

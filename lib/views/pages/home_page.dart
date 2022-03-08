@@ -5,31 +5,17 @@ import 'package:renov_proprietaire_app/views/widgets/notepad.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_in_progress_block.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/work_selection/select_work_bloc.dart';
 
 class HomePage extends StatelessWidget {
   const HomePage({Key? key}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<dynamic> works = [
-      {
-        'urlIcon': 'icons/window.svg',
-        'workTitle': 'Isolation des fenêtres',
-        'budget': 'Non renseigné',
-        'financialAssistance': 'Non renseigné',
-        'stepInProgress': 'Trouver un artisan dans la liste',
-        'percentageCompleted': 0
-      },
-      {
-        'urlIcon': 'icons/attic.svg',
-        'workTitle': 'Isolation des combles',
-        'budget': 'Non renseigné',
-        'financialAssistance': 'Non renseigné',
-        'stepInProgress': 'Trouver un artisan dans la liste',
-        'percentageCompleted': 20
-      }
-    ];
-
+     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+        builder: (context, state) {
+      BlocProvider.of<SelectWorkBloc>(context).add(const WorkInProgressEvent());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -39,7 +25,7 @@ class HomePage extends StatelessWidget {
             padding: const EdgeInsets.all(24),
             child: Row(
               children: [
-                const LeftSideBar(),
+                   state is WorkInProgressState ? LeftSideBar(workinprogress: state.WorkInProgress) : const LeftSideBar(workinprogress: []),
                 Expanded(
                   child: Column(
                     children: [
@@ -53,13 +39,15 @@ class HomePage extends StatelessWidget {
                             const Text(TextRenov.homePageDesc),
                             SizedBox(
                               height: 200,
-                              child: ListView.builder(
-                                  itemCount: works.length,
+                              child: 
+                              state is WorkInProgressState ?
+                              ListView.builder(
+                                  itemCount: state.WorkInProgress.length,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    var _workInProgress = works[index];
+                                    var _workInProgress = state.WorkInProgress[index];
                                     return WorkInProgressBlock(
                                         urlIcon: _workInProgress['urlIcon'],
                                         workTitle: _workInProgress['workTitle'],
@@ -68,7 +56,10 @@ class HomePage extends StatelessWidget {
                                         stepInProgress: _workInProgress['stepInProgress'],
                                         percentageCompleted: _workInProgress['percentageCompleted'],
                                         );
-                                  }),
+                                  }): 
+                                  const Center(
+                                    child: CircularProgressIndicator(),
+                                  )
                             )
                           ],
                         ),
@@ -89,5 +80,6 @@ class HomePage extends StatelessWidget {
         ],
       ),
     );
+  });
   }
 }

@@ -27,5 +27,10 @@ class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
       emit (ValideWorkState(list, works, event.work.id));
     });
 
+    on<WorkInProgressEvent>((event, emit) {
+      var lists = WorkRepository().getTravaux();
+      emit(WorkInProgressState([], [], "", lists));
+    });
+
   }
 }
