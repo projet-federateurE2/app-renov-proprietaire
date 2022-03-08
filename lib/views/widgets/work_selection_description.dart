@@ -43,7 +43,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
         builder: (context, state) {
       return SizedBox(
         width: MediaQuery.of(context).size.width * 0.44,
-        height: MediaQuery.of(context).size.height * 0.76,
+        height: MediaQuery.of(context).size.height * 0.73,
         child: Card(
           elevation: 4,
           shape: RoundedRectangleBorder(
