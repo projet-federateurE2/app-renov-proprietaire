@@ -10,7 +10,7 @@ import 'page_title.dart';
 
 class PopupValidateWork extends StatelessWidget {
   final List<Work> workToValidate;
-  Column? columnWorkToValidate;
+  SingleChildScrollView? columnWorkToValidate;
 
   PopupValidateWork({Key? key, required this.workToValidate}) : super(key: key);
 
@@ -20,11 +20,13 @@ class PopupValidateWork extends StatelessWidget {
 
     workToValidate.forEach((element) {listWorkToValidate.add(ValidateWorkCard(validateWork: element));});
 
-    columnWorkToValidate = Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: listWorkToValidate,
-    );
+    columnWorkToValidate = SingleChildScrollView(
+        child : Column(
+          mainAxisSize: MainAxisSize.min,
+          crossAxisAlignment: CrossAxisAlignment.start,
+          children: listWorkToValidate,
+        ),
+    ) ;
 
     return AlertDialog(
       title: PageTitle(text: "Vos travaux selectionnés pour votre projet"),
