@@ -1,6 +1,7 @@
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
+import 'package:renov_proprietaire_app/repositories/work_repository.dart';
 import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/validate_work_card.dart';
@@ -39,7 +40,8 @@ class PopupValidateWork extends StatelessWidget {
         ),
         GreenButton(
           text: "Valider",
-          onPressed: () {
+          onPressed: () async {
+            await WorkRepository().QueryOwners();
             Navigator.push(
                 context,
                 MaterialPageRoute(
