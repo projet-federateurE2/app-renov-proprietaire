@@ -11,15 +11,21 @@ class LoadWorksEvent extends SelectWorkEvent {
 
 
 class ClickWorkEvent extends SelectWorkEvent {
-  final String nameWork;
-  const ClickWorkEvent(this.nameWork);
+  final String idClick;
+  const ClickWorkEvent(this.idClick);
 
 }
 
 
 class ValitedWorkEvent extends SelectWorkEvent {
-  final String nameWork;
-  const ValitedWorkEvent(this.nameWork);
+  final Work work;
+  const ValitedWorkEvent(this.work);
+
+}
+
+
+class WorkInProgressEvent extends SelectWorkEvent{
+  const WorkInProgressEvent();
 
 }
 

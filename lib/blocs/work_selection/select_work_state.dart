@@ -1,38 +1,43 @@
 part of 'select_work_bloc.dart';
 
 
-
 // @immutable
 abstract class SelectWorkState {
-  final List<String> maliste;
+  final String idClick;
   final List<Work> malisteWork;
-  final List<String> valideWork;
-  const SelectWorkState(this.maliste, this.malisteWork, this.valideWork);
+  final List<Work> valideWork;
+  const SelectWorkState(this.idClick, this.malisteWork, this.valideWork);
 }
  class SelectWorkInitialState extends SelectWorkState {
-   const SelectWorkInitialState():super(const [], const [], const []);
+   const SelectWorkInitialState():super("", const [], const []);
 }
-
-// class SelectWorkInitialState extends SelectWorkState {
-//   const SelectWorkInitialState();
-// }
 
 class ListedWorkState extends SelectWorkState {
   final List<Work> works;
-  const ListedWorkState(this.works):super(const [], works, const []);
+  ListedWorkState(this.works):super(works[0].id, works, const []);
 }
 
 
 class ClickedWorkState extends SelectWorkState  {
-  final List<String> clickedWork;
+  final String idClick;
   final List<Work> works;
-  final List<String> valideWork;
-  const ClickedWorkState(this.clickedWork, this.works, this.valideWork):super(clickedWork, works, valideWork);
+  final List<Work> valideWork;
+  const ClickedWorkState(this.idClick, this.works, this.valideWork):super(idClick, works, valideWork);
 }
 
 class ValideWorkState extends SelectWorkState  {
-  final List<String> valideWork;
+  final List<Work> valideWork;
   final List<Work> works; 
-  final List<String> clickedWork;
-  const ValideWorkState(this.valideWork, this.works, this.clickedWork):super(clickedWork, works, valideWork);
+  final String idClick;
+  const ValideWorkState(this.valideWork, this.works, this.idClick):super(idClick, works, valideWork);
+}
+
+
+class WorkInProgressState extends SelectWorkState 
+{
+ final List<Work> valideWork;
+  final List<Work> works; 
+  final String idClick;
+  final List<dynamic> WorkInProgress;
+  const WorkInProgressState(this.valideWork, this.works, this.idClick, this.WorkInProgress):super(idClick, works, valideWork);
 }
