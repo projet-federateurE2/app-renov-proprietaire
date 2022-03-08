@@ -1,6 +1,7 @@
 import 'dart:convert';
 import 'package:flutter/services.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:renov_proprietaire_app/models/owner.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:http/http.dart' as http;
 
@@ -43,6 +44,22 @@ class WorkRepository  {
       }
     });
     return _works;
+  }
+  Future<Owner> QueryOwners() async {
+    String username = 'apki_MpGotjs52ayfo4Id';
+    String password = 'apks_qQbGHepDUIk6H3OAT81zCGO9lm8grH69OTNPr8kaw2YX9SkGvfbUCwK0bAzWZbaQ';
+    String basicAuth =
+        'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    var url = Uri.parse('https://equipe2.lp-cloud.tech/v1/proprietaires');
+    var data = await http.get(url,
+        headers: <String, String>{'authorization': basicAuth});
+    var _json = jsonDecode(utf8.decode(data.bodyBytes));
+    print('coucou on est dans la query owners');
+    print(_json);
+    print(_json[0]);
+    var currentOwner = Owner(_json[0]['email'], _json[0]['role'],_json[0]['nom'],_json[0]['prenom'],_json[0]['situation'], _json[0]['revenu_fiscal'],_json[0]['proprietes'] );
+    print(currentOwner);
+    return currentOwner;
   }
   
   Stream<Work?> getWork(idWork) async* {
