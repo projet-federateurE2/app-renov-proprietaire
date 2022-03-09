@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:renov_proprietaire_app/blocs/work_selection/select_work_bloc.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
+import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/button_renov.dart';
@@ -23,7 +24,6 @@ class WorkSelectionPage extends StatefulWidget {
 class _WorkSelectionPageState extends State<WorkSelectionPage> {
   var numberColumns;
   var sizeScreen = 0.0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -48,10 +48,15 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PageTitle(text: "Travaux d'isolation", returnisvisible: true),
+                          PageTitle(
+                              text: "Travaux d'isolation",
+                              returnisvisible: true),
                           const Text(
                             TextRenov.SelectAndAdd,
-                            style: TextStyle(fontStyle: FontStyle.italic, color: ColorsRenov.darkBlue, fontSize: 17),
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: ColorsRenov.darkBlue,
+                                fontSize: 17),
                           )
                         ],
                       ),
@@ -134,7 +139,6 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
           ],
         ),
       );
-     }
-   );
+    });
   }
 }
