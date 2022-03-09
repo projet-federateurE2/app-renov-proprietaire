@@ -4,6 +4,7 @@ import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/pages/work_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
+import 'package:renov_proprietaire_app/views/widgets/user_in_corner.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_type_clickable_block.dart';
 
 
@@ -25,23 +26,30 @@ class WorkTypeSelectionPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 40),
+                  margin: const EdgeInsets.symmetric(horizontal: 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Hero(
-                        tag: "title",
-                        child: Material(
-                          type: MaterialType.transparency, // likely needed
-                          child: PageTitle(text: TextRenov.startProject),
-                        ),
-                      ),
+                      Row(
+                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                        children: [
+                          Expanded(
+                            child : PageTitle(text: TextRenov.startProject, returnisvisible: false),
+                          ),
+
+
+                          const UserInCorner(name: "Paul Dupont"),
+                        ]),
                       const SizedBox(
                         width: 2000,
-                        child: Text(
-                          TextRenov.startProjectDesc,
-                          style: TextStyle(
-                              fontSize: 18, color: ColorsRenov.darkBlue),
+                        child :
+                        Padding(
+                          padding: EdgeInsets.fromLTRB(40.0, 10, 0, 40),
+                          child: Text(
+                            TextRenov.startProjectDesc,
+                            style: TextStyle(
+                                fontSize: 17, color: ColorsRenov.darkBlue, fontStyle: FontStyle.italic),
+                          ),
                         ),
                       ),
                     ],
