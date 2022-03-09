@@ -39,13 +39,13 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
       builder: (context, state) {
-        return Card(
-          margin: const EdgeInsets.only(left: 24),
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Expanded(
+        return SingleChildScrollView(
+          child: Card(
+            margin: const EdgeInsets.only(left: 24),
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
