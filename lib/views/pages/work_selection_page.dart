@@ -5,10 +5,9 @@ import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
-import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
+import 'package:renov_proprietaire_app/views/widgets/button_renov.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
-import 'package:renov_proprietaire_app/views/widgets/user_in_corner.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
 
 import '../widgets/work_selection_description.dart';
@@ -25,7 +24,6 @@ class WorkSelectionPage extends StatefulWidget {
 class _WorkSelectionPageState extends State<WorkSelectionPage> {
   var numberColumns;
   var sizeScreen = 0.0;
-
 
   @override
   Widget build(BuildContext context) {
@@ -50,23 +48,16 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          Row(
-                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                            children: [
-                              Expanded(
-                                child: PageTitle(
-                                    text: "Travaux d'isolation",
-                                    returnisvisible: true),
-                              ),
-                              const UserInCorner(name: "Paul Dupont"),
-                            ],
-                          ),
-                          const Padding(
-                              padding: EdgeInsets.fromLTRB(20.0, 10, 0, 0),
-                              child: Text(
-                                'Selectionnez et ajoutez à votre projet chaque travaux envisagés.',
-                                style: TextStyle(fontStyle: FontStyle.italic, color: ColorsRenov.darkBlue, fontSize: 17),
-                              )),
+                          PageTitle(
+                              text: "Travaux d'isolation",
+                              returnisvisible: true),
+                          const Text(
+                            TextRenov.SelectAndAdd,
+                            style: TextStyle(
+                                fontStyle: FontStyle.italic,
+                                color: ColorsRenov.darkBlue,
+                                fontSize: 17),
+                          )
                         ],
                       ),
                     ),
@@ -111,22 +102,29 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                             .where((element) => element.id
                                                 .contains(state.idClick))
                                             .first),
-                                Padding(
-                                  padding: const EdgeInsets.only(top: 15),
-                                  child: GreenButton(
-                                      text: TextRenov.btnNext,
-                                      onPressed: () {
-                                        showDialog(
-                                          context: context,
-                                          builder: (BuildContext context) =>
-                                              PopupValidateWork(
-                                                  workToValidate:
-                                                      state.valideWork),
-                                        );
-                                      },
-                                      enabled: state.valideWork.isNotEmpty
-                                          ? true
-                                          : false),
+                                Row(
+                                  mainAxisAlignment: MainAxisAlignment.end,
+                                  children: [
+                                    Padding(
+                                      padding: const EdgeInsets.only(top: 15),
+                                      child: ButtonRenov(
+                                          paddingHorizontal: 20,
+                                          size: 4.0,
+                                          text: TextRenov.btnValidateChoice,
+                                          onPressed: () {
+                                            showDialog(
+                                              context: context,
+                                              builder: (BuildContext context) =>
+                                                  PopupValidateWork(
+                                                      workToValidate:
+                                                          state.valideWork),
+                                            );
+                                          },
+                                          enabled: state.valideWork.isNotEmpty
+                                              ? true
+                                              : false),
+                                    ),
+                                  ],
                                 )
                               ],
                             ),
