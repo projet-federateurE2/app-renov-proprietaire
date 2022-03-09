@@ -32,7 +32,7 @@ class PopupValidateWork extends StatelessWidget {
     );
 
     return AlertDialog(
-      title: PageTitle(text: TextRenov.workSelected),
+      title: PageTitle(text: TextRenov.workSelected, returnisvisible: false),
       content: columnWorkToValidate!,
       actions: <Widget>[
         Container(

@@ -35,7 +35,7 @@ class HomePage extends StatelessWidget {
                           mainAxisSize: MainAxisSize.min,
                           crossAxisAlignment: CrossAxisAlignment.start,
                           children: [
-                            PageTitle(text: TextRenov.workInProgress),
+                            PageTitle(text: TextRenov.workInProgress, returnisvisible: false),
                             const Text(TextRenov.homePageDesc),
                             SizedBox(
                               height: 200,

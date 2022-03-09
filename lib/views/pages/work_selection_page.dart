@@ -24,6 +24,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   var numberColumns;
   var sizeScreen = 0.0;
 
+
   @override
   Widget build(BuildContext context) {
     sizeScreen = MediaQuery.of(context).size.width;
@@ -47,10 +48,10 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                       child: Column(
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
-                          PageTitle(text: "Travaux d'isolation"),
+                          PageTitle(text: "Travaux d'isolation", returnisvisible: true),
                           const Text(
                             TextRenov.SelectAndAdd,
-                            style: TextStyle(fontStyle: FontStyle.italic),
+                            style: TextStyle(fontStyle: FontStyle.italic, color: ColorsRenov.darkBlue, fontSize: 17),
                           )
                         ],
                       ),
@@ -133,6 +134,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
           ],
         ),
       );
-    });
+     }
+   );
   }
 }
