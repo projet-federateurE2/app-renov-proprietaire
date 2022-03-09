@@ -24,7 +24,6 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
   @override
   Widget build(BuildContext context) {
-    print(widget.work.urlImage);
     var sizeIcon =
         MediaQuery.of(context).size.width > MediaQuery.of(context).size.height
             ? MediaQuery.of(context).size.width * 0.03
@@ -40,13 +39,13 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
       builder: (context, state) {
-        return Card(
-          margin: const EdgeInsets.only(left: 24),
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Expanded(
+        return SingleChildScrollView(
+          child: Card(
+            margin: const EdgeInsets.only(left: 24),
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
             child: Column(
               mainAxisAlignment: MainAxisAlignment.spaceEvenly,
               crossAxisAlignment: CrossAxisAlignment.center,
@@ -64,7 +63,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                     margin: const EdgeInsets.only(
                       top: 12,
                       bottom: 48,
-                      left: 15,
+                      left: 16,
                     ),
                     child: iconBackgroundCircle),
                 Row(
@@ -86,6 +85,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         child: AutoSizeText(
                           widget.work.txt1,
                           maxLines: 4,
+                          // textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w300, fontSize: 15.0),
                         ),
@@ -125,31 +125,48 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                   children: [
                     Expanded(
                       child: Container(
-                        margin: const EdgeInsets.only(right: 32, bottom: 8),
-                        child: TextButton(
-                          onPressed: () {
-                            BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.work, state.malisteWork, state.user));
-                          },
-                          child: AutoSizeText(
-                            state.valideWork
-                                    .where((element) =>
-                                        element.id.contains(widget.work.id))
-                                    .isNotEmpty
-                                ? TextRenov.removeWork
-                                : TextRenov.addWork,
-                            maxLines: 1,
-                            style: TextStyle(
-                              fontSize: 20,
-                              fontWeight: FontWeight.w300,
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(
+                              width: 4,
                               color: state.valideWork
                                       .where((element) =>
                                           element.id.contains(widget.work.id))
                                       .isNotEmpty
                                   ? Colors.red
                                   : ColorsRenov.primaryGreen,
+                            )),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 44),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(50),
+                          onTap: () {
+                            BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent( widget.work, state.malisteWork, state.user));
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 2, vertical: 4),
+                            child: AutoSizeText(
+                              state.valideWork
+                                      .where((element) =>
+                                          element.id.contains(widget.work.id))
+                                      .isNotEmpty
+                                  ? TextRenov.removeWork
+                                  : TextRenov.addWork,
+                              maxLines: 1,
+                              textAlign: TextAlign.center,
+                              style: TextStyle(
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: state.valideWork
+                                        .where((element) =>
+                                            element.id.contains(widget.work.id))
+                                        .isNotEmpty
+                                    ? Colors.red
+                                    : ColorsRenov.primaryGreen,
+                              ),
                             ),
                           ),
-                          style: TextButton.styleFrom(),
                         ),
                       ),
                     ),
