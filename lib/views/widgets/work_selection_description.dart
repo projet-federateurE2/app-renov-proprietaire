@@ -63,7 +63,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                     margin: const EdgeInsets.only(
                       top: 12,
                       bottom: 48,
-                      left: 15,
+                      left: 16,
                     ),
                     child: iconBackgroundCircle),
                 Row(

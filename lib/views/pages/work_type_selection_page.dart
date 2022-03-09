@@ -7,15 +7,12 @@ import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/user_in_corner.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_type_clickable_block.dart';
 
-
-
 class WorkTypeSelectionPage extends StatelessWidget {
   const WorkTypeSelectionPage({Key? key}) : super(key: key);
 
-
   @override
   Widget build(BuildContext context) {
-     return Scaffold(
+    return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
         children: [
@@ -31,24 +28,25 @@ class WorkTypeSelectionPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
-                        children: [
-                          Expanded(
-                            child : PageTitle(text: TextRenov.startProject, returnisvisible: false),
-                          ),
-
-
-                          const UserInCorner(name: "Paul Dupont"),
-                        ]),
+                          //mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Expanded(
+                              child: PageTitle(
+                                  text: TextRenov.startProject,
+                                  returnisvisible: false),
+                            ),
+                            const UserInCorner(name: "Paul Dupont"),
+                          ]),
                       const SizedBox(
                         width: 2000,
-                        child :
-                        Padding(
+                        child: Padding(
                           padding: EdgeInsets.fromLTRB(40.0, 10, 0, 40),
                           child: Text(
                             TextRenov.startProjectDesc,
                             style: TextStyle(
-                                fontSize: 17, color: ColorsRenov.darkBlue, fontStyle: FontStyle.italic),
+                                fontSize: 17,
+                                color: ColorsRenov.darkBlue,
+                                fontStyle: FontStyle.italic),
                           ),
                         ),
                       ),
