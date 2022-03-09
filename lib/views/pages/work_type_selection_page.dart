@@ -37,11 +37,11 @@ class WorkTypeSelectionPage extends StatelessWidget {
                         ),
                       ),
                       const SizedBox(
-                        width: 900,
+                        width: 2000,
                         child: Text(
                           TextRenov.startProjectDesc,
                           style: TextStyle(
-                              fontSize: 26, color: ColorsRenov.darkBlue),
+                              fontSize: 18, color: ColorsRenov.darkBlue),
                         ),
                       ),
                     ],
