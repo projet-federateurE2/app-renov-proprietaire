@@ -21,7 +21,8 @@ class WorkInProgressBlock extends StatelessWidget {
       required this.workTitle,
       required this.budget,
       required this.financialAssistance,
-      required this.stepInProgress, required this.percentageCompleted})
+      required this.stepInProgress,
+      required this.percentageCompleted})
       : super(key: key);
 
   @override
@@ -29,161 +30,151 @@ class WorkInProgressBlock extends StatelessWidget {
     return Stack(
       children: [
         SizedBox(
-            width: 320.0,
-            height: 200.0,
-            child: Card(
-                elevation: 4.0,
-                margin: const EdgeInsets.all(13.0),
-                shape: RoundedRectangleBorder(
-                  borderRadius: BorderRadius.circular(15),
-                ),
-                child: InkWell(
-                    onTap: () {},
-                    child: Padding(
-                        // Even Padding On All Sides
-                        padding: const EdgeInsets.only(
-                            left: 20, right: 0, top: 15, bottom: 15),
-                        child: Column(
-                            mainAxisAlignment: MainAxisAlignment.center,
-                            crossAxisAlignment: CrossAxisAlignment.center,
-                            children: [
-                              Expanded(
-                                  child: Row(
-                                crossAxisAlignment: CrossAxisAlignment.center,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceBetween,
-                                children: [
-                                  Padding(
-                                      padding: const EdgeInsets.only(right: 5),
-                                      child: IconBackgroundCircle(
-                                          url: urlIcon,
-                                          imageSize: 55,
-                                          rightCirclePosition: 15,
-                                          topCirclePosition: 15)),
-                                  Expanded(
-                                      child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.end,
-                                    crossAxisAlignment:
-                                        CrossAxisAlignment.stretch,
-                                    children: <Widget>[
-                                      Padding(
-                                          padding: const EdgeInsets.only(
-                                              top: 10, bottom: 5),
-                                          child: Text(workTitle,
-                                              style: const TextStyle(
-                                                  fontSize: 16,
-                                                  fontWeight:
-                                                      FontWeight.w600))),
-                                      Row(children: [
-                                        const Text(TextRenov.workProgressBudget,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500)),
-                                        Text(budget.toString(),
-                                            style: const TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w300))
-                                      ]),
-                                      Row(children: [
-                                        const Text(
-                                            TextRenov.workProgressAidTargeted,
-                                            style: TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w500)),
-                                        Text(financialAssistance.toString(),
-                                            style: const TextStyle(
-                                                fontSize: 10,
-                                                fontWeight: FontWeight.w300))
-                                      ])
-                                    ],
-                                  ),
-                                 ),
-                                ],
-                              ),
-                            ),
-                              Expanded(
-                                  child: Column(
+          width: 320.0,
+          height: 200.0,
+          child: Card(
+            elevation: 4.0,
+            margin: const EdgeInsets.all(13.0),
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(15),
+            ),
+            child: InkWell(
+              borderRadius: BorderRadius.circular(15),
+              onTap: () {},
+              child: Padding(
+                // Even Padding On All Sides
+                padding: const EdgeInsets.only(
+                    left: 20, right: 0, top: 15, bottom: 15),
+                child: Column(
+                    mainAxisAlignment: MainAxisAlignment.center,
+                    crossAxisAlignment: CrossAxisAlignment.center,
+                    children: [
+                      Expanded(
+                        child: Row(
+                          crossAxisAlignment: CrossAxisAlignment.center,
+                          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                          children: [
+                            Padding(
+                                padding: const EdgeInsets.only(right: 5),
+                                child: IconBackgroundCircle(
+                                    url: urlIcon,
+                                    imageSize: 55,
+                                    rightCirclePosition: 15,
+                                    topCirclePosition: 15)),
+                            Expanded(
+                              child: Column(
+                                mainAxisAlignment: MainAxisAlignment.end,
                                 crossAxisAlignment: CrossAxisAlignment.stretch,
-                                mainAxisAlignment:
-                                    MainAxisAlignment.spaceEvenly,
-                                children: [
-                                  const Padding(
-                                      padding: EdgeInsets.only(top: 5),
-                                      child: Text(TextRenov.workProgressStep,
-                                          style: TextStyle(
-                                              fontSize: 10,
-                                              fontWeight: FontWeight.w500))),
-                                  Text(stepInProgress,
-                                      style: const TextStyle(
-                                          fontSize: 10,
-                                          fontWeight: FontWeight.w300)),
-                                  FractionallySizedBox(
-                                    // taille de la bar et du texte "complété à..%" qui s'adapte automatiquement
-                                    widthFactor: 0.8,
-                                    alignment: FractionalOffset.centerLeft,
-
-                                    child: Column(
-                                      crossAxisAlignment:
-                                          CrossAxisAlignment.stretch,
-                                      mainAxisAlignment:
-                                          MainAxisAlignment.start,
-                                      children: [
-                                        LinearPercentIndicator(
-                                          padding:
-                                              const EdgeInsets.only(left: 5.0),
-                                          lineHeight: 8.0,
-                                          percent: percentageCompleted * 0.01,
-                                          backgroundColor:
-                                              ColorsRenov.secondaryGreen,
-                                          progressColor:
-                                              ColorsRenov.primaryGreen,
-                                        ),
-                                        Text('${TextRenov.percentageCompleted} $percentageCompleted %',
-                                            textAlign: TextAlign.right,
-                                            style: const TextStyle(
-                                                fontSize: 9,
-                                                fontWeight: FontWeight.w300)),
-                                      ],
-                                    ),
-                                  ),
+                                children: <Widget>[
+                                  Padding(
+                                      padding: const EdgeInsets.only(
+                                          top: 10, bottom: 5),
+                                      child: Text(workTitle,
+                                          style: const TextStyle(
+                                              fontSize: 16,
+                                              fontWeight: FontWeight.w600))),
+                                  Row(children: [
+                                    const Text(TextRenov.workProgressBudget,
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(budget.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300))
+                                  ]),
+                                  Row(children: [
+                                    const Text(
+                                        TextRenov.workProgressAidTargeted,
+                                        style: TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w500)),
+                                    Text(financialAssistance.toString(),
+                                        style: const TextStyle(
+                                            fontSize: 10,
+                                            fontWeight: FontWeight.w300))
+                                  ])
                                 ],
                               ),
-                             ),
-                            ]
                             ),
-                          ),
+                          ],
                         ),
                       ),
-                    ),
+                      Expanded(
+                        child: Column(
+                          crossAxisAlignment: CrossAxisAlignment.stretch,
+                          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                          children: [
+                            const Padding(
+                                padding: EdgeInsets.only(top: 5),
+                                child: Text(TextRenov.workProgressStep,
+                                    style: TextStyle(
+                                        fontSize: 10,
+                                        fontWeight: FontWeight.w500))),
+                            Text(stepInProgress,
+                                style: const TextStyle(
+                                    fontSize: 10, fontWeight: FontWeight.w300)),
+                            FractionallySizedBox(
+                              // taille de la bar et du texte "complété à..%" qui s'adapte automatiquement
+                              widthFactor: 0.8,
+                              alignment: FractionalOffset.centerLeft,
+
+                              child: Column(
+                                crossAxisAlignment: CrossAxisAlignment.stretch,
+                                mainAxisAlignment: MainAxisAlignment.start,
+                                children: [
+                                  LinearPercentIndicator(
+                                    padding: const EdgeInsets.only(left: 5.0),
+                                    lineHeight: 8.0,
+                                    percent: percentageCompleted * 0.01,
+                                    backgroundColor: ColorsRenov.secondaryGreen,
+                                    progressColor: ColorsRenov.primaryGreen,
+                                  ),
+                                  Text(
+                                      '${TextRenov.percentageCompleted} $percentageCompleted %',
+                                      textAlign: TextAlign.right,
+                                      style: const TextStyle(
+                                          fontSize: 9,
+                                          fontWeight: FontWeight.w300)),
+                                ],
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ]),
+              ),
+            ),
+          ),
+        ),
         Positioned(
           bottom: 0,
           right: 0,
           child: LayoutBuilder(
               builder: (BuildContext context, BoxConstraints constraints) {
             return SizedBox(
-                width: 35,
-                height: 35,
-                child: Stack(
-                  children: [
-                    Container(
-                      decoration: const BoxDecoration(
+              width: 35,
+              height: 35,
+              child: Stack(
+                children: [
+                  Container(
+                    decoration: const BoxDecoration(
                       color: Colors.white,
                       shape: BoxShape.circle,
-                     ),
                     ),
-                    InkWell(
-                      onTap: () {
-                        // New Widget Page
-                      },
-                      borderRadius: BorderRadius.circular(20.0),
-                      child: SvgPicture.asset(IconsRenov.arrowCircle,
-                      color: ColorsRenov.primaryGreen),
-                    )
-                  ],
-                ),
-              );
-            }
-          ),
+                  ),
+                  InkWell(
+                    onTap: () {
+                      // New Widget Page
+                    },
+                    borderRadius: BorderRadius.circular(20.0),
+                    child: SvgPicture.asset(IconsRenov.arrowCircle,
+                        color: ColorsRenov.primaryGreen),
+                  )
+                ],
+              ),
+            );
+          }),
         ),
       ],
     );

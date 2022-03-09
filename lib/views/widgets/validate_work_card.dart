@@ -6,10 +6,7 @@ import 'icon_background_circle.dart';
 class ValidateWorkCard extends StatelessWidget {
   final Work? validateWork;
 
-  const ValidateWorkCard(
-      {Key? key,
-        required this.validateWork
-      })
+  const ValidateWorkCard({Key? key, required this.validateWork})
       : super(key: key);
 
   @override
@@ -17,28 +14,29 @@ class ValidateWorkCard extends StatelessWidget {
     return Stack(
       children: [
         Container(
-          decoration: const BoxDecoration(
-          color: Colors.white,
-            shape: BoxShape.circle,
-          ),
-          child: Card(
-            elevation: 4.0,
-            margin: const EdgeInsets.all(13.0),
-            shape: RoundedRectangleBorder(
-              borderRadius: BorderRadius.circular(15),
+            decoration: const BoxDecoration(
+              color: Colors.white,
+              shape: BoxShape.circle,
             ),
-            child: Row(
-              children: [
-                IconBackgroundCircle(
-                    url: validateWork!.urlImage,
-                    imageSize: 55,
-                    rightCirclePosition: 15,
-                    topCirclePosition: 15),
-                Text(validateWork!.title),
-              ],
-            )
-          )
-        )
+            child: Card(
+                elevation: 4.0,
+                margin: const EdgeInsets.all(13.0),
+                shape: RoundedRectangleBorder(
+                  borderRadius: BorderRadius.circular(15),
+                ),
+                child: Row(
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.symmetric(horizontal: 12),
+                      child: IconBackgroundCircle(
+                          url: validateWork!.urlImage,
+                          imageSize: 55,
+                          rightCirclePosition: 15,
+                          topCirclePosition: 15),
+                    ),
+                    Text(validateWork!.title),
+                  ],
+                )))
       ],
     );
   }

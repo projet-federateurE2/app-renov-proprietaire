@@ -1,7 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
-import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
+
 import '../../blocs/work_selection/select_work_bloc.dart';
 
 class WorkTypeClickableBlock extends StatelessWidget {
@@ -31,60 +32,63 @@ class WorkTypeClickableBlock extends StatelessWidget {
     // 353 246
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
         builder: (context, state) {
-    return SizedBox(
-      width: MediaQuery.of(context).size.width * 0.3,
-      height: MediaQuery.of(context).size.height * 0.36,
-      child: Card(
-        elevation: 4,
-        shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
-        child: InkWell(
-          // When the user taps the button, show a snackbar.
-          onTap: () {
+      return SizedBox(
+        width: MediaQuery.of(context).size.width * 0.3,
+        height: MediaQuery.of(context).size.height * 0.36,
+        child: Card(
+          elevation: 4,
+          shape:
+              RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
+          child: InkWell(
+            borderRadius: BorderRadius.circular(15),
+            // When the user taps the button, show a snackbar.
+            onTap: () {
+              BlocProvider.of<SelectWorkBloc>(context)
+                  .add(TypeSelectEvent(workTypeTitle));
 
-            BlocProvider.of<SelectWorkBloc>(context).add(TypeSelectEvent(workTypeTitle));
-
-            Navigator.push(context, MaterialPageRoute(builder: (context) => page));
-          },
-          child: Padding(
-            padding: const EdgeInsets.all(12),
-            child: Column(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              children: [
-                Container(
-                  margin: EdgeInsets.only(
-                      bottom: 10, left: iconCirclePositionRight),
-                  child: IconBackgroundCircle(
-                      url: iconUrl,
-                      imageSize: iconSize,
-                      rightCirclePosition: iconCirclePositionRight,
-                      topCirclePosition: iconCirclePositionTop),
-                ),
-                Expanded(
-                  child: Column(
-                    children: [
-                      AutoSizeText(
-                        workTypeTitle,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w500, fontSize: 27.0),
-                        maxLines: 1,
-                      ),
-                      AutoSizeText(
-                        workTypeDescription,
-                        textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 14),
-                        maxLines: 3,
-                      )
-                    ],
+              Navigator.push(
+                  context, MaterialPageRoute(builder: (context) => page));
+            },
+            child: Padding(
+              padding: const EdgeInsets.all(12),
+              child: Column(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                children: [
+                  Container(
+                    margin: EdgeInsets.only(
+                        bottom: 10, left: iconCirclePositionRight),
+                    child: IconBackgroundCircle(
+                        url: iconUrl,
+                        imageSize: iconSize,
+                        rightCirclePosition: iconCirclePositionRight,
+                        topCirclePosition: iconCirclePositionTop),
                   ),
-                ),
-              ],
+                  Expanded(
+                    child: Column(
+                      children: [
+                        AutoSizeText(
+                          workTypeTitle,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w500, fontSize: 27.0),
+                          maxLines: 1,
+                        ),
+                        AutoSizeText(
+                          workTypeDescription,
+                          textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 14),
+                          maxLines: 3,
+                        )
+                      ],
+                    ),
+                  ),
+                ],
+              ),
             ),
           ),
         ),
-      ),
-    );
-   });
+      );
+    });
   }
 }
