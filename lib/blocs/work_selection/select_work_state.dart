@@ -12,6 +12,7 @@ abstract class SelectWorkState {
    const SelectWorkInitialState():super("", const [], const []);
 }
 
+
 class ListedWorkState extends SelectWorkState {
   final List<Work> works;
   ListedWorkState(this.works):super(works[0].id, works, const []);

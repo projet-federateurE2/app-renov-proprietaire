@@ -24,11 +24,6 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
   var numberColumns;
   var sizeScreen = 0.0;
 
-  @override
-  void initState() {
-    super.initState();
-    BlocProvider.of<SelectWorkBloc>(context).add(const LoadWorksEvent());
-  }
 
   @override
   Widget build(BuildContext context) {
@@ -75,17 +70,14 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                 scrollDirection: Axis.vertical,
                                 shrinkWrap: true,
                                 crossAxisCount: numberColumns,
-                                children: List.generate(state.malisteWork.length, (index) {
+                                children: 
+                                List.generate(state.malisteWork.length, (index) {
                                   var clickableBlock = state.malisteWork[index];
                                   return WorkClickableBlock(
                                     urlImage: clickableBlock.urlImage,
                                     workName: clickableBlock.title,
-                                    isSelected:
-                                        state.idClick.contains(clickableBlock.id),
-                                    isChecked: state.valideWork
-                                        .where((element) => element.id
-                                            .contains(clickableBlock.id))
-                                        .isNotEmpty,
+                                    isSelected: state.idClick.contains(clickableBlock.id),
+                                    isChecked: state.valideWork.where((element) => element.id.contains(clickableBlock.id)).isNotEmpty,
                                     idWork: clickableBlock.id,
                                   );
                                  }
@@ -108,8 +100,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                             context: context,
                                             builder: (BuildContext context) =>
                                                 PopupValidateWork(
-                                                    workToValidate:
-                                                        state.valideWork),
+                                                    workToValidate: state.valideWork),
                                           );
                                         },
                                         enabled: state.valideWork.isNotEmpty

@@ -29,6 +29,8 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var boderColor = Colors.white;
   var fontColor = ColorsRenov.primaryGreen;
   var backgroundColor = Colors.white;
+
+
   @override
   Widget build(BuildContext context) {
     widget.isSelected ? boderColor = ColorsRenov.primaryGreen : boderColor = Colors.white;
@@ -59,7 +61,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),
                 onTap: () {
-                  BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.idWork));
+                  BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.idWork, state.malisteWork));
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -69,8 +71,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                         width: MediaQuery.of(context).size.width / 15,
                         height: MediaQuery.of(context).size.width / 15,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: SvgPicture.asset(widget.urlImage,
-                            color: fontColor)),
+                        child: widget.urlImage.contains("http") ? SvgPicture.network(widget.urlImage, color: fontColor):  SvgPicture.asset(widget.urlImage, color: fontColor)),
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(widget.workName,

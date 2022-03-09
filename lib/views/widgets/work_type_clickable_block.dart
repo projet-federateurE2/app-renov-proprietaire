@@ -1,6 +1,8 @@
 import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/views/widgets/icon_background_circle.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
+import '../../blocs/work_selection/select_work_bloc.dart';
 
 class WorkTypeClickableBlock extends StatelessWidget {
   final String iconUrl;
@@ -27,6 +29,8 @@ class WorkTypeClickableBlock extends StatelessWidget {
 
     var height = MediaQuery.of(context).size.height;
     // 353 246
+    return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+        builder: (context, state) {
     return SizedBox(
       width: MediaQuery.of(context).size.width * 0.3,
       height: MediaQuery.of(context).size.height * 0.36,
@@ -36,8 +40,10 @@ class WorkTypeClickableBlock extends StatelessWidget {
         child: InkWell(
           // When the user taps the button, show a snackbar.
           onTap: () {
-            Navigator.push(
-                context, MaterialPageRoute(builder: (context) => page));
+
+            BlocProvider.of<SelectWorkBloc>(context).add(TypeSelectEvent(workTypeTitle));
+
+            Navigator.push(context, MaterialPageRoute(builder: (context) => page));
           },
           child: Padding(
             padding: const EdgeInsets.all(12),
@@ -79,5 +85,6 @@ class WorkTypeClickableBlock extends StatelessWidget {
         ),
       ),
     );
+   });
   }
 }

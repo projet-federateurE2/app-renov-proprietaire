@@ -24,6 +24,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
 
   @override
   Widget build(BuildContext context) {
+    print(widget.work.urlImage);
     var sizeIcon =
         MediaQuery.of(context).size.width > MediaQuery.of(context).size.height
             ? MediaQuery.of(context).size.width * 0.03
@@ -90,7 +91,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                               fontWeight: FontWeight.w300, fontSize: 15.0),
                         ),
                       ),
-                    )
+                    ),
                   ],
                 ),
                 Row(
@@ -128,8 +129,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         margin: const EdgeInsets.only(right: 32, bottom: 8),
                         child: TextButton(
                           onPressed: () {
-                            BlocProvider.of<SelectWorkBloc>(context)
-                                .add(ValitedWorkEvent(widget.work));
+                            BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.work, state.malisteWork));
                           },
                           child: AutoSizeText(
                             state.valideWork

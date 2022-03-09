@@ -26,12 +26,12 @@ Future<http.Response> getInstanceApi() async {
 }
 
 
-  Future<List<Work>> doQueryFuture() async {
+  Future<List<Work>> doQueryFuture(String? type) async {
     var data = await getInstanceApi();
     var _json = jsonDecode(utf8.decode(data.bodyBytes));
     List<Work> _works = [];
     _json.forEach((work){
-      if(work['type']=='Isolation'){
+      if(work['type']== type){
         _works.add(Work.fromJson(work));
       }
     });
