@@ -21,7 +21,8 @@ class UserState extends SelectWorkState {
 class ListedWorkState extends SelectWorkState {
   final List<Work> works;
   final Owner user;
-  ListedWorkState(this.works, this.user):super(works[0].id, works, const [], user);
+  final List<Work> validework;
+  ListedWorkState(this.works, this.user, this.validework):super(works[0].id, works, validework, user);
 }
 
 

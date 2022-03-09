@@ -21,13 +21,11 @@ class HomePage extends StatefulWidget {
 
 class _HomePageState extends State<HomePage> {
 
-late final Owner user;
 @override
 void initState() {
     // TODO: implement initState
-   BlocProvider.of<SelectWorkBloc>(context).add(WorkInProgressEvent(widget.user));
-    super.initState();
-    
+   //BlocProvider.of<SelectWorkBloc>(context).add(WorkInProgressEvent(widget.user));
+    super.initState();    
   }
 
   @override
@@ -44,7 +42,7 @@ void initState() {
             padding: const EdgeInsets.all(24),
             child: Row(
               children: [
-                   state is WorkInProgressState ? LeftSideBar(workinprogress: state.WorkInProgress) : const LeftSideBar(workinprogress: []),
+                  LeftSideBar(workinprogress: state.valideWork, user: widget.user),
                 Expanded(
                   child: Column(
                     children: [
@@ -59,28 +57,24 @@ void initState() {
                             SizedBox(
                               height: 200,
                               child: 
-                              state is WorkInProgressState ?
                               ListView.builder(
-                                  itemCount: state.WorkInProgress.length,
+                                  itemCount: state.valideWork.length,
                                   shrinkWrap: true,
                                   scrollDirection: Axis.horizontal,
                                   itemBuilder:
                                       (BuildContext context, int index) {
-                                    var _workInProgress = state.WorkInProgress[index];
+                                    var _workInProgress =  state.valideWork[index];
                                     return WorkInProgressBlock(
-                                        urlIcon: _workInProgress['urlIcon'],
-                                        workTitle: _workInProgress['workTitle'],
-                                        budget: _workInProgress['budget'],
-                                        financialAssistance: _workInProgress['financialAssistance'],
-                                        stepInProgress: _workInProgress['stepInProgress'],
-                                        percentageCompleted: _workInProgress['percentageCompleted'],
+                                        urlIcon: _workInProgress.urlImage,
+                                        workTitle: _workInProgress.title,
+                                        budget: "Non renseigné",
+                                        financialAssistance:  "Non renseigné",
+                                        stepInProgress: 'Trouver un artisan dans la liste',
+                                        percentageCompleted: 0,
                                         );
                                    }
-                                  ): 
-                                  const Center(
-                                    child: CircularProgressIndicator(),
-                               )
-                            )
+                                  ),
+                               ),                   
                           ],
                         ),
                       ),

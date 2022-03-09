@@ -1,16 +1,18 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
+import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/values/styles.dart';
 import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/secondary_project_side_button.dart';
 
+import '../../models/owner.dart';
+
 class LeftSideBar extends StatefulWidget {
-  final List<dynamic>? workinprogress;
-  const LeftSideBar({Key? key, required this.workinprogress}) : super(key: key);
+  final List<Work>? workinprogress;
+  final Owner user;
+  const LeftSideBar({Key? key, required this.workinprogress, required this.user}) : super(key: key);
 
   @override
   State<LeftSideBar> createState() => _LeftSideBarState();
@@ -39,8 +41,8 @@ class _LeftSideBarState extends State<LeftSideBar> {
                   Column(children: <Widget>[
                     SvgPicture.asset('./../../assets/icons/account_avatar.svg',
                         width: 100.0, height: 100.0),
-                    const Text("Paul Dupont",
-                        style: TextStyle(
+                     Text(widget.user.prenom + " " + widget.user.nom,
+                        style: const TextStyle(
                             fontWeight: FontWeight.w600, fontSize: 16.0)),
                   ]),
                   Card(
@@ -66,8 +68,8 @@ class _LeftSideBarState extends State<LeftSideBar> {
                               (index) {
                             var _workInProgress = widget.workinprogress![index];
                             return SecondaryProjectSideButton(
-                              text: _workInProgress['workTitle'],
-                              secondaryText: _workInProgress['workTitle'],
+                              text: _workInProgress.title,
+                              secondaryText: _workInProgress.titleDesc,
                             );
                           }),
                         ],

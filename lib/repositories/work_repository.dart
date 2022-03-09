@@ -52,7 +52,6 @@ Future<http.Response> getInstanceApigetOwners() async {
     var _json = jsonDecode(utf8.decode(data.bodyBytes));
     var currentOwerEstate = Estate.fromJson(_json[0]['proprietes'][0]);
     var currentOwner = Owner.fromJson(_json, currentOwerEstate);
-    print(currentOwner.email);
     return currentOwner;
   }
   

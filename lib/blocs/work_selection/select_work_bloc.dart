@@ -12,36 +12,27 @@ class SelectWorkBloc extends Bloc<SelectWorkEvent, SelectWorkState> {
     
 
     on<UserEvent>((event, emit) async {
-      print("UserEvent");
       var user = await WorkRepository().queryOwners();
       emit (UserState(user));
     });
 
     on<TypeSelectEvent>((event, emit) async{
-      print("TypeSelectEvent");
        var works = await WorkRepository().doQueryFuture(event.type);
-       emit (ListedWorkState(works, event.user!));
+       var list = WorkRepository().allValideWork();
+       emit (ListedWorkState(works, event.user!, list));
     });
 
-    // on<LoadWorksEvent>((event, emit) async {
-    //   var works = await WorkRepository().doQueryFuture();
-    //   emit (ListedWorkState(works));
-    // });
-
     on<ClickWorkEvent>((event, emit) async {
-       print("ClickWorkEvent");
     var list = WorkRepository().allValideWork();
     emit (ClickedWorkState(event.idClick, event.works, list, event.user!));
     });
 
     on<ValitedWorkEvent>((event, emit) async {
-      print("ValitedWorkEvent");
       var list = WorkRepository().getAddValideWorkClick(event.work);
       emit (ValideWorkState(list, event.works, event.work.id, event.user!));
     });
 
     on<WorkInProgressEvent>((event, emit) {
-      print("WorkInProgressEvent");
       var lists = WorkRepository().getTravaux();
       emit(WorkInProgressState([], [], "", lists, event.user));
     });

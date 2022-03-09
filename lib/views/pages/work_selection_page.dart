@@ -9,13 +9,11 @@ import 'package:renov_proprietaire_app/views/widgets/button_renov.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/popup_validate_work.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_clickable_block.dart';
-
 import '../widgets/user_in_corner.dart';
 import '../widgets/work_selection_description.dart';
 
 class WorkSelectionPage extends StatefulWidget {
   final String workType;
-
   const WorkSelectionPage({Key? key, required this.workType}) : super(key: key);
 
   @override
@@ -31,9 +29,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     sizeScreen = MediaQuery.of(context).size.width;
     numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-        builder: (context, state) {       
-        print(state);
-        print(state.user!.email);      
+        builder: (context, state) {            
       return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -55,8 +51,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                              mainAxisAlignment: MainAxisAlignment.spaceBetween,
                              children: [
                                PageTitle(
-                                  text: "Travaux d'isolation",
-                                  returnisvisible: true),                                                  
+                                  text: "Travaux " + widget.workType,
+                                  returnisvisible: true),                                     
                               UserInCorner(name: state.user!.prenom+ " " + state.user!.nom),
                         ],
                         ),
@@ -90,12 +86,8 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                 return WorkClickableBlock(
                                   urlImage: clickableBlock.urlImage,
                                   workName: clickableBlock.title,
-                                  isSelected:
-                                      state.idClick.contains(clickableBlock.id),
-                                  isChecked: state.valideWork
-                                      .where((element) => element.id
-                                          .contains(clickableBlock.id))
-                                      .isNotEmpty,
+                                  isSelected: state.idClick.contains(clickableBlock.id),
+                                  isChecked: state.valideWork.where((element) => element.id.contains(clickableBlock.id)).isNotEmpty,
                                   idWork: clickableBlock.id,
                                 );
                               }),
@@ -148,6 +140,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
           ],
         ),
       );
-    });
+    }
+   );
   }
 }
