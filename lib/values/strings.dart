@@ -1,7 +1,7 @@
 class TextRenov {
   static const String startProject = "Commencer mon projet";
   static const String startProjectDesc =
-      "Vous trouverez ici les grandes familles de travaux de rénovation dans lesquels nous pouvons vous accompagner.\n"
+      "Vous trouverez ici les grandes familles de travaux de rénovation dans lesquels nous pouvons vous accompagner.\n\n"
       "Vous savez déjà vers quoi vous orienter ?\nSi non, vous pouvez toujours commencer par l’isolation !";
   static const String sideProject = "Mon projet";
   static const String sideProjectBtn1 = "Mes informations";

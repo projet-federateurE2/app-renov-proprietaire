@@ -30,7 +30,7 @@ class PopupValidateWork extends StatelessWidget {
     ) ;
 
     return AlertDialog(
-      title: PageTitle(text: "Vos travaux selectionnés pour votre projet"),
+      title: PageTitle(text: "Vos travaux selectionnés pour votre projet", returnisvisible: false),
       content: columnWorkToValidate!,
       actions: <Widget>[
         DarkBlueButton(
