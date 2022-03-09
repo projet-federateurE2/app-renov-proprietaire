@@ -55,13 +55,14 @@ void initState() {
                       ),
                       const SizedBox(
                         width: 2000,
-                        child :
-                        Padding(
+                        child: Padding(
                           padding: EdgeInsets.fromLTRB(40.0, 10, 0, 40),
                           child: Text(
                             TextRenov.startProjectDesc,
                             style: TextStyle(
-                                fontSize: 17, color: ColorsRenov.darkBlue, fontStyle: FontStyle.italic),
+                                fontSize: 17,
+                                color: ColorsRenov.darkBlue,
+                                fontStyle: FontStyle.italic),
                           ),
                         ),
                       ),
