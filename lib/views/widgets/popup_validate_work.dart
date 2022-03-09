@@ -3,14 +3,16 @@ import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:renov_proprietaire_app/views/pages/home_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
 import 'package:renov_proprietaire_app/views/widgets/validate_work_card.dart';
+import '../../models/owner.dart';
 import 'dark_blue_button.dart';
 import 'page_title.dart';
 
 class PopupValidateWork extends StatelessWidget {
   final List<Work> workToValidate;
+  final Owner user;
   SingleChildScrollView? columnWorkToValidate;
 
-  PopupValidateWork({Key? key, required this.workToValidate}) : super(key: key);
+  PopupValidateWork({Key? key, required this.workToValidate, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
@@ -46,7 +48,7 @@ class PopupValidateWork extends StatelessWidget {
             Navigator.push(
                 context,
                 MaterialPageRoute(
-                    builder: (context) => const HomePage()
+                    builder: (context) => HomePage(user: user)
                 )
             );
           },

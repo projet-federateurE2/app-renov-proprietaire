@@ -32,7 +32,9 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
     sizeScreen = MediaQuery.of(context).size.width;
     numberColumns = sizeScreen > 1500 ? 3 : 2;
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-        builder: (context, state) {
+        builder: (context, state) {       
+        print(state);
+        print(state.user!.email);      
       return Scaffold(
         backgroundColor: Colors.white,
         body: Stack(
@@ -51,14 +53,13 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                         crossAxisAlignment: CrossAxisAlignment.start,
                         children: [
                           Row(
-                            //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                             children: [
                               Expanded(
                                 child: PageTitle(
                                     text: "Travaux d'isolation",
                                     returnisvisible: true),
                               ),
-                              const UserInCorner(name: "Paul Dupont"),
+                             UserInCorner(name: state.user!.prenom+ " " + state.user!.nom),
                             ],
                           ),
                           const Padding(
@@ -120,8 +121,7 @@ class _WorkSelectionPageState extends State<WorkSelectionPage> {
                                           context: context,
                                           builder: (BuildContext context) =>
                                               PopupValidateWork(
-                                                  workToValidate:
-                                                      state.valideWork),
+                                                  workToValidate:state.valideWork, user: state.user!),
                                         );
                                       },
                                       enabled: state.valideWork.isNotEmpty

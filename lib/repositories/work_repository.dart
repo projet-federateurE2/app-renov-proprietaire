@@ -25,6 +25,13 @@ Future<http.Response> getInstanceApi() async {
       return data;
 }
 
+Future<http.Response> getInstanceApigetOwners() async {
+ String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    var url = Uri.parse('https://equipe2.lp-cloud.tech/v1/proprietaires');
+    var data = await http.get(url,
+        headers: <String, String>{'authorization': basicAuth});
+      return data;
+}
 
   Future<List<Work>> doQueryFuture(String? type) async {
     var data = await getInstanceApi();
@@ -41,7 +48,7 @@ Future<http.Response> getInstanceApi() async {
 
 
   Future<Owner> queryOwners() async {
-     var data = await getInstanceApi();
+    var data = await getInstanceApigetOwners();
     var _json = jsonDecode(utf8.decode(data.bodyBytes));
     var currentOwerEstate = Estate.fromJson(_json[0]['proprietes'][0]);
     var currentOwner = Owner.fromJson(_json, currentOwerEstate);

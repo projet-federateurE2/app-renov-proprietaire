@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:renov_proprietaire_app/models/owner.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/left_side_bar.dart';
 import 'package:renov_proprietaire_app/views/widgets/notepad.dart';
@@ -8,14 +9,32 @@ import 'package:renov_proprietaire_app/views/widgets/work_in_progress_block.dart
 import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/work_selection/select_work_bloc.dart';
 
-class HomePage extends StatelessWidget {
-  const HomePage({Key? key}) : super(key: key);
+
+class HomePage extends StatefulWidget {
+
+  final Owner user;
+  const HomePage({Key? key, required this.user}) : super(key: key);
+
+  @override
+  _HomePageState createState() => _HomePageState();
+}
+
+class _HomePageState extends State<HomePage> {
+
+late final Owner user;
+@override
+void initState() {
+    // TODO: implement initState
+   BlocProvider.of<SelectWorkBloc>(context).add(WorkInProgressEvent(widget.user));
+    super.initState();
+    
+  }
 
   @override
   Widget build(BuildContext context) {
+    
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
       builder: (context, state) {
-      BlocProvider.of<SelectWorkBloc>(context).add(const WorkInProgressEvent());
     return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -85,3 +104,4 @@ class HomePage extends StatelessWidget {
   );
   }
 }
+

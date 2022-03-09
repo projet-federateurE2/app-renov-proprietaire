@@ -1,12 +1,7 @@
-import 'package:flutter/rendering.dart';
 import 'package:flutter_svg/svg.dart';
 import 'package:renov_proprietaire_app/values/colors.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
-import 'package:renov_proprietaire_app/values/strings.dart';
-import 'package:renov_proprietaire_app/values/styles.dart';
-import 'package:renov_proprietaire_app/views/widgets/project_side_button.dart';
-import 'package:renov_proprietaire_app/views/widgets/secondary_project_side_button.dart';
 
 class UserInCorner extends StatefulWidget {
   final String name;

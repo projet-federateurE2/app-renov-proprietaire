@@ -6,15 +6,29 @@ import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart'
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
 import 'package:renov_proprietaire_app/views/widgets/user_in_corner.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_type_clickable_block.dart';
+import '../../blocs/work_selection/select_work_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-
-class WorkTypeSelectionPage extends StatelessWidget {
+class WorkTypeSelectionPage extends StatefulWidget {
   const WorkTypeSelectionPage({Key? key}) : super(key: key);
 
+  @override
+  _WorkTypeSelectionPageState createState() => _WorkTypeSelectionPageState();
+}
+
+class _WorkTypeSelectionPageState extends State<WorkTypeSelectionPage> { 
+
+@override
+void initState() {
+    super.initState();
+    BlocProvider.of<SelectWorkBloc>(context).add(const UserEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
+  return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+      builder: (context, state) {
      return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -31,15 +45,14 @@ class WorkTypeSelectionPage extends StatelessWidget {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Row(
-                        //mainAxisAlignment: MainAxisAlignment.spaceBetween,
                         children: [
                           Expanded(
                             child : PageTitle(text: TextRenov.startProject, returnisvisible: false),
                           ),
-
-
-                          const UserInCorner(name: "Paul Dupont"),
-                        ]),
+                           state is UserState ? UserInCorner(name: state.user.prenom+ " " + state.user.nom)
+                           : const UserInCorner(name: "Paul Dupont")
+                        ]
+                      ),
                       const SizedBox(
                         width: 2000,
                         child :
@@ -91,6 +104,8 @@ class WorkTypeSelectionPage extends StatelessWidget {
           )
         ],
       ),
-    );
+     );
+    }
+   );
   }
 }

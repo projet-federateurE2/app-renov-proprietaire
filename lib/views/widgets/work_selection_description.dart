@@ -86,7 +86,6 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         child: AutoSizeText(
                           widget.work.txt1,
                           maxLines: 4,
-                          // textAlign: TextAlign.center,
                           style: const TextStyle(
                               fontWeight: FontWeight.w300, fontSize: 15.0),
                         ),
@@ -129,7 +128,7 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
                         margin: const EdgeInsets.only(right: 32, bottom: 8),
                         child: TextButton(
                           onPressed: () {
-                            BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.work, state.malisteWork));
+                            BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.work, state.malisteWork, state.user));
                           },
                           child: AutoSizeText(
                             state.valideWork

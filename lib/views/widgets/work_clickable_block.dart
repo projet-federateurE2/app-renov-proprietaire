@@ -61,7 +61,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),
                 onTap: () {
-                  BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.idWork, state.malisteWork));
+                  BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.idWork, state.malisteWork, state.user));
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,

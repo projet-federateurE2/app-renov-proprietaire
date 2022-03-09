@@ -11,7 +11,6 @@ class WorkTypeClickableBlock extends StatelessWidget {
   final String workTypeDescription;
   final Widget page;
 
-// final Widget page
 
   const WorkTypeClickableBlock(
       {Key? key,
@@ -38,11 +37,9 @@ class WorkTypeClickableBlock extends StatelessWidget {
         elevation: 4,
         shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(15)),
         child: InkWell(
-          // When the user taps the button, show a snackbar.
           onTap: () {
-
-            BlocProvider.of<SelectWorkBloc>(context).add(TypeSelectEvent(workTypeTitle));
-
+            print("Type CLick");
+            BlocProvider.of<SelectWorkBloc>(context).add(TypeSelectEvent(workTypeTitle, state.user));
             Navigator.push(context, MaterialPageRoute(builder: (context) => page));
           },
           child: Padding(

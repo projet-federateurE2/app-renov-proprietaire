@@ -6,7 +6,7 @@ class Estate{
   Estate(this.addresse, this.surface, this.type, this.listIdProjects);
 
     factory Estate.fromJson(dynamic _json) {
-    return Estate(_json[0]['proprietes'][0]['adresse'] , _json[0]['proprietes'][0]['surface'] , _json[0]['proprietes'][0]['type'] , _json[0]['proprietes'][0]['idProject']);
+    return Estate(_json['adresse'] , _json['surface'] , _json['type'] , _json['idProject']);
   }
 
 }
