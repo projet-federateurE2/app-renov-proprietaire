@@ -46,7 +46,7 @@ class IconBackgroundCircle extends StatelessWidget {
             margin: EdgeInsets.only(top:topCirclePosition , right: rightCirclePosition),
             height: imageSize,
             width: imageSize,
-            child: SvgPicture.asset(url))
+            child: SvgPicture.asset(url,color:ColorsRenov.primaryGreen))
       ],
     );
   }
