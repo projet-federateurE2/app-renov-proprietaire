@@ -1,53 +1,62 @@
-import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
+import 'package:renov_proprietaire_app/values/colors.dart';
+import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/pages/home_page.dart';
-import 'package:renov_proprietaire_app/views/widgets/green_button.dart';
+import 'package:renov_proprietaire_app/views/widgets/button_renov.dart';
 import 'package:renov_proprietaire_app/views/widgets/validate_work_card.dart';
-
-import 'dark_blue_button.dart';
+import '../../models/owner.dart';
 import 'page_title.dart';
 
 class PopupValidateWork extends StatelessWidget {
   final List<Work> workToValidate;
-  Column? columnWorkToValidate;
+  final Owner user;
+  SingleChildScrollView? columnWorkToValidate;
 
-  PopupValidateWork({Key? key, required this.workToValidate}) : super(key: key);
+  PopupValidateWork({Key? key, required this.workToValidate, required this.user}) : super(key: key);
 
   @override
   Widget build(BuildContext context) {
-    List<Widget> listWorkToValidate = List.generate(0, (index) => const ValidateWorkCard(validateWork: null));
+    List<Widget> listWorkToValidate =
+        List.generate(0, (index) => const ValidateWorkCard(validateWork: null));
 
-    workToValidate.forEach((element) {listWorkToValidate.add(ValidateWorkCard(validateWork: element));});
+    for (var element in workToValidate) {
+      listWorkToValidate.add(ValidateWorkCard(validateWork: element));
+    }
 
-    columnWorkToValidate = Column(
-      mainAxisSize: MainAxisSize.min,
-      crossAxisAlignment: CrossAxisAlignment.start,
-      children: listWorkToValidate,
+    columnWorkToValidate = SingleChildScrollView(
+      child: Column(
+        mainAxisSize: MainAxisSize.min,
+        crossAxisAlignment: CrossAxisAlignment.start,
+        children: listWorkToValidate,
+      ),
     );
 
     return AlertDialog(
-      title: PageTitle(text: "Vos travaux selectionnés pour votre projet"),
+      title: PageTitle(text: TextRenov.workSelected, returnisvisible: false),
       content: columnWorkToValidate!,
       actions: <Widget>[
-        DarkBlueButton(
-          text: "Annuler",
-          onPressed: () {
-            Navigator.of(context).pop();
-          },
-          enabled: true,
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          child: ButtonRenov(
+            btnColor: ColorsRenov.darkBlue,
+            text: TextRenov.btnCancel,
+            onPressed: () {
+              Navigator.of(context).pop();
+            },
+            enabled: true,
+          ),
         ),
-        GreenButton(
-          text: "Valider",
-          onPressed: () {
-            Navigator.push(
-                context,
-                MaterialPageRoute(
-                    builder: (context) => const HomePage()
-                )
-            );
-          },
-          enabled: true,
+        Container(
+          margin: const EdgeInsets.symmetric(horizontal: 8),
+          child: ButtonRenov(
+            text: TextRenov.btnValidate,
+            onPressed: () async {
+              Navigator.push(context,
+                  MaterialPageRoute(builder: (context) => HomePage(user: user)));
+            },
+            enabled: true,
+          ),
         ),
       ],
     );

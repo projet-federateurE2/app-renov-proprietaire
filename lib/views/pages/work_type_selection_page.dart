@@ -4,21 +4,31 @@ import 'package:renov_proprietaire_app/values/strings.dart';
 import 'package:renov_proprietaire_app/views/pages/work_selection_page.dart';
 import 'package:renov_proprietaire_app/views/widgets/background_green_wave.dart';
 import 'package:renov_proprietaire_app/views/widgets/page_title.dart';
+import 'package:renov_proprietaire_app/views/widgets/user_in_corner.dart';
 import 'package:renov_proprietaire_app/views/widgets/work_type_clickable_block.dart';
-import 'package:flutter_bloc/flutter_bloc.dart';
 import '../../blocs/work_selection/select_work_bloc.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 
 
-class WorkTypeSelectionPage extends StatelessWidget {
+class WorkTypeSelectionPage extends StatefulWidget {
   const WorkTypeSelectionPage({Key? key}) : super(key: key);
 
+  @override
+  _WorkTypeSelectionPageState createState() => _WorkTypeSelectionPageState();
+}
+
+class _WorkTypeSelectionPageState extends State<WorkTypeSelectionPage> { 
+
+@override
+void initState() {
+    super.initState();
+    BlocProvider.of<SelectWorkBloc>(context).add(const UserEvent());
+  }
 
   @override
   Widget build(BuildContext context) {
-     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-        builder: (context, state) {
-          print("state one");
-          print(state);
+  return BlocBuilder<SelectWorkBloc, SelectWorkState>(
+      builder: (context, state) {
      return Scaffold(
       backgroundColor: Colors.white,
       body: Stack(
@@ -30,23 +40,30 @@ class WorkTypeSelectionPage extends StatelessWidget {
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
                 Container(
-                  margin: const EdgeInsets.symmetric(horizontal: 40),
+                  margin: const EdgeInsets.symmetric(horizontal: 0),
                   child: Column(
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
-                      Hero(
-                        tag: "title",
-                        child: Material(
-                          type: MaterialType.transparency, // likely needed
-                          child: PageTitle(text: TextRenov.startProject),
-                        ),
+                      Row(
+                        children: [
+                          Expanded(
+                            child : PageTitle(text: TextRenov.startProject, returnisvisible: false),
+                          ),
+                           state is UserState ? UserInCorner(name: state.user.prenom+ " " + state.user.nom)
+                           : const UserInCorner(name: "Paul Dupont")
+                        ]
                       ),
                       const SizedBox(
-                        width: 900,
-                        child: Text(
-                          TextRenov.startProjectDesc,
-                          style: TextStyle(
-                              fontSize: 26, color: ColorsRenov.darkBlue),
+                        width: 2000,
+                        child: Padding(
+                          padding: EdgeInsets.fromLTRB(40.0, 10, 0, 40),
+                          child: Text(
+                            TextRenov.startProjectDesc,
+                            style: TextStyle(
+                                fontSize: 17,
+                                color: ColorsRenov.darkBlue,
+                                fontStyle: FontStyle.italic),
+                          ),
                         ),
                       ),
                     ],
@@ -88,7 +105,8 @@ class WorkTypeSelectionPage extends StatelessWidget {
           )
         ],
       ),
-    );
-    });
+     );
+    }
+   );
   }
 }

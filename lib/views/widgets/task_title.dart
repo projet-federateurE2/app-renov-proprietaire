@@ -30,11 +30,14 @@ class TaskTitle extends StatelessWidget {
                               color: ColorsRenov.secondaryGreen,
                             ),
                             position: DecorationPosition.background,
-                          ));
+                            ),
+                          );
                     } else {
                       return const Text("");
                     }
-                  })),
+                  }
+                  ),
+                ),
           Container(
               margin: const EdgeInsets.only(left:15),
               child: Text(text, key: txtKey, style: const TextStyle(fontSize: 24, fontWeight: FontWeight.w600)))

@@ -1,8 +1,9 @@
 import 'dart:convert';
-import 'package:flutter/services.dart';
-import 'package:flutter_svg/svg.dart';
+import 'package:renov_proprietaire_app/models/owner.dart';
 import 'package:renov_proprietaire_app/models/work.dart';
 import 'package:http/http.dart' as http;
+
+import '../values/strings.dart';
 
 class WorkRepository  {
   // Etudier les 3 lignes suivantes
@@ -11,36 +12,49 @@ class WorkRepository  {
   factory WorkRepository() => _instance;
   List<String> _workClick = [];
   List<Work> _valideWork = [];
+  
+  static const username = Api.username;
+  static const password = Api.password;
 
 
-  Future<List<Work>> doQueryFuture() async {
-    var url = Uri.parse('https://app-ef3e460c-a183-4eb1-a1a6-ea2f0282e0cd.cleverapps.io/v1/projet/template');
-    var data = await http.get(url);
-    var _json = jsonDecode(data.body);
-    print(_json);
+Future<http.Response> getInstanceApi() async {
+ String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    var url = Uri.parse('https://equipe2.lp-cloud.tech/v1/projet/template');
+    var data = await http.get(url,
+        headers: <String, String>{'authorization': basicAuth});
+      return data;
+}
+
+Future<http.Response> getInstanceApigetOwners() async {
+ String basicAuth = 'Basic ' + base64Encode(utf8.encode('$username:$password'));
+    var url = Uri.parse('https://equipe2.lp-cloud.tech/v1/proprietaires');
+    var data = await http.get(url,
+        headers: <String, String>{'authorization': basicAuth});
+      return data;
+}
+
+  Future<List<Work>> doQueryFuture(String? type) async {
+    var data = await getInstanceApi();
+    var _json = jsonDecode(utf8.decode(data.bodyBytes));
     List<Work> _works = [];
     _json.forEach((work){
-      if(work['type']=='Isolation'){
-        _works.add(Work(work['_id'], work['travaux'][0]['nom'], work['pitch'], 'work[]', work['travaux'][0]['conseils'][0]['texte'], 'conseil 2'));
+      if(work['type']== type){
+        _works.add(Work.fromJson(work));
       }
     });
-    print(_works);
     return _works;
   }
-  
-  Stream<Work?> getWork(idWork) async* {
 
-    var data = await rootBundle.loadString("data.json");
-    var _json = jsonDecode(data);
-    Work? clickedWork;
-    _json['listTypeWork'].forEach((c) {
-      if(c['id'] == idWork){
-        clickedWork = Work(c['id'], c['title'], c['titleDesc'], c['urlImage'], c['txt1'], c['txt2']);
-      }
-    });
-    yield clickedWork;
+
+
+  Future<Owner> queryOwners() async {
+    var data = await getInstanceApigetOwners();
+    var _json = jsonDecode(utf8.decode(data.bodyBytes));
+    var currentOwerEstate = Estate.fromJson(_json[0]['proprietes'][0]);
+    var currentOwner = Owner.fromJson(_json, currentOwerEstate);
+    return currentOwner;
   }
-
+  
 
  List<Work> getAddValideWorkClick(work)
  {

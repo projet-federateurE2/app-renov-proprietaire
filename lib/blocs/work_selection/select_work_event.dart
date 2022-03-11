@@ -5,6 +5,17 @@ abstract class SelectWorkEvent {
   const SelectWorkEvent();
 }
 
+class UserEvent extends SelectWorkEvent {
+  const UserEvent();
+}
+
+class TypeSelectEvent extends SelectWorkEvent {
+final String? type;
+final Owner? user;
+const TypeSelectEvent(this.type, this.user);
+}
+
+
 class LoadWorksEvent extends SelectWorkEvent {
   const LoadWorksEvent();
 }
@@ -12,20 +23,25 @@ class LoadWorksEvent extends SelectWorkEvent {
 
 class ClickWorkEvent extends SelectWorkEvent {
   final String idClick;
-  const ClickWorkEvent(this.idClick);
+  final List<Work> works;
+  final Owner? user;
+  const ClickWorkEvent(this.idClick, this.works, this.user);
 
 }
 
 
 class ValitedWorkEvent extends SelectWorkEvent {
   final Work work;
-  const ValitedWorkEvent(this.work);
+  final List<Work> works;
+  final Owner? user;
+  const ValitedWorkEvent(this.work, this.works, this.user);
 
 }
 
 
 class WorkInProgressEvent extends SelectWorkEvent{
-  const WorkInProgressEvent();
+  final Owner user;
+  const WorkInProgressEvent(this.user);
 
 }
 

@@ -11,7 +11,6 @@ class WorkClickableBlock extends StatefulWidget {
   final bool isSelected;
   final bool isChecked;
   final String idWork;
-  // final Function(int) callback;
 
   const WorkClickableBlock({
     Key? key,
@@ -20,7 +19,6 @@ class WorkClickableBlock extends StatefulWidget {
     required this.isSelected,
     required this.isChecked,
     required this.idWork,
-    // required this.callback,
   }) : super(key: key);
 
   @override
@@ -31,6 +29,8 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
   var boderColor = Colors.white;
   var fontColor = ColorsRenov.primaryGreen;
   var backgroundColor = Colors.white;
+
+
   @override
   Widget build(BuildContext context) {
     widget.isSelected ? boderColor = ColorsRenov.primaryGreen : boderColor = Colors.white;
@@ -61,7 +61,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
               child: InkWell(
                 borderRadius: BorderRadius.circular(15),
                 onTap: () {
-                  BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.idWork));
+                  BlocProvider.of<SelectWorkBloc>(context).add(ClickWorkEvent(widget.idWork, state.malisteWork, state.user));
                 },
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.center,
@@ -71,8 +71,7 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                         width: MediaQuery.of(context).size.width / 15,
                         height: MediaQuery.of(context).size.width / 15,
                         margin: const EdgeInsets.only(bottom: 10),
-                        child: SvgPicture.asset(widget.urlImage,
-                            color: fontColor)),
+                        child: widget.urlImage.contains("http") ? SvgPicture.network(widget.urlImage, color: fontColor):  SvgPicture.asset(widget.urlImage, color: fontColor)),
                     FittedBox(
                       fit: BoxFit.fitWidth,
                       child: Text(widget.workName,
@@ -99,12 +98,15 @@ class _WorkClickableBlockState extends State<WorkClickableBlock> {
                     height: 35,
                     child: SvgPicture.asset(
                       IconsRenov.checkMarkForWorksBlock,
-                    ));
-              }),
+                    ),
+                  );
+              }
+            ),
             ),
           ),
         ],
       );
-    });
+    }
+   );
   }
 }

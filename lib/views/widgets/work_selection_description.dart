@@ -11,9 +11,7 @@ import 'icon_background_circle.dart';
 
 class WorkSelectionDescription extends StatefulWidget {
   final Work work;
-  const WorkSelectionDescription(
-      {Key? key,
-      required this.work})
+  const WorkSelectionDescription({Key? key, required this.work})
       : super(key: key);
 
   @override
@@ -40,121 +38,145 @@ class _WorkSelectionDescription extends State<WorkSelectionDescription> {
         url: widget.work.urlImage);
 
     return BlocBuilder<SelectWorkBloc, SelectWorkState>(
-        builder: (context, state) {
-      return SizedBox(
-        width: MediaQuery.of(context).size.width * 0.44,
-        height: MediaQuery.of(context).size.height * 0.76,
-        child: Card(
-          elevation: 4,
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(20),
-          ),
-          child: Column(
-            mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-            crossAxisAlignment: CrossAxisAlignment.center,
-            children: [
-              Container(
-                margin: const EdgeInsets.only(top: 24),
-                child: AutoSizeText(
-                  widget.work.titleDesc,
-                  textAlign: TextAlign.center,
-                  style: const TextStyle(
-                      fontSize: 32, fontWeight: FontWeight.w600),
+      builder: (context, state) {
+        return SingleChildScrollView(
+          child: Card(
+            margin: const EdgeInsets.only(left: 24),
+            elevation: 4,
+            shape: RoundedRectangleBorder(
+              borderRadius: BorderRadius.circular(20),
+            ),
+            child: Column(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              crossAxisAlignment: CrossAxisAlignment.center,
+              children: [
+                Container(
+                  margin: const EdgeInsets.only(top: 24),
+                  child: AutoSizeText(
+                    widget.work.titleDesc,
+                    textAlign: TextAlign.center,
+                    style: const TextStyle(
+                        fontSize: 32, fontWeight: FontWeight.w600),
+                  ),
                 ),
-              ),
-              Container(
-                  margin: const EdgeInsets.only(
-                    top: 12,
-                    bottom: 48,
-                    left: 15,
-                  ),
-                  child: iconBackgroundCircle),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin:
-                        const EdgeInsets.only(left: 16, right: 32, bottom: 16),
-                    child: SvgPicture.asset(
-                      'icons/bulb.svg',
-                      width: sizeIcon,
-                      height: sizeIcon,
+                Container(
+                    margin: const EdgeInsets.only(
+                      top: 12,
+                      bottom: 48,
+                      left: 16,
                     ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(bottom: 16, right: 32),
-                      child: AutoSizeText(
-                        widget.work.txt1,
-                        maxLines: 4,
-                        // textAlign: TextAlign.center,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 17.0),
+                    child: iconBackgroundCircle),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin: const EdgeInsets.only(
+                          left: 16, right: 32, bottom: 16),
+                      child: SvgPicture.asset(
+                        'icons/bulb.svg',
+                        width: sizeIcon,
+                        height: sizeIcon,
                       ),
                     ),
-                  )
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.start,
-                children: [
-                  Container(
-                    margin:
-                        const EdgeInsets.only(left: 16, right: 24, bottom: 0),
-                    child: SvgPicture.asset(
-                      'icons/warning.svg',
-                      width: sizeIcon,
-                      height: sizeIcon,
-                    ),
-                  ),
-                  Expanded(
-                    child: Container(
-                      margin: const EdgeInsets.only(right: 32),
-                      child: AutoSizeText(
-                        widget.work.txt2,
-                        maxLines: 3,
-                        style: const TextStyle(
-                            fontWeight: FontWeight.w300, fontSize: 17.0),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(bottom: 16, right: 32),
+                        child: AutoSizeText(
+                          widget.work.txt1,
+                          maxLines: 4,
+                          // textAlign: TextAlign.center,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 15.0),
+                        ),
                       ),
                     ),
-                  ),
-                ],
-              ),
-              Row(
-                crossAxisAlignment: CrossAxisAlignment.center,
-                mainAxisAlignment: MainAxisAlignment.end,
-                children: [
-                  Expanded(
-                    child: Container(
-                        margin: const EdgeInsets.only(right: 32, bottom: 8),
-                        child: TextButton(
-                            onPressed: () {
-                              BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent(widget.work));
-                            },
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.start,
+                  children: [
+                    Container(
+                      margin:
+                          const EdgeInsets.only(left: 16, right: 24, bottom: 0),
+                      child: SvgPicture.asset(
+                        'icons/warning.svg',
+                        width: sizeIcon,
+                        height: sizeIcon,
+                      ),
+                    ),
+                    Expanded(
+                      child: Container(
+                        margin: const EdgeInsets.only(right: 32),
+                        child: AutoSizeText(
+                          widget.work.txt2,
+                          maxLines: 3,
+                          style: const TextStyle(
+                              fontWeight: FontWeight.w300, fontSize: 15.0),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+                Row(
+                  crossAxisAlignment: CrossAxisAlignment.center,
+                  mainAxisAlignment: MainAxisAlignment.end,
+                  children: [
+                    Expanded(
+                      child: Container(
+                        decoration: BoxDecoration(
+                            borderRadius: BorderRadius.circular(50),
+                            border: Border.all(
+                              width: 4,
+                              color: state.valideWork
+                                      .where((element) =>
+                                          element.id.contains(widget.work.id))
+                                      .isNotEmpty
+                                  ? Colors.red
+                                  : ColorsRenov.primaryGreen,
+                            )),
+                        margin: const EdgeInsets.symmetric(
+                            vertical: 12, horizontal: 44),
+                        child: InkWell(
+                          borderRadius: BorderRadius.circular(50),
+                          onTap: () {
+                            BlocProvider.of<SelectWorkBloc>(context).add(ValitedWorkEvent( widget.work, state.malisteWork, state.user));
+                          },
+                          child: Container(
+                            padding: const EdgeInsets.symmetric(
+                                horizontal: 2, vertical: 4),
                             child: AutoSizeText(
-                               state.valideWork.where((element) => element.id.contains(widget.work.id)).isNotEmpty
+                              state.valideWork
+                                      .where((element) =>
+                                          element.id.contains(widget.work.id))
+                                      .isNotEmpty
                                   ? TextRenov.removeWork
                                   : TextRenov.addWork,
                               maxLines: 1,
+                              textAlign: TextAlign.center,
                               style: TextStyle(
-                                fontSize: 20,
-                                fontWeight: FontWeight.w300,
-                                color:
-                                state.valideWork.where((element) => element.id.contains(widget.work.id)).isNotEmpty
-                                        ? Colors.red
-                                        : ColorsRenov.primaryGreen,
+                                fontSize: 18,
+                                fontWeight: FontWeight.bold,
+                                color: state.valideWork
+                                        .where((element) =>
+                                            element.id.contains(widget.work.id))
+                                        .isNotEmpty
+                                    ? Colors.red
+                                    : ColorsRenov.primaryGreen,
                               ),
                             ),
-                            style: TextButton.styleFrom())),
-                  ),
-                ],
-              ),
-            ],
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
+                ),
+              ],
+            ),
           ),
-        ),
-      );
-    });
+        );
+      },
+    );
   }
 }
